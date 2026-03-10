@@ -60,7 +60,7 @@ extension TodoEditInterator: TodoEditInteratorInput {
         }
         todo.title = result.title;
         todo.subtitle = result.subtitle;
-        //TODO: Save todo
+        Database.shared.save(todos: [todo], completionHandler: saveHandler);
     }
     
 }
