@@ -10,7 +10,7 @@ import Foundation;
 
 protocol TodoListRouterInput: AnyObject {
     func edit(todo: Todo);
-    func popup(todo: Todo);
+    func popup(info: TodoPopupInfo);
 }
 
 
@@ -36,8 +36,8 @@ fileprivate class TodoListRouter: TodoListRouterInput {
         //TODO: Edit todo
     }
     
-    func popup(todo: Todo) {
-        //TODO: Popup todo
+    func popup(info: TodoPopupInfo) {
+        self.presenter.performSegue(withIdentifier: Name.popup, sender: info);
     }
     
 }

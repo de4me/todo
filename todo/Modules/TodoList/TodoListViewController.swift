@@ -22,7 +22,7 @@ protocol TodoListViewOutput: AnyObject {
     func dataSource(objectAt index: Int) -> Todo?;
     func edit(todo: Todo?);
     func delete(todo: Todo?);
-    func popup(todo: Todo?);
+    func popup(info: TodoPopupInfo?);
     func search(text: String?);
     func complete(todo: Todo?, completed: Bool);
 }
@@ -51,7 +51,15 @@ class TodoListViewController: UIViewController {
     }
     
     @IBAction func longpressClick(_ sender: UILongPressGestureRecognizer) {
-        //TODO: Popup todo
+        let pt = sender.location(in: self.tableView);
+        guard self.presentedViewController == nil,
+              let index = self.tableView.indexPathForRow(at: pt),
+              let cell = self.tableView.cellForRow(at: index) as? TodoListTableViewCell
+        else {
+            return;
+        }
+        let popup = TodoPopupInfo(todo: cell.todo, offset: self.tableView.offsetForCell(cell));
+        self.presenter.popup(info: popup);
     }
     
     @IBAction func newClick(_ sender: Any) {
@@ -63,8 +71,13 @@ class TodoListViewController: UIViewController {
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        //TODO: Popup
         //TODO: Edit
+        switch segue.destination {
+        case let controller as TodoListPopupViewController:
+            controller.popup = sender as? TodoPopupInfo;
+        default:
+            return;
+        }
     }
     
     @IBAction func todoListUnwide(_ segue: UIStoryboardSegue) {
@@ -84,7 +97,7 @@ class TodoListViewController: UIViewController {
     }
     
     @IBAction func shareUnwide(_ segue: UIStoryboardSegue, sender: Any?) {
-        
+        print(#function);
     }
     
     @IBAction func searchClick(_ sender: Any?) {

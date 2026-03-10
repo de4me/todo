@@ -180,6 +180,7 @@
                                 <connections>
                                     <outlet property="dataSource" destination="Y6W-OH-hqX" id="Wv5-A6-D1j"/>
                                     <outlet property="delegate" destination="Y6W-OH-hqX" id="M6f-o0-Qbp"/>
+                                    <outletCollection property="gestureRecognizers" destination="ehs-J0-ttm" appends="YES" id="qKv-tU-S1y"/>
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Qp-pe-cPv">
@@ -242,6 +243,7 @@
                     <connections>
                         <outlet property="tableView" destination="cc6-zD-gut" id="hnN-pp-GVR"/>
                         <outlet property="totalLabel" destination="hvy-28-5wK" id="5O3-HI-eao"/>
+                        <segue destination="sQD-od-vgW" kind="presentation" identifier="popup" id="Dtq-4T-lMp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -272,8 +274,24 @@
                 <navigationItem id="CjC-3f-Y78">
                     <barButtonItem key="backBarButtonItem" title="Назад" id="KFi-8O-FaU"/>
                 </navigationItem>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="ehs-J0-ttm">
+                    <connections>
+                        <action selector="longpressClick:" destination="Y6W-OH-hqX" id="oRS-BU-Pvk"/>
+                        <outlet property="delegate" destination="Y6W-OH-hqX" id="JFQ-Uz-evU"/>
+                    </connections>
+                </pongPressGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="98" y="130"/>
+        </scene>
+        <!--TodoListPopup-->
+        <scene sceneID="xqn-rd-gZ2">
+            <objects>
+                <viewControllerPlaceholder storyboardName="TodoListPopup" id="sQD-od-vgW" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="ZdC-e6-HmZ"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8no-95-OyU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="97" y="563"/>
         </scene>
     </scenes>
     <resources>

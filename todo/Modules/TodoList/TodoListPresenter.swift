@@ -71,11 +71,11 @@ extension TodoListPresenter: TodoListViewOutput {
         self.interator.save(todo: todo);
     }
     
-    func popup(todo: Todo?) {
-        guard let todo else {
+    func popup(info: TodoPopupInfo?) {
+        guard let info else {
             return;
         }
-        self.router.popup(todo: todo);
+        self.router.popup(info: info);
     }
     
     func viewWillAppear(_ animated: Bool) {
