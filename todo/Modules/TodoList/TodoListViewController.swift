@@ -75,6 +75,8 @@ class TodoListViewController: UIViewController {
         switch segue.destination {
         case let controller as TodoListPopupViewController:
             controller.popup = sender as? TodoPopupInfo;
+        case let controller as TodoEditViewController:
+            controller.todo = sender as? Todo;
         default:
             return;
         }

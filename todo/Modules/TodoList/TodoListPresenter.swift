@@ -50,9 +50,7 @@ extension TodoListPresenter: TodoListPresenterProtocol {
 extension TodoListPresenter: TodoListViewOutput {
     
     func edit(todo: Todo?) {
-        guard let todo else {
-            return;
-        }
+        let todo = todo ?? Todo();
         self.router.edit(todo: todo);
     }
     

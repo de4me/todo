@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24504"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SF-Pro-Text-Regular.otf">
+            <string>SFProText-Regular</string>
+        </array>
+        <array key="SF-Pro.ttf">
+            <string>SFPro-Bold</string>
+            <string>SFPro-Regular</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--Todo Edit View Controller-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController id="Y6W-OH-hqX" customClass="TodoEditViewController" customModule="todo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" contentInsetAdjustmentBehavior="always" translatesAutoresizingMaskIntoConstraints="NO" id="Wq5-TG-TQc">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="my3-hd-DoD">
+                                        <rect key="frame" x="20" y="0.0" width="353" height="122.33333333333333"/>
+                                        <subviews>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="aip-85-F7i" customClass="TextView" customModule="test" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="353" height="56.666666666666664"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="56.670000000000002" placeholder="YES" id="j9x-M6-hlS"/>
+                                                </constraints>
+                                                <color key="textColor" name="labelWhiteColor"/>
+                                                <fontDescription key="fontDescription" name="SFPro-Bold" family="SF Pro" pointSize="34"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="placeHolderString" value="task_name_placeholder"/>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
+                                                        <color key="value" name="placeholderGrayColor"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <outlet property="delegate" destination="Y6W-OH-hqX" id="aJY-Ek-XY9"/>
+                                                </connections>
+                                            </textView>
+                                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OEU-fA-LUI">
+                                                <rect key="frame" x="0.0" y="64.666666666666671" width="353" height="14.333333333333329"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="14.33" placeholder="YES" id="DAs-Va-6Eb"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="12"/>
+                                                <color key="textColor" name="labelGrayColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="uDM-Rv-1nK" customClass="TextView" customModule="test" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="87" width="353" height="35.333333333333343"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="35.329999999999998" placeholder="YES" id="Kkr-Yf-z5Y"/>
+                                                </constraints>
+                                                <color key="textColor" name="labelWhiteColor"/>
+                                                <fontDescription key="fontDescription" name="SFPro-Regular" family="SF Pro" pointSize="16"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="placeHolderString" value="task_description_placeholder"/>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
+                                                        <color key="value" name="placeholderGrayColor"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <outlet property="delegate" destination="Y6W-OH-hqX" id="mun-2E-2YB"/>
+                                                </connections>
+                                            </textView>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="my3-hd-DoD" firstAttribute="width" secondItem="Wq5-TG-TQc" secondAttribute="width" constant="-40" id="4uI-0H-g94"/>
+                                    <constraint firstItem="my3-hd-DoD" firstAttribute="bottom" secondItem="IoF-mR-5SB" secondAttribute="bottom" id="UjA-Pq-qCQ"/>
+                                    <constraint firstItem="IoF-mR-5SB" firstAttribute="trailing" secondItem="my3-hd-DoD" secondAttribute="trailing" constant="20" id="YbE-k7-Fcd"/>
+                                    <constraint firstItem="my3-hd-DoD" firstAttribute="leading" secondItem="IoF-mR-5SB" secondAttribute="leading" constant="20" id="aYW-h7-9OH"/>
+                                    <constraint firstItem="IoF-mR-5SB" firstAttribute="top" secondItem="my3-hd-DoD" secondAttribute="top" id="bE3-Lf-Z73"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="IoF-mR-5SB"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="T4x-4D-mJr"/>
+                            </scrollView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" name="viewBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="Wq5-TG-TQc" secondAttribute="bottom" id="7x8-AD-6aj"/>
+                            <constraint firstItem="Wq5-TG-TQc" firstAttribute="leading" secondItem="5EZ-qb-Rvc" secondAttribute="leading" id="W3c-Xa-xAa"/>
+                            <constraint firstItem="Wq5-TG-TQc" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="ZYE-yN-wmM"/>
+                            <constraint firstAttribute="trailing" secondItem="Wq5-TG-TQc" secondAttribute="trailing" id="wxY-Pk-NnP"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="createdDateLabel" destination="OEU-fA-LUI" id="lxv-qD-Ujf"/>
+                        <outlet property="keyboardLayoutConstraint" destination="7x8-AD-6aj" id="eds-uB-AIW"/>
+                        <outlet property="subtitleTextView" destination="uDM-Rv-1nK" id="RAj-yV-GLa"/>
+                        <outlet property="titleTextView" destination="aip-85-F7i" id="1TM-Iv-1rg"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="33" y="93"/>
+        </scene>
+    </scenes>
+    <resources>
+        <namedColor name="labelGrayColor">
+            <color red="0.95686274509803926" green="0.95686274509803926" blue="0.95686274509803926" alpha="0.5" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="labelWhiteColor">
+            <color red="0.95686274509803926" green="0.95686274509803926" blue="0.95686274509803926" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="placeholderGrayColor">
+            <color red="0.95686274509803926" green="0.95686274509803926" blue="0.95686274509803926" alpha="0.5" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="viewBackgroundColor">
+            <color red="0.015686274509803921" green="0.015686274509803921" blue="0.015686274509803921" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+    </resources>
+</document>

@@ -244,6 +244,7 @@
                         <outlet property="tableView" destination="cc6-zD-gut" id="hnN-pp-GVR"/>
                         <outlet property="totalLabel" destination="hvy-28-5wK" id="5O3-HI-eao"/>
                         <segue destination="sQD-od-vgW" kind="presentation" identifier="popup" id="Dtq-4T-lMp"/>
+                        <segue destination="dW0-s7-v5b" kind="show" identifier="edit" id="8O8-t7-xmm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -291,7 +292,17 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8no-95-OyU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="97" y="563"/>
+            <point key="canvasLocation" x="-40" y="561"/>
+        </scene>
+        <!--TodoEdit-->
+        <scene sceneID="aRT-MD-J7G">
+            <objects>
+                <viewControllerPlaceholder storyboardName="TodoEdit" id="dW0-s7-v5b" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="NV6-m4-NcJ"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wrf-fR-IFe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="273" y="561"/>
         </scene>
     </scenes>
     <resources>
