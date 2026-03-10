@@ -63,3 +63,12 @@ extension Todo: Decodable {
     }
     
 }
+
+
+extension Todo: DatabaseObjectID {
+    
+    func objectId() -> NSManagedObjectID? {
+        self.id;
+    }
+    
+}
