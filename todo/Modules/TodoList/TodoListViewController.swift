@@ -66,12 +66,10 @@ class TodoListViewController: UIViewController {
         self.presenter.edit(todo: nil);
     }
 
-
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        //TODO: Edit
         switch segue.destination {
         case let controller as TodoListPopupViewController:
             controller.popup = sender as? TodoPopupInfo;
