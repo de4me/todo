@@ -37,11 +37,11 @@ fileprivate class MainInterator: MainInteratorInput {
     }
     
     func viewWillAppear(_ animated: Bool) {
-        //TODO: Update start
+        UpdateManager.shared.start();
     }
     
     func viewWillDisappear(_ animated: Bool) {
-        //TODO: Update stop
+        UpdateManager.shared.stop();
     }
     
 }
