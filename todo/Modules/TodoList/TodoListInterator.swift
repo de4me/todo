@@ -58,7 +58,7 @@ fileprivate class TodoListInterator: TodoListInteratorInput {
     }
     
     func delete(todo: Todo) {
-        //TODO: Delete todo
+        Database.shared.delete(objects: [todo], completionHandler: self.databaseErrorHandler);
     }
     
     func save(todo: Todo) {
