@@ -46,8 +46,11 @@ extension TodoListPopupPresenter: TodoListPopupViewOutput {
         self.interator.viewDidAppear(animated);
     }
     
-    func status(popup: TodoPopupInfo?) {
-        self.interator.status(popup: popup);
+    func setValue(popupInfo: TodoPopupInfo?) {
+        guard let popupInfo else {
+            return;
+        }
+        self.interator.setValue(popupInfo: popupInfo);
     }
     
     func close() {

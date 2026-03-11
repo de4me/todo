@@ -22,7 +22,7 @@ protocol TodoListPopupViewOutput: AnyObject {
     func viewDidLoad();
     func viewWillAppear(_ animated: Bool);
     func viewDidAppear(_ animated: Bool);
-    func status(popup: TodoPopupInfo?);
+    func setValue(popupInfo: TodoPopupInfo?);
     func animatePopup();
     func close();
     func edit();
@@ -45,7 +45,7 @@ class TodoListPopupViewController: UIViewController {
     
     @IBOutlet var topLayoutConstraint: NSLayoutConstraint!;
     
-    var popup: TodoPopupInfo?;
+    var popupInfo: TodoPopupInfo?;
     
     private var presenter: TodoListPopupViewOutput!;
 
@@ -57,7 +57,7 @@ class TodoListPopupViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated);
-        self.presenter.status(popup: self.popup);
+        self.presenter.setValue(popupInfo: self.popupInfo);
         self.presenter.viewWillAppear(animated);
     }
     

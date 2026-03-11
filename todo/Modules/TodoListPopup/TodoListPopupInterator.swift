@@ -12,7 +12,7 @@ protocol TodoListPopupInteratorInput: AnyObject {
     func viewDidLoad();
     func viewWillAppear(_ animated: Bool);
     func viewDidAppear(_ animated: Bool);
-    func status(popup: TodoPopupInfo?);
+    func setValue(popupInfo: TodoPopupInfo);
     func todo() -> Todo?;
 }
 
@@ -47,8 +47,8 @@ extension TodoListPopupInterator: TodoListPopupInteratorInput {
         self.presenter.animatePopup();
     }
     
-    func status(popup: TodoPopupInfo?) {
-        self.popup = popup;
+    func setValue(popupInfo: TodoPopupInfo) {
+        self.popup = popupInfo;
     }
     
     func todo() -> Todo? {

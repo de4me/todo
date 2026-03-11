@@ -72,7 +72,7 @@ class TodoListViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.destination {
         case let controller as TodoListPopupViewController:
-            controller.popup = sender as? TodoPopupInfo;
+            controller.popupInfo = sender as? TodoPopupInfo;
         case let controller as TodoEditViewController:
             controller.todo = sender as? Todo;
         default:
