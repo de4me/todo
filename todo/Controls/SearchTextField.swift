@@ -14,18 +14,22 @@ class SearchTextField: UITextField {
     @IBOutlet var rightActionView: UIView?;
 
     @IBInspectable var cornerRadius: CGFloat = 0;
+    @IBInspectable var placeholderColor: UIColor = .placeholderText;
     
     override func awakeFromNib() {
         super.awakeFromNib();
         if let view = self.leftActionView {
+            view.tintColor = self.placeholderColor;
             self.leftView = view;
             self.leftViewMode = .always;
         }
         if let view = self.rightActionView {
+            view.tintColor = self.placeholderColor;
             self.rightView = view;
             self.rightViewMode = .always;
         }
         self.updateCornerRadius();
+        self.updatePlaceholderColor();
     }
     
     override func layoutSubviews() {
@@ -54,6 +58,16 @@ class SearchTextField: UITextField {
     
     private func updateCornerRadius() {
         self.layer.cornerRadius = self.cornerRadius > 0 ? self.cornerRadius : min(self.frame.height, self.frame.width) / 2;
+    }
+    
+    private func updatePlaceholderColor() {
+        guard let placeholder = self.placeholder else {
+            return;
+        }
+        let attr: [NSAttributedString.Key:Any] = [
+            .foregroundColor: self.placeholderColor
+        ]
+        self.attributedPlaceholder = NSAttributedString(string: placeholder, attributes: attr);
     }
 
 }
