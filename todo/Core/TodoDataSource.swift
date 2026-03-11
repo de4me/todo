@@ -57,10 +57,12 @@ fileprivate class TodoDataSource: NSObject, TodoDataSourceInput {
         guard text != self.currentSearchText else {
             return;
         }
-        if let text = text, !text.isEmpty {
+        if let text, !text.isEmpty {
+            self.currentSearchText = text;
             let predicate = NSPredicate(format: "%K contains[c] %@ || %K contains[c] %@", #keyPath(DBTodo.title), text, #keyPath(DBTodo.subtitle), text);
             self.fetchedResultsController.fetchRequest.predicate = predicate;
         } else {
+            self.currentSearchText = nil;
             self.fetchedResultsController.fetchRequest.predicate = nil;
         }
         try self.fetch();
