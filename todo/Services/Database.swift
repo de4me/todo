@@ -127,6 +127,7 @@ final class Database: DatabaseProtocol {
                     object.assign(todo: todo);
                 }
                 guard self.privateContext.hasChanges else {
+                    completionHandler(nil);
                     return;
                 }
                 try self.privateContext.save();
@@ -150,6 +151,7 @@ final class Database: DatabaseProtocol {
                     self.privateContext.delete(session);
                 }
                 guard self.privateContext.hasChanges else {
+                    completionHandler(nil);
                     return;
                 }
                 try self.privateContext.save();
