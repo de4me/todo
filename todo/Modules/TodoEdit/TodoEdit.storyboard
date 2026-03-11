@@ -100,6 +100,24 @@
                             <constraint firstAttribute="trailing" secondItem="Wq5-TG-TQc" secondAttribute="trailing" id="wxY-Pk-NnP"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="FXq-7g-QZD">
+                        <barButtonItem key="leftBarButtonItem" id="ROm-4M-fdP">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="ABl-Vn-cez">
+                                <rect key="frame" x="19.999999999999996" y="11.333333333333336" width="81" height="21.333333333333336"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="SFPro-Regular" family="SF Pro" pointSize="17"/>
+                                <inset key="contentEdgeInsets" minX="16" minY="0.0" maxX="6" maxY="0.0"/>
+                                <inset key="imageEdgeInsets" minX="-20" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <state key="normal" title="Назад" image="navigation_back">
+                                    <color key="titleColor" name="AccentColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="backClick:" destination="Y6W-OH-hqX" eventType="primaryActionTriggered" id="gwm-y5-SJY"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="createdDateLabel" destination="OEU-fA-LUI" id="lxv-qD-Ujf"/>
                         <outlet property="keyboardLayoutConstraint" destination="7x8-AD-6aj" id="eds-uB-AIW"/>
@@ -113,6 +131,10 @@
         </scene>
     </scenes>
     <resources>
+        <image name="navigation_back" width="11" height="19"/>
+        <namedColor name="AccentColor">
+            <color red="0.99607843137254903" green="0.84313725490196079" blue="0.0078431372549019607" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
         <namedColor name="labelGrayColor">
             <color red="0.95686274509803926" green="0.95686274509803926" blue="0.95686274509803926" alpha="0.5" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
