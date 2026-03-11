@@ -51,7 +51,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="393" height="54"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
-                                        <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Найти" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iOu-NB-tsj" customClass="SearchTextField" customModule="test" customModuleProvider="target">
+                                        <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Найти" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iOu-NB-tsj" customClass="SearchTextField" customModule="todo" customModuleProvider="target">
                                             <rect key="frame" x="20" y="0.0" width="353" height="36"/>
                                             <color key="backgroundColor" name="tasksSearchBackgroundColor"/>
                                             <constraints>
@@ -80,19 +80,19 @@
                                     </constraints>
                                 </view>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="todo" rowHeight="83" id="bLr-a1-lFX" customClass="TodoListTableViewCell" customModule="test" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="104" width="393" height="83"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="todo" rowHeight="87" id="bLr-a1-lFX" customClass="TodoListTableViewCell" customModule="todo" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="104" width="393" height="87"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bLr-a1-lFX" id="UWl-IZ-78j">
-                                            <rect key="frame" x="0.0" y="0.0" width="393" height="83"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="87"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NI5-RX-1r3">
-                                                    <rect key="frame" x="20" y="0.0" width="353" height="83"/>
+                                                    <rect key="frame" x="20" y="0.0" width="353" height="87"/>
                                                     <color key="backgroundColor" name="popupBackgroundColor"/>
                                                 </view>
                                                 <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="ugM-mz-nPb">
-                                                    <rect key="frame" x="20" y="0.0" width="353" height="83"/>
+                                                    <rect key="frame" x="20" y="0.0" width="353" height="87"/>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QaL-ni-RZY">
                                                             <rect key="frame" x="0.0" y="0.0" width="24" height="48"/>
@@ -108,12 +108,12 @@
                                                             </connections>
                                                         </button>
                                                         <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IeR-tC-Yh3">
-                                                            <rect key="frame" x="32" y="0.0" width="321" height="83"/>
+                                                            <rect key="frame" x="32" y="0.0" width="321" height="87"/>
                                                             <subviews>
-                                                                <stackView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="bJ4-dq-4WU">
-                                                                    <rect key="frame" x="0.0" y="12" width="321" height="59"/>
+                                                                <stackView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="bJ4-dq-4WU">
+                                                                    <rect key="frame" x="0.0" y="12" width="321" height="63"/>
                                                                     <subviews>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IXA-Ea-9ZI" customClass="CompletedLabel" customModule="test" customModuleProvider="target">
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IXA-Ea-9ZI" customClass="CompletedLabel" customModule="todo" customModuleProvider="target">
                                                                             <rect key="frame" x="0.0" y="0.0" width="321" height="19"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="19" id="U2A-5F-TwR"/>
@@ -123,17 +123,18 @@
                                                                             <color key="textColor" name="labelWhiteColor"/>
                                                                             <color key="highlightedColor" name="labelGrayColor"/>
                                                                         </label>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AuN-3g-2Yw">
-                                                                            <rect key="frame" x="0.0" y="25" width="321" height="14"/>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AuN-3g-2Yw">
+                                                                            <rect key="frame" x="0.0" y="27" width="321" height="14"/>
                                                                             <constraints>
+                                                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="14" id="9oX-Di-nRj"/>
                                                                                 <constraint firstAttribute="height" constant="14" placeholder="YES" id="B93-Ef-Wc1"/>
                                                                             </constraints>
                                                                             <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="12"/>
                                                                             <color key="textColor" name="labelWhiteColor"/>
                                                                             <color key="highlightedColor" name="labelGrayColor"/>
                                                                         </label>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Asf-Fn-Tk8">
-                                                                            <rect key="frame" x="0.0" y="45" width="321" height="14"/>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Asf-Fn-Tk8">
+                                                                            <rect key="frame" x="0.0" y="49" width="321" height="14"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="height" constant="14" placeholder="YES" id="Tcj-Hp-IyT"/>
                                                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="14" id="xp3-mD-gup"/>
@@ -251,7 +252,7 @@
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="QUX-t4-42D" userLabel="Search Action">
                     <rect key="frame" x="0.0" y="0.0" width="35" height="22"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="tintColor" name="placeholderTextColor"/>
+                    <color key="tintColor" name="placeholderGrayColor"/>
                     <inset key="contentEdgeInsets" minX="8" minY="0.0" maxX="8" maxY="0.0"/>
                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                     <state key="normal">
@@ -264,7 +265,7 @@
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Hd6-cR-NSf" userLabel="Dictation Action">
                     <rect key="frame" x="0.0" y="0.0" width="35" height="22"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="tintColor" name="placeholderTextColor"/>
+                    <color key="tintColor" name="placeholderGrayColor"/>
                     <inset key="contentEdgeInsets" minX="12" minY="0.0" maxX="12" maxY="0.0"/>
                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                     <state key="normal" image="record"/>
@@ -317,8 +318,8 @@
         <namedColor name="labelWhiteColor">
             <color red="0.95686274509803926" green="0.95686274509803926" blue="0.95686274509803926" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
-        <namedColor name="placeholderTextColor">
-            <color red="0.32899999618530273" green="0.32400000095367432" blue="0.4779999852180481" alpha="0.33000001311302185" colorSpace="custom" customColorSpace="sRGB"/>
+        <namedColor name="placeholderGrayColor">
+            <color red="0.95686274509803926" green="0.95686274509803926" blue="0.95686274509803926" alpha="0.5" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <namedColor name="popupBackgroundColor">
             <color red="0.15294117647058825" green="0.15294117647058825" blue="0.16078431372549021" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
