@@ -58,7 +58,7 @@ fileprivate class TodoDataSource: NSObject, TodoDataSourceInput {
             return;
         }
         if let text = text, !text.isEmpty {
-            let predicate = NSPredicate(format: "%K contains %@ || %K contains %@", #keyPath(DBTodo.title), text, #keyPath(DBTodo.subtitle), text);
+            let predicate = NSPredicate(format: "%K contains[c] %@ || %K contains[c] %@", #keyPath(DBTodo.title), text, #keyPath(DBTodo.subtitle), text);
             self.fetchedResultsController.fetchRequest.predicate = predicate;
         } else {
             self.fetchedResultsController.fetchRequest.predicate = nil;
