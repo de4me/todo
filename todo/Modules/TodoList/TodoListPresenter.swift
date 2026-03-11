@@ -41,7 +41,9 @@ extension TodoListPresenter: TodoListPresenterProtocol {
     }
     
     func update(total: Int) {
-        self.view.update(total: String(total));
+        let format = String(localizedString: "tasks_count");
+        let string = String(format: format, total);
+        self.view.update(total: string);
     }
     
 }

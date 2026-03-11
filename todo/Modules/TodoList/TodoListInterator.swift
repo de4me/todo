@@ -27,21 +27,15 @@ protocol TodoListInteratorOutput: AnyObject {
 fileprivate class TodoListInterator: TodoListInteratorInput {
     
     private weak var presenter: TodoListPresenterProtocol!;
-    
-    private var todos: [Todo] = [
-        .init(title: "1", subtitle: "A", createdDate: Date()),
-        .init(title: "2", subtitle: "B", createdDate: Date()),
-        .init(title: "3", subtitle: "C", createdDate: Date()),
-        .init(title: "4", subtitle: "D", createdDate: Date(), completedDate: Date()),
-    ];
+    private var datasource: TodoDataSourceInput!;
     
     init(presenter: TodoListPresenterProtocol) {
         self.presenter = presenter;
+        self.datasource = TodoDataSourceConfigurator.configure(output: self);
     }
     
     func viewWillAppear(_ animated: Bool) {
-        self.presenter.updateTableView();
-        self.presenter.update(total: todos.count);
+        try? self.datasource.fetch();
     }
     
     func viewWillDisappear(_ animated: Bool) {
@@ -49,11 +43,11 @@ fileprivate class TodoListInterator: TodoListInteratorInput {
     }
     
     func dataSource(numberOfRowsInSection section: Int) -> Int {
-        self.todos.count;
+        self.datasource.dataSource(numberOfRowsInSection: section);
     }
     
     func dataSource(objectAt index: Int) -> Todo? {
-        self.todos[index];
+        self.datasource.dataSource(objectAt: index);
     }
     
     private func databaseErrorHandler(_ error: Error?) {
@@ -78,6 +72,17 @@ fileprivate class TodoListInterator: TodoListInteratorInput {
 
 
 extension TodoListInterator: TodoListInteratorOutput {
+    
+}
+
+
+extension TodoListInterator: TodoDataSourceOutput {
+
+    func didChangeContent() {
+        let count = self.dataSource(numberOfRowsInSection: 0);
+        self.presenter.update(total: count);
+        self.presenter.updateTableView();
+    }
     
 }
 
