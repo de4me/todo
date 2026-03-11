@@ -14,12 +14,17 @@ protocol KeyboardObserverInput: AnyObject {
 }
 
 
+protocol KeyboardObserverOutput: AnyObject {
+    func keyboardFrameChanged(frame: CGRect);
+}
+
+
 fileprivate class KeyboardObserver: KeyboardObserverInput {
     
-    private weak var interator: KeyboardInteratorOutput!;
+    private weak var output: KeyboardObserverOutput?;
     
-    init(presenter: KeyboardInteratorOutput) {
-        self.interator = presenter;
+    init(output: KeyboardObserverOutput) {
+        self.output = output;
     }
     
     func registerObserver() {
@@ -33,18 +38,14 @@ fileprivate class KeyboardObserver: KeyboardObserverInput {
     }
     
     @objc private func keyboardWillChangeFrame(notify: Notification) {
-        guard let info = notify.userInfo,
+        guard let output = self.output,
+              let info = notify.userInfo,
               let value = info[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue
         else {
             return;
         }
         let rect = value.cgRectValue;
-        if self.interator.rectInView(rect) {
-            self.interator.updateKeyboardLayoutConstraint(value: rect.height);
-        } else {
-            self.interator.updateKeyboardLayoutConstraint(value: 0);
-        }
-        self.interator.updateConstraints();
+        output.keyboardFrameChanged(frame: rect);
     }
     
 }
@@ -52,8 +53,8 @@ fileprivate class KeyboardObserver: KeyboardObserverInput {
 
 class KeyboardObserverConfigurator {
     
-    static func configure(presenter: KeyboardInteratorOutput) -> KeyboardObserverInput {
-        KeyboardObserver(presenter: presenter);
+    static func configure(output: KeyboardObserverOutput) -> KeyboardObserverInput {
+        KeyboardObserver(output: output);
     }
     
 }

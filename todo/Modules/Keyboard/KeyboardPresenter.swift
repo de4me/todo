@@ -9,9 +9,10 @@ import Foundation;
 
 
 protocol KeyboardPresenterProtocol: AnyObject {
-    func rectInView(_ rect: CGRect) -> Bool;
     func updateKeyboardLayoutConstraint(value: CGFloat);
     func updateConstraints();
+    func getValueBounds() -> CGRect;
+    func getValueKeyboardSpace() -> CGFloat;
 }
 
 
@@ -42,16 +43,21 @@ extension KeyboardPresenter: KeyboardViewOutput {
 
 extension KeyboardPresenter: KeyboardPresenterProtocol {
     
-    func rectInView(_ rect: CGRect) -> Bool {
-        self.view.rectInView(rect);
-    }
-    
     func updateKeyboardLayoutConstraint(value: CGFloat) {
+        let value = value > 0 ? value + self.view.getValueKeyboardSpace() : 0;
         self.view.updateKeyboardLayoutConstraint(value: value);
     }
     
     func updateConstraints() {
         self.view.updateConstraints();
+    }
+    
+    func getValueBounds() -> CGRect {
+        self.view.getValueBounds();
+    }
+    
+    func getValueKeyboardSpace() -> CGFloat {
+        self.view.getValueKeyboardSpace();
     }
     
 }

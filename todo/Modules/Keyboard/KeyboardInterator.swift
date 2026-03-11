@@ -5,7 +5,7 @@
 //  Created by DE4ME on 08.03.2026.
 //
 
-import Foundation;
+import CoreGraphics;
 
 
 protocol KeyboardInteratorInput: AnyObject {
@@ -13,22 +13,20 @@ protocol KeyboardInteratorInput: AnyObject {
     func viewWillDisappear(_ animated: Bool);
 }
 
-protocol KeyboardInteratorOutput: AnyObject {
-    func rectInView(_ rect: CGRect) -> Bool;
-    func updateKeyboardLayoutConstraint(value: CGFloat);
-    func updateConstraints();
-}
 
+protocol KeyboardInteratorOutput: AnyObject {
+    
+}
 
 
 fileprivate class KeyboardInterator: AnyObject {
     
-    private weak var presenter: KeyboardPresenterProtocol!;
+    private weak var presenter: KeyboardPresenterProtocol?;
     private var keyboardObserver: KeyboardObserverInput!;
     
     init(presenter: KeyboardPresenterProtocol) {
         self.presenter = presenter;
-        self.keyboardObserver = KeyboardObserverConfigurator.configure(presenter: self);
+        self.keyboardObserver = KeyboardObserverConfigurator.configure(output: self);
     }
     
 }
@@ -49,16 +47,22 @@ extension KeyboardInterator: KeyboardInteratorInput {
 
 extension KeyboardInterator: KeyboardInteratorOutput {
     
-    func rectInView(_ rect: CGRect) -> Bool {
-        self.presenter.rectInView(rect);
-    }
+}
+
+
+extension KeyboardInterator: KeyboardObserverOutput {
     
-    func updateKeyboardLayoutConstraint(value: CGFloat) {
-        self.presenter.updateKeyboardLayoutConstraint(value: value);
-    }
-    
-    func updateConstraints() {
-        self.presenter.updateConstraints();
+    func keyboardFrameChanged(frame: CGRect) {
+        guard let presenter = self.presenter else {
+            return;
+        }
+        let rect = presenter.getValueBounds();
+        if frame.intersects(rect) {
+            presenter.updateKeyboardLayoutConstraint(value: frame.height);
+        } else {
+            presenter.updateKeyboardLayoutConstraint(value: 0);
+        }
+        presenter.updateConstraints();
     }
     
 }
