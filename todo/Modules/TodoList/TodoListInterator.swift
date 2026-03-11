@@ -62,7 +62,7 @@ fileprivate class TodoListInterator: TodoListInteratorInput {
     }
     
     func save(todo: Todo) {
-        //TODO: Save todo
+        Database.shared.save(todos: [todo], completionHandler: self.databaseErrorHandler);
     }
     
     func search(text: String?) {
