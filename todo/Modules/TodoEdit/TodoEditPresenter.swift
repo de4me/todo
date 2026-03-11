@@ -9,6 +9,9 @@ import Foundation;
 
 
 protocol TodoEditPresenterProtocol: AnyObject {
+    var view: TodoEditViewInput? { get set }
+    var interactor: TodoEditInteratorInput? { get set }
+    var router: TodoEditRouterInput? { get set }
     func performSegue(withIdentifier: String, sender: Any?);
     func updateTodo();
     func didSaveWithError(_ error: Error?);

@@ -9,6 +9,7 @@ import UIKit;
 
 
 protocol MainInteratorInput: AnyObject {
+    var presenter: MainPresenterProtocol? { get set }
     func viewWillAppear(_ animated: Bool);
     func viewWillDisappear(_ animated: Bool);
     func navigationController(_ navigationController: NavigationControllerProtocol, willShow viewController: NavigationProtocol?, animated: Bool);

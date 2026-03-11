@@ -9,6 +9,9 @@ import Foundation;
 
 
 protocol TodoListPopupPresenterProtocol: AnyObject {
+    var view: TodoListPopupViewInput? { get set }
+    var interator: TodoListPopupInteratorInput? { get set }
+    var router: TodoListPopupRouterInput? { get set }
     func updateTodo(_ todo: Todo?);
     func updatePopupViewAlpha(_ alpha: CGFloat);
     func updateTopLayoutConstraint(_ value: CGFloat);
@@ -17,7 +20,7 @@ protocol TodoListPopupPresenterProtocol: AnyObject {
 }
 
 
-class TodoListPopupPresenter: AnyObject {
+class TodoListPopupPresenter: TodoListPopupPresenterProtocol {
     
     weak var view: TodoListPopupViewInput?;
     var interator: TodoListPopupInteratorInput?;
@@ -27,6 +30,26 @@ class TodoListPopupPresenter: AnyObject {
         self.view = view;
         self.interator = interator;
         self.router = router;
+    }
+    
+    func updateTodo(_ todo: Todo?) {
+        self.view?.updateTodo(todo);
+    }
+    
+    func updatePopupViewAlpha(_ alpha: CGFloat) {
+        self.view?.updatePopupViewAlpha(alpha);
+    }
+    
+    func updateTopLayoutConstraint(_ value: CGFloat) {
+        self.view?.updateTopLayoutConstraint(value);
+    }
+    
+    func animatePopup() {
+        self.view?.animatePopup();
+    }
+    
+    func performSegue(withIdentifier: String, sender: Any?) {
+        self.view?.performSegue(withIdentifier: withIdentifier, sender: sender);
     }
     
 }
@@ -76,31 +99,6 @@ extension TodoListPopupPresenter: TodoListPopupViewOutput {
             return;
         }
         self.router?.share(todo: todo);
-    }
-    
-}
-
-
-extension TodoListPopupPresenter: TodoListPopupPresenterProtocol {
-    
-    func updateTodo(_ todo: Todo?) {
-        self.view?.updateTodo(todo);
-    }
-    
-    func updatePopupViewAlpha(_ alpha: CGFloat) {
-        self.view?.updatePopupViewAlpha(alpha);
-    }
-    
-    func updateTopLayoutConstraint(_ value: CGFloat) {
-        self.view?.updateTopLayoutConstraint(value);
-    }
-    
-    func animatePopup() {
-        self.view?.animatePopup();
-    }
-    
-    func performSegue(withIdentifier: String, sender: Any?) {
-        self.view?.performSegue(withIdentifier: withIdentifier, sender: sender);
     }
     
 }

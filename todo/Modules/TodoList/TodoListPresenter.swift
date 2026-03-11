@@ -9,6 +9,9 @@ import Foundation;
 
 
 protocol TodoListPresenterProtocol: AnyObject {
+    var view: TodoListViewInput? { get set }
+    var router: TodoListRouterInput? { get set }
+    var interator: TodoListInteratorInput? { get set }
     func performSegue(withIdentifier: String, sender: Any?);
     func updateTableView();
     func update(total: Int);
@@ -17,7 +20,7 @@ protocol TodoListPresenterProtocol: AnyObject {
 }
 
 
-class TodoListPresenter: AnyObject {
+class TodoListPresenter: TodoListPresenterProtocol {
     
     weak var view: TodoListViewInput?;
     var router: TodoListRouterInput?;
@@ -28,11 +31,6 @@ class TodoListPresenter: AnyObject {
         self.interator = interator;
         self.router = router;
     }
-    
-}
-
-
-extension TodoListPresenter: TodoListPresenterProtocol {
     
     func performSegue(withIdentifier: String, sender: Any?) {
         self.view?.performSegue(withIdentifier: withIdentifier, sender: sender);

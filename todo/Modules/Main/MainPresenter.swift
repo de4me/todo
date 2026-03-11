@@ -9,7 +9,8 @@ import UIKit;
 
 
 protocol MainPresenterProtocol: AnyObject {
-
+    var view: MainViewInput? { get set }
+    var interator: MainInteratorInput? { get set }
 }
 
 

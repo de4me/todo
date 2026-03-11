@@ -9,6 +9,7 @@ import Foundation;
 
 
 protocol TodoEditRouterInput {
+    var presenter: TodoEditPresenterProtocol? { get set }
     func close();
 }
 

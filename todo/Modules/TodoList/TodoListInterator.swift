@@ -9,6 +9,8 @@ import Foundation;
 
 
 protocol TodoListInteratorInput: AnyObject {
+    var presenter: TodoListPresenterProtocol? { get set }
+    var datasource: TodoDataSourceInput? { get set }
     func dataSource(numberOfRowsInSection section: Int) -> Int;
     func dataSource(objectAt index: Int) -> Todo?;
     func viewWillAppear(_ animated: Bool);

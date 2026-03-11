@@ -9,6 +9,7 @@ import Foundation;
 
 
 protocol TodoListPopupInteratorInput: AnyObject {
+    var presenter: TodoListPopupPresenterProtocol? { get set }
     func viewDidLoad();
     func viewWillAppear(_ animated: Bool);
     func viewDidAppear(_ animated: Bool);

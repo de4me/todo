@@ -9,6 +9,7 @@ import Foundation;
 
 
 protocol TodoListRouterInput: AnyObject {
+    var presenter: TodoListPresenterProtocol? { get set };
     func edit(todo: Todo);
     func popup(info: TodoPopupInfo);
 }

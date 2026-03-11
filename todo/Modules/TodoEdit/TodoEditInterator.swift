@@ -9,6 +9,7 @@ import Foundation;
 
 
 protocol TodoEditInteratorInput: AnyObject {
+    var presenter: TodoEditPresenterProtocol? { get set }
     func viewWillAppear(_ animated: Bool);
     func save(todo: Todo);
 }
@@ -19,18 +20,13 @@ protocol TodoEditInteratorOutput: AnyObject {
 }
 
 
-class TodoEditInterator: AnyObject {
+class TodoEditInterator: TodoEditInteratorInput {
     
     weak var presenter: TodoEditPresenterProtocol?;
     
     init(presenter: TodoEditPresenterProtocol) {
         self.presenter = presenter;
     }
-    
-}
-
-
-extension TodoEditInterator: TodoEditInteratorInput {
     
     func viewWillAppear(_ animated: Bool) {
         self.presenter?.updateTodo();

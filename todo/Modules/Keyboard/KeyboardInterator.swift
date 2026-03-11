@@ -9,6 +9,8 @@ import CoreGraphics;
 
 
 protocol KeyboardInteratorInput: AnyObject {
+    var presenter: KeyboardPresenterProtocol? { get set }
+    var keyboardObserver: KeyboardObserverInput? { get set }
     func viewDidAppear(_ animated: Bool);
     func viewWillDisappear(_ animated: Bool);
 }
@@ -19,13 +21,7 @@ protocol KeyboardInteratorOutput: AnyObject {
 }
 
 
-protocol KeyboardInteratorConfiguratorProtocol: AnyObject {
-    var presenter: KeyboardPresenterProtocol? { get set }
-    var keyboardObserver: KeyboardObserverInput? { get set }
-}
-
-
-class KeyboardInterator: KeyboardInteratorConfiguratorProtocol {
+class KeyboardInterator: KeyboardInteratorInput {
     
     weak var presenter: KeyboardPresenterProtocol?;
     var keyboardObserver: KeyboardObserverInput?;
@@ -34,11 +30,6 @@ class KeyboardInterator: KeyboardInteratorConfiguratorProtocol {
         self.presenter = presenter;
         self.keyboardObserver = keyboardObserver;
     }
-    
-}
-
-
-extension KeyboardInterator: KeyboardInteratorInput {
     
     func viewDidAppear(_ animated: Bool) {
         self.keyboardObserver?.registerObserver();

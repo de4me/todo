@@ -9,6 +9,8 @@ import CoreGraphics;
 
 
 protocol KeyboardPresenterProtocol: AnyObject {
+    var view: KeyboardViewInput? { get set }
+    var interator: KeyboardInteratorInput? { get set }
     func updateKeyboardLayoutConstraint(value: CGFloat);
     func updateConstraints();
     func getValueBounds() -> CGRect;
@@ -16,13 +18,7 @@ protocol KeyboardPresenterProtocol: AnyObject {
 }
 
 
-protocol KeyboardPresenterConfiguratorProtocol: AnyObject {
-    var view: KeyboardViewInput? { get set }
-    var interator: KeyboardInteratorInput? { get set }
-}
-
-
-class KeyboardPresenter: KeyboardPresenterConfiguratorProtocol {
+class KeyboardPresenter: KeyboardPresenterProtocol {
     
     weak var view: KeyboardViewInput?;
     var interator: KeyboardInteratorInput?;
@@ -31,23 +27,6 @@ class KeyboardPresenter: KeyboardPresenterConfiguratorProtocol {
         self.view = view;
         self.interator = interator;
     }
-    
-}
-
-
-extension KeyboardPresenter: KeyboardViewOutput {
-    
-    func viewDidAppear(_ animated: Bool) {
-        self.interator?.viewDidAppear(animated);
-    }
-    
-    func viewWillDisappear(_ animated: Bool) {
-        self.interator?.viewDidAppear(animated);
-    }
-}
-
-
-extension KeyboardPresenter: KeyboardPresenterProtocol {
     
     func updateKeyboardLayoutConstraint(value: CGFloat) {
         guard let view = self.view else {
@@ -69,4 +48,16 @@ extension KeyboardPresenter: KeyboardPresenterProtocol {
         self.view?.getValueKeyboardSpace() ?? 0;
     }
     
+}
+
+
+extension KeyboardPresenter: KeyboardViewOutput {
+    
+    func viewDidAppear(_ animated: Bool) {
+        self.interator?.viewDidAppear(animated);
+    }
+    
+    func viewWillDisappear(_ animated: Bool) {
+        self.interator?.viewDidAppear(animated);
+    }
 }

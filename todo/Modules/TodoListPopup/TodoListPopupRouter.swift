@@ -9,6 +9,7 @@ import Foundation;
 
 
 protocol TodoListPopupRouterInput: AnyObject {
+    var presenter: TodoListPopupPresenterProtocol? { get set }
     func close();
     func edit(todo: Todo?);
     func delete(todo: Todo?);
@@ -16,7 +17,7 @@ protocol TodoListPopupRouterInput: AnyObject {
 }
 
 
-class TodoListPopupRouter: AnyObject  {
+class TodoListPopupRouter: TodoListPopupRouterInput  {
     
     weak var presenter: TodoListPopupPresenterProtocol?;
     
@@ -37,11 +38,6 @@ class TodoListPopupRouter: AnyObject  {
     init(presenter: TodoListPopupPresenterProtocol?) {
         self.presenter = presenter;
     }
-    
-}
-
-
-extension TodoListPopupRouter: TodoListPopupRouterInput {
     
     func close() {
         self.presenter?.performSegue(withIdentifier: Name.close, sender: nil);
