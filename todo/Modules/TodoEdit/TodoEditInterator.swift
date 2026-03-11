@@ -19,9 +19,9 @@ protocol TodoEditInteratorOutput: AnyObject {
 }
 
 
-fileprivate class TodoEditInterator: AnyObject {
+class TodoEditInterator: AnyObject {
     
-    private weak var presenter: TodoEditPresenterProtocol?;
+    weak var presenter: TodoEditPresenterProtocol?;
     
     init(presenter: TodoEditPresenterProtocol) {
         self.presenter = presenter;
@@ -48,14 +48,5 @@ extension TodoEditInterator: TodoEditInteratorInput {
 
 
 extension TodoEditInterator: TodoEditInteratorOutput {
-    
-}
-
-
-class TodoEditInteratorConfigurator {
-    
-    static func configure(presenter: TodoEditPresenterProtocol) -> TodoEditInteratorInput & TodoEditInteratorOutput {
-        TodoEditInterator(presenter: presenter);
-    }
     
 }

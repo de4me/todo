@@ -11,7 +11,11 @@ import Foundation;
 class TodoListPopupConfigurator: AnyObject {
  
     static func configure(view: TodoListPopupViewInput) -> TodoListPopupViewOutput {
-        let presenter = TodoListPopupPresenterConfigurator.configure(view: view);
+        let presenter = TodoListPopupPresenter(view: view, interator: nil, router: nil);
+        let interator = TodoListPopupInterator(presenter: presenter);
+        let router = TodoListPopupRouter(presenter: presenter);
+        presenter.interator = interator;
+        presenter.router = router;
         return presenter;
     }
     

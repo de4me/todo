@@ -20,11 +20,11 @@ protocol MainInteratorOutput: AnyObject {
 }
 
 
-fileprivate class MainInterator: MainInteratorInput {
+class MainInterator: MainInteratorInput {
     
-    private weak var presenter: MainPresenterProtocol?;
+    weak var presenter: MainPresenterProtocol?;
     
-    init(presenter: MainPresenterProtocol) {
+    init(presenter: MainPresenterProtocol?) {
         self.presenter = presenter
     }
     
@@ -48,14 +48,5 @@ fileprivate class MainInterator: MainInteratorInput {
 
 
 extension MainInterator: MainInteratorOutput {
-    
-}
-
-
-class MainInteratorConfigurator {
-    
-    static func configure(presenter: MainPresenterProtocol) -> MainInteratorInput & MainInteratorOutput {
-        MainInterator(presenter: presenter);
-    }
     
 }

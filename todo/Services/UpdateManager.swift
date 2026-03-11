@@ -23,8 +23,8 @@ final class UpdateManager: UpdateManagerProtocol {
     private var preferences: PreferencesProtocol!;
     
     init() {
-        self.preferences = PreferencesConfiguarator.configure();
-        self.monitor = NetworkMonitorConfigurator.configure(output: self);
+        self.preferences = Preferences();
+        self.monitor = NetworkMonitor(output: self);
     }
     
     func start() {

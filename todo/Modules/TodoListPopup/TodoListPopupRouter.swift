@@ -16,9 +16,9 @@ protocol TodoListPopupRouterInput: AnyObject {
 }
 
 
-fileprivate class TodoListPopupRouter: AnyObject  {
+class TodoListPopupRouter: AnyObject  {
     
-    private weak var presenter: TodoListPopupPresenterProtocol?;
+    weak var presenter: TodoListPopupPresenterProtocol?;
     
     enum SegueName: String, CaseIterable {
         case close;
@@ -34,8 +34,8 @@ fileprivate class TodoListPopupRouter: AnyObject  {
         static let share = SegueName.share.rawValue;
     }
     
-    init(presenter: TodoListPopupPresenterProtocol) {
-        self.presenter = presenter
+    init(presenter: TodoListPopupPresenterProtocol?) {
+        self.presenter = presenter;
     }
     
 }
@@ -57,15 +57,6 @@ extension TodoListPopupRouter: TodoListPopupRouterInput {
     
     func share(todo: Todo?) {
         self.presenter?.performSegue(withIdentifier: Name.share, sender: todo);
-    }
-    
-}
-
-
-class TodoListPopupRouterConfigurator {
-    
-    static func configure(presenter: TodoListPopupPresenterProtocol) -> TodoListPopupRouterInput {
-        TodoListPopupRouter(presenter: presenter);
     }
     
 }

@@ -13,14 +13,14 @@ protocol MainPresenterProtocol: AnyObject {
 }
 
 
-fileprivate class MainPresenter: MainPresenterProtocol {
+class MainPresenter: MainPresenterProtocol {
     
-    private weak var view: MainViewInput?;
-    private var interator: MainInteratorInput!;
+    weak var view: MainViewInput?;
+    var interator: MainInteratorInput?;
     
-    init(view: MainViewInput) {
-        self.view = view
-        self.interator = MainInteratorConfigurator.configure(presenter: self);
+    init(view: MainViewInput?, interator: MainInteratorInput?) {
+        self.view = view;
+        self.interator = interator;
     }
     
 }
@@ -29,24 +29,15 @@ fileprivate class MainPresenter: MainPresenterProtocol {
 extension MainPresenter: MainViewOutput {
     
     func viewWillAppear(_ animated: Bool) {
-        self.interator.viewWillAppear(animated);
+        self.interator?.viewWillAppear(animated);
     }
     
     func viewWillDisappear(_ animated: Bool) {
-        self.interator.viewWillDisappear(animated);
+        self.interator?.viewWillDisappear(animated);
     }
     
     func navigationController(_ navigationController: NavigationControllerProtocol, willShow viewController: NavigationProtocol?, animated: Bool) {
-        self.interator.navigationController(navigationController, willShow: viewController, animated: animated);
-    }
-    
-}
-
-
-class NavigationPresenterConfigurator {
-    
-    static func configure(view: MainViewInput) -> MainPresenterProtocol & MainViewOutput {
-        MainPresenter(view: view);
+        self.interator?.navigationController(navigationController, willShow: viewController, animated: animated);
     }
     
 }

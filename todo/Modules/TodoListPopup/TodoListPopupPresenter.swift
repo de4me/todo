@@ -17,16 +17,16 @@ protocol TodoListPopupPresenterProtocol: AnyObject {
 }
 
 
-fileprivate class TodoListPopupPresenter: AnyObject {
+class TodoListPopupPresenter: AnyObject {
     
-    private weak var view: TodoListPopupViewInput?;
-    private var interator: TodoListPopupInteratorInput!;
-    private var router: TodoListPopupRouterInput!;
+    weak var view: TodoListPopupViewInput?;
+    var interator: TodoListPopupInteratorInput?;
+    var router: TodoListPopupRouterInput?;
     
-    init(view: TodoListPopupViewInput) {
+    init(view: TodoListPopupViewInput?, interator: TodoListPopupInteratorInput?, router: TodoListPopupRouterInput?) {
         self.view = view;
-        self.interator = TodoListPopupInteratorConfigurator.configure(presenter: self);
-        self.router = TodoListPopupRouterConfigurator.configure(presenter: self);
+        self.interator = interator;
+        self.router = router;
     }
     
 }
@@ -35,38 +35,47 @@ fileprivate class TodoListPopupPresenter: AnyObject {
 extension TodoListPopupPresenter: TodoListPopupViewOutput {
     
     func viewDidLoad() {
-        self.interator.viewDidLoad();
+        self.interator?.viewDidLoad();
     }
     
     func viewWillAppear(_ animated: Bool) {
-        self.interator.viewWillAppear(animated);
+        self.interator?.viewWillAppear(animated);
     }
     
     func viewDidAppear(_ animated: Bool) {
-        self.interator.viewDidAppear(animated);
+        self.interator?.viewDidAppear(animated);
     }
     
     func setValue(popupInfo: TodoPopupInfo?) {
         guard let popupInfo else {
             return;
         }
-        self.interator.setValue(popupInfo: popupInfo);
+        self.interator?.setValue(popupInfo: popupInfo);
     }
     
     func close() {
-        self.router.close();
+        self.router?.close();
     }
     
     func edit() {
-        self.router.edit(todo: self.interator.todo());
+        guard let todo = self.interator?.todo() else {
+            return;
+        }
+        self.router?.edit(todo: todo);
     }
     
     func delete() {
-        self.router.delete(todo: self.interator.todo());
+        guard let todo = self.interator?.todo() else {
+            return;
+        }
+        self.router?.delete(todo: todo);
     }
     
     func share() {
-        self.router.share(todo: self.interator.todo());
+        guard let todo = self.interator?.todo() else {
+            return;
+        }
+        self.router?.share(todo: todo);
     }
     
 }
@@ -92,15 +101,6 @@ extension TodoListPopupPresenter: TodoListPopupPresenterProtocol {
     
     func performSegue(withIdentifier: String, sender: Any?) {
         self.view?.performSegue(withIdentifier: withIdentifier, sender: sender);
-    }
-    
-}
-
-
-class TodoListPopupPresenterConfigurator {
-    
-    static func configure(view: TodoListPopupViewInput) -> TodoListPopupPresenterProtocol & TodoListPopupViewOutput {
-        TodoListPopupPresenter(view: view);
     }
     
 }

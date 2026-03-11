@@ -11,7 +11,11 @@ import Foundation;
 class TodoEditConfigurator: AnyObject {
     
     static func configure(view: TodoEditViewInput) -> TodoEditViewOutput {
-        let presenter = TodoEditPresenterConfigurator.configure(view: view);
+        let presenter = TodoEditPresenter.init(view: view, interactor: nil, router: nil);
+        let interator = TodoEditInterator(presenter: presenter);
+        let router = TodoEditRouter(presenter: presenter);
+        presenter.interactor = interator;
+        presenter.router = router;
         return presenter;
     }
     

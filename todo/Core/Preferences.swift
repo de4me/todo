@@ -19,7 +19,7 @@ fileprivate enum PreferenceKey: String {
 
 
 @propertyWrapper
-fileprivate struct PreferenceWrapper<T> {
+struct PreferenceWrapper<T> {
     
     fileprivate let key: PreferenceKey;
     let defaultValue: T;
@@ -36,17 +36,8 @@ fileprivate struct PreferenceWrapper<T> {
 }
 
 
-fileprivate class Preferences: PreferencesProtocol {
+class Preferences: PreferencesProtocol {
     
     @PreferenceWrapper(key: .update, defaultValue: false) var updated: Bool;
-    
-}
-
-
-class PreferencesConfiguarator {
-    
-    static func configure() -> PreferencesProtocol {
-        Preferences();
-    }
     
 }

@@ -15,16 +15,16 @@ protocol TodoEditPresenterProtocol: AnyObject {
 }
 
 
-fileprivate class TodoEditPresenter: AnyObject {
+class TodoEditPresenter: AnyObject {
     
-    private weak var view: TodoEditViewInput?;
-    private var interactor: TodoEditInteratorInput!;
-    private var router: TodoEditRouterInput!;
+    weak var view: TodoEditViewInput?;
+    var interactor: TodoEditInteratorInput?;
+    var router: TodoEditRouterInput?;
     
-    init(view: TodoEditViewInput) {
+    init(view: TodoEditViewInput?, interactor: TodoEditInteratorInput?, router: TodoEditRouterInput?) {
         self.view = view
-        self.interactor = TodoEditInteratorConfigurator.configure(presenter: self);
-        self.router = TodoEditRouterConfigurator.configure(presenter: self);
+        self.interactor = interactor;
+        self.router = router;
     }
     
 }
@@ -33,7 +33,7 @@ fileprivate class TodoEditPresenter: AnyObject {
 extension TodoEditPresenter: TodoEditViewOutput {
     
     func viewWillAppear(_ animated: Bool) {
-        self.interactor.viewWillAppear(animated);
+        self.interactor?.viewWillAppear(animated);
     }
     
     func save() {
@@ -43,12 +43,12 @@ extension TodoEditPresenter: TodoEditViewOutput {
         var todo = view.getValueTodo() ?? Todo();
         let result = view.getValueEditResult();
         if todo.id == nil && result.isEmpty || todo.isEqual(to: result) {
-            self.router.close();
+            self.router?.close();
             return;
         }
         todo.title = result.title;
         todo.subtitle = result.subtitle;
-        self.interactor.save(todo: todo);
+        self.interactor?.save(todo: todo);
     }
     
 }
@@ -73,18 +73,9 @@ extension TodoEditPresenter: TodoEditPresenterProtocol {
             if let error = error {
                 self.view?.showError(error);
             } else {
-                self.router.close();
+                self.router?.close();
             }
         }
-    }
-    
-}
-
-
-class TodoEditPresenterConfigurator {
-    
-    static func configure(view: TodoEditViewInput) -> TodoEditPresenterProtocol & TodoEditViewOutput {
-        TodoEditPresenter(view: view);
     }
     
 }

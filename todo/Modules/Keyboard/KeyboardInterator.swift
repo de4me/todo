@@ -19,14 +19,20 @@ protocol KeyboardInteratorOutput: AnyObject {
 }
 
 
-fileprivate class KeyboardInterator: AnyObject {
+protocol KeyboardInteratorConfiguratorProtocol: AnyObject {
+    var presenter: KeyboardPresenterProtocol? { get set }
+    var keyboardObserver: KeyboardObserverInput? { get set }
+}
+
+
+class KeyboardInterator: KeyboardInteratorConfiguratorProtocol {
     
-    private weak var presenter: KeyboardPresenterProtocol?;
-    private var keyboardObserver: KeyboardObserverInput!;
+    weak var presenter: KeyboardPresenterProtocol?;
+    var keyboardObserver: KeyboardObserverInput?;
     
-    init(presenter: KeyboardPresenterProtocol) {
+    init(presenter: KeyboardPresenterProtocol?, keyboardObserver: KeyboardObserverInput?) {
         self.presenter = presenter;
-        self.keyboardObserver = KeyboardObserverConfigurator.configure(output: self);
+        self.keyboardObserver = keyboardObserver;
     }
     
 }
@@ -35,11 +41,11 @@ fileprivate class KeyboardInterator: AnyObject {
 extension KeyboardInterator: KeyboardInteratorInput {
     
     func viewDidAppear(_ animated: Bool) {
-        self.keyboardObserver.registerObserver();
+        self.keyboardObserver?.registerObserver();
     }
     
     func viewWillDisappear(_ animated: Bool) {
-        self.keyboardObserver.unregisterObserver();
+        self.keyboardObserver?.unregisterObserver();
     }
     
 }
@@ -63,15 +69,6 @@ extension KeyboardInterator: KeyboardObserverOutput {
             presenter.updateKeyboardLayoutConstraint(value: 0);
         }
         presenter.updateConstraints();
-    }
-    
-}
-
-
-class KeyboardInteratorConfigurator {
-    
-    static func configure(presenter: KeyboardPresenterProtocol) -> KeyboardInteratorInput & KeyboardInteratorOutput {
-        KeyboardInterator(presenter: presenter);
     }
     
 }

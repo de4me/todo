@@ -17,16 +17,16 @@ protocol TodoListPresenterProtocol: AnyObject {
 }
 
 
-fileprivate class TodoListPresenter: AnyObject {
+class TodoListPresenter: AnyObject {
     
-    private weak var view: TodoListViewInput?;
-    private var router: TodoListRouterInput!;
-    private var interator: TodoListInteratorInput!;
+    weak var view: TodoListViewInput?;
+    var router: TodoListRouterInput?;
+    var interator: TodoListInteratorInput?;
     
-    init(view: TodoListViewInput) {
+    init(view: TodoListViewInput?, interator: TodoListInteratorInput?, router: TodoListRouterInput?) {
         self.view = view;
-        self.router = TodoListRouterConfigurator.configure(presenter: self);
-        self.interator = TodoListInteratorConfigurator.configure(presenter: self);
+        self.interator = interator;
+        self.router = router;
     }
     
 }
@@ -71,14 +71,14 @@ extension TodoListPresenter: TodoListViewOutput {
     
     func edit(todo: Todo?) {
         let todo = todo ?? Todo();
-        self.router.edit(todo: todo);
+        self.router?.edit(todo: todo);
     }
     
     func delete(todo: Todo?) {
         guard let todo else {
             return;
         }
-        self.interator.delete(todo: todo);
+        self.interator?.delete(todo: todo);
     }
     
     func complete(todo: Todo?, completed: Bool) {
@@ -86,43 +86,34 @@ extension TodoListPresenter: TodoListViewOutput {
             return;
         }
         todo.completedDate = completed ? Date() : nil;
-        self.interator.save(todo: todo);
+        self.interator?.save(todo: todo);
     }
     
     func popup(info: TodoPopupInfo?) {
         guard let info else {
             return;
         }
-        self.router.popup(info: info);
+        self.router?.popup(info: info);
     }
     
     func viewWillAppear(_ animated: Bool) {
-        self.interator.viewWillAppear(animated);
+        self.interator?.viewWillAppear(animated);
     }
     
     func viewWillDisappear(_ animated: Bool) {
-        self.interator.viewWillDisappear(animated);
+        self.interator?.viewWillDisappear(animated);
     }
     
     func dataSource(numberOfRowsInSection section: Int) -> Int {
-        self.interator.dataSource(numberOfRowsInSection: section);
+        self.interator?.dataSource(numberOfRowsInSection: section) ?? 0;
     }
     
     func dataSource(objectAt index: Int) -> Todo? {
-        self.interator.dataSource(objectAt: index);
+        self.interator?.dataSource(objectAt: index);
     }
     
     func search(text: String?) {
-        self.interator.search(text: text);
-    }
-    
-}
-
-
-class TodoListPresenterConfigurator {
-    
-    static func configure(view: TodoListViewInput) -> TodoListPresenterProtocol & TodoListViewOutput {
-        TodoListPresenter(view: view);
+        self.interator?.search(text: text);
     }
     
 }

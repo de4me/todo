@@ -19,22 +19,12 @@ protocol KeyboardObserverOutput: AnyObject {
 }
 
 
-fileprivate class KeyboardObserver: KeyboardObserverInput {
+class KeyboardObserver: AnyObject {
     
-    private weak var output: KeyboardObserverOutput?;
+    weak var output: KeyboardObserverOutput?;
     
-    init(output: KeyboardObserverOutput) {
+    init(output: KeyboardObserverOutput?) {
         self.output = output;
-    }
-    
-    func registerObserver() {
-        let nc = NotificationCenter.default;
-        nc.addObserver(self, selector: #selector(keyboardWillChangeFrame(notify:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil);
-    }
-    
-    func unregisterObserver() {
-        let nc = NotificationCenter.default;
-        nc.removeObserver(self, name: UIResponder.keyboardWillChangeFrameNotification, object: nil);
     }
     
     @objc private func keyboardWillChangeFrame(notify: Notification) {
@@ -51,10 +41,16 @@ fileprivate class KeyboardObserver: KeyboardObserverInput {
 }
 
 
-class KeyboardObserverConfigurator {
+extension KeyboardObserver: KeyboardObserverInput {
     
-    static func configure(output: KeyboardObserverOutput) -> KeyboardObserverInput {
-        KeyboardObserver(output: output);
+    func registerObserver() {
+        let nc = NotificationCenter.default;
+        nc.addObserver(self, selector: #selector(keyboardWillChangeFrame(notify:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil);
+    }
+    
+    func unregisterObserver() {
+        let nc = NotificationCenter.default;
+        nc.removeObserver(self, name: UIResponder.keyboardWillChangeFrameNotification, object: nil);
     }
     
 }

@@ -17,12 +17,12 @@ protocol TodoListPopupInteratorInput: AnyObject {
 }
 
 
-fileprivate class TodoListPopupInterator: AnyObject {
+class TodoListPopupInterator: AnyObject {
     
-    private weak var presenter: TodoListPopupPresenterProtocol?;
+    weak var presenter: TodoListPopupPresenterProtocol?;
     private var popup: TodoPopupInfo?;
     
-    init(presenter: TodoListPopupPresenterProtocol) {
+    init(presenter: TodoListPopupPresenterProtocol?) {
         self.presenter = presenter;
     }
     
@@ -57,13 +57,4 @@ extension TodoListPopupInterator: TodoListPopupInteratorInput {
         self.popup?.todo;
     }
 
-}
-
-
-class TodoListPopupInteratorConfigurator {
-    
-    static func configure(presenter: TodoListPopupPresenterProtocol) -> TodoListPopupInteratorInput {
-        TodoListPopupInterator(presenter: presenter);
-    }
-    
 }

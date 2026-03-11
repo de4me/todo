@@ -24,18 +24,18 @@ protocol TodoListInteratorOutput: AnyObject {
 }
 
 
-fileprivate class TodoListInterator: TodoListInteratorInput {
+class TodoListInterator: TodoListInteratorInput {
     
-    private weak var presenter: TodoListPresenterProtocol?;
-    private var datasource: TodoDataSourceInput!;
+    weak var presenter: TodoListPresenterProtocol?;
+    var datasource: TodoDataSourceInput?;
     
-    init(presenter: TodoListPresenterProtocol) {
+    init(presenter: TodoListPresenterProtocol?, datasource: TodoDataSourceInput?) {
         self.presenter = presenter;
-        self.datasource = TodoDataSourceConfigurator.configure(output: self);
+        self.datasource = datasource;
     }
     
     func viewWillAppear(_ animated: Bool) {
-        try? self.datasource.fetch();
+        try? self.datasource?.fetch();
     }
     
     func viewWillDisappear(_ animated: Bool) {
@@ -43,11 +43,11 @@ fileprivate class TodoListInterator: TodoListInteratorInput {
     }
     
     func dataSource(numberOfRowsInSection section: Int) -> Int {
-        self.datasource.dataSource(numberOfRowsInSection: section);
+        self.datasource?.dataSource(numberOfRowsInSection: section) ?? 0;
     }
     
     func dataSource(objectAt index: Int) -> Todo? {
-        self.datasource.dataSource(objectAt: index);
+        self.datasource?.dataSource(objectAt: index);
     }
     
     private func databaseErrorHandler(_ error: Error?) {
@@ -63,7 +63,7 @@ fileprivate class TodoListInterator: TodoListInteratorInput {
     }
     
     func search(text: String?) {
-        try? self.datasource.search(text: text);
+        try? self.datasource?.search(text: text);
     }
 }
 
@@ -82,15 +82,6 @@ extension TodoListInterator: TodoDataSourceOutput {
         let count = self.dataSource(numberOfRowsInSection: 0);
         presenter.update(total: count);
         presenter.updateTableView();
-    }
-    
-}
-
-
-class TodoListInteratorConfigurator {
-    
-    static func configure(presenter: TodoListPresenterProtocol) -> TodoListInteratorInput & TodoListInteratorOutput {
-        TodoListInterator(presenter: presenter);
     }
     
 }

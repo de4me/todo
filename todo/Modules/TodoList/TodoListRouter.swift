@@ -14,9 +14,9 @@ protocol TodoListRouterInput: AnyObject {
 }
 
 
-fileprivate class TodoListRouter: TodoListRouterInput {
+class TodoListRouter: TodoListRouterInput {
     
-    private weak var presenter: TodoListPresenterProtocol?;
+    weak var presenter: TodoListPresenterProtocol?;
     
     enum SegueName: String {
         case edit;
@@ -28,7 +28,7 @@ fileprivate class TodoListRouter: TodoListRouterInput {
         static let popup = SegueName.popup.rawValue;
     }
     
-    init(presenter: TodoListPresenterProtocol) {
+    init(presenter: TodoListPresenterProtocol?) {
         self.presenter = presenter;
     }
     
@@ -46,15 +46,6 @@ fileprivate class TodoListRouter: TodoListRouterInput {
         }
         presenter.endEditing(true);
         presenter.performSegue(withIdentifier: Name.popup, sender: info);
-    }
-    
-}
-
-
-class TodoListRouterConfigurator {
-    
-    static func configure(presenter: TodoListPresenterProtocol) -> TodoListRouterInput {
-        TodoListRouter(presenter: presenter);
     }
     
 }

@@ -23,7 +23,7 @@ protocol NetworkMonitorOutput: AnyObject {
 }
 
 
-fileprivate class NetworkMonitor: NSObject, NetworkMonitorInput {
+class NetworkMonitor: NSObject, NetworkMonitorInput {
     
     //MARK: VAR
     
@@ -31,9 +31,9 @@ fileprivate class NetworkMonitor: NSObject, NetworkMonitorInput {
     private(set) var isConnected: Bool;
     private(set) var interface: NWInterface.InterfaceType?;
     private let workQueue: DispatchQueue;
-    private weak let output: NetworkMonitorOutput?;
+    weak let output: NetworkMonitorOutput?;
     
-    init(output: NetworkMonitorOutput) {
+    init(output: NetworkMonitorOutput?) {
         self.monitor = NWPathMonitor();
         self.isConnected = false;
         self.workQueue = DispatchQueue(label: "com.de4me.todo.reachability");
@@ -58,15 +58,6 @@ fileprivate class NetworkMonitor: NSObject, NetworkMonitorInput {
     func stop() {
         self.monitor.pathUpdateHandler = nil;
         self.monitor.cancel();
-    }
-    
-}
-
-
-class NetworkMonitorConfigurator {
-    
-    static func configure(output: NetworkMonitorOutput) -> NetworkMonitorInput {
-        NetworkMonitor(output: output);
     }
     
 }

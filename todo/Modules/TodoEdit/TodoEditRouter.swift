@@ -13,9 +13,9 @@ protocol TodoEditRouterInput {
 }
 
 
-fileprivate class TodoEditRouter: TodoEditRouterInput {
+class TodoEditRouter: TodoEditRouterInput {
     
-    private weak var presenter: TodoEditPresenterProtocol?;
+    weak var presenter: TodoEditPresenterProtocol?;
     
     enum SegueName: String, CaseIterable {
         case close;

@@ -16,14 +16,20 @@ protocol KeyboardPresenterProtocol: AnyObject {
 }
 
 
-fileprivate class KeyboardPresenter: AnyObject {
+protocol KeyboardPresenterConfiguratorProtocol: AnyObject {
+    var view: KeyboardViewInput? { get set }
+    var interator: KeyboardInteratorInput? { get set }
+}
+
+
+class KeyboardPresenter: KeyboardPresenterConfiguratorProtocol {
     
-    private weak var view: KeyboardViewInput?;
-    private var interator: KeyboardInteratorInput!;
+    weak var view: KeyboardViewInput?;
+    var interator: KeyboardInteratorInput?;
     
-    init(view: KeyboardViewInput) {
+    init(view: KeyboardViewInput?, interator: KeyboardInteratorInput?) {
         self.view = view;
-        self.interator = KeyboardInteratorConfigurator.configure(presenter: self);
+        self.interator = interator;
     }
     
 }
@@ -32,11 +38,11 @@ fileprivate class KeyboardPresenter: AnyObject {
 extension KeyboardPresenter: KeyboardViewOutput {
     
     func viewDidAppear(_ animated: Bool) {
-        self.interator.viewDidAppear(animated);
+        self.interator?.viewDidAppear(animated);
     }
     
     func viewWillDisappear(_ animated: Bool) {
-        self.interator.viewDidAppear(animated);
+        self.interator?.viewDidAppear(animated);
     }
 }
 
@@ -61,15 +67,6 @@ extension KeyboardPresenter: KeyboardPresenterProtocol {
     
     func getValueKeyboardSpace() -> CGFloat {
         self.view?.getValueKeyboardSpace() ?? 0;
-    }
-    
-}
-
-
-class KeyboardPresenterConfigurator {
-    
-    static func configure(view: KeyboardViewInput) -> KeyboardPresenterProtocol & KeyboardViewOutput {
-        KeyboardPresenter(view: view);
     }
     
 }

@@ -11,7 +11,11 @@ import Foundation;
 class KeyboardConfigurator {
     
     static func configure(view: KeyboardViewInput) -> KeyboardViewOutput {
-        let presenter = KeyboardPresenterConfigurator.configure(view: view);
+        let presenter = KeyboardPresenter(view: view, interator: nil);
+        let interator = KeyboardInterator(presenter: presenter, keyboardObserver: nil);
+        let keyboardObserver = KeyboardObserver(output: interator);
+        interator.keyboardObserver = keyboardObserver;
+        presenter.interator = interator;
         return presenter;
     }
     

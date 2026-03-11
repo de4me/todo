@@ -21,10 +21,10 @@ protocol TodoDataSourceOutput: AnyObject {
 }
 
 
-fileprivate class TodoDataSource: NSObject, TodoDataSourceInput {
+class TodoDataSource: NSObject, TodoDataSourceInput {
     
     private var fetchedResultsController: NSFetchedResultsController<DBTodo>!;
-    private weak var output: TodoDataSourceOutput?;
+    weak var output: TodoDataSourceOutput?;
     private var currentSearchText: String?;
     
     init(output: TodoDataSourceOutput) {
@@ -75,15 +75,6 @@ extension TodoDataSource: NSFetchedResultsControllerDelegate {
     
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<any NSFetchRequestResult>) {
         self.output?.didChangeContent();
-    }
-    
-}
-
-
-class TodoDataSourceConfigurator {
-    
-    static func configure(output: TodoDataSourceOutput) -> TodoDataSourceInput {
-        TodoDataSource(output: output);
     }
     
 }
