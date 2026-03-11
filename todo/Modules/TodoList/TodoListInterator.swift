@@ -66,7 +66,7 @@ fileprivate class TodoListInterator: TodoListInteratorInput {
     }
     
     func search(text: String?) {
-        //TODO: Search todo
+        try? self.datasource.search(text: text);
     }
 }
 
