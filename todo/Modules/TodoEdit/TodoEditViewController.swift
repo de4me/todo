@@ -78,8 +78,8 @@ extension TodoEditViewController: TodoEditViewInput {
     }
     
     func editResult() -> TodoEditResult {
-        let title = self.titleTextView.isPlaceholder ? nil : self.titleTextView.text;
-        let subtitle = self.subtitleTextView.isPlaceholder ? nil : self.subtitleTextView.text;
+        let title = self.titleTextView.isPlaceholder ? nil : self.titleTextView.text?.trimmed();
+        let subtitle = self.subtitleTextView.isPlaceholder ? nil : self.subtitleTextView.text?.trimmed();
         return TodoEditResult(title: title, subtitle: subtitle);
     }
     
