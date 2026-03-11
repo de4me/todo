@@ -15,7 +15,7 @@ protocol MainPresenterProtocol: AnyObject {
 
 fileprivate class MainPresenter: MainPresenterProtocol {
     
-    private weak var view: MainViewInput!;
+    private weak var view: MainViewInput?;
     private var interator: MainInteratorInput!;
     
     init(view: MainViewInput) {

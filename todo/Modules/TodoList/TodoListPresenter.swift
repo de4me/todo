@@ -18,7 +18,7 @@ protocol TodoListPresenterProtocol: AnyObject {
 
 fileprivate class TodoListPresenter: AnyObject {
     
-    private weak var view: TodoListViewInput!;
+    private weak var view: TodoListViewInput?;
     private var router: TodoListRouterInput!;
     private var interator: TodoListInteratorInput!;
     
@@ -34,17 +34,20 @@ fileprivate class TodoListPresenter: AnyObject {
 extension TodoListPresenter: TodoListPresenterProtocol {
     
     func performSegue(withIdentifier: String, sender: Any?) {
-        self.view.performSegue(withIdentifier: withIdentifier, sender: sender);
+        self.view?.performSegue(withIdentifier: withIdentifier, sender: sender);
     }
     
     func updateTableView() {
-        self.view.updateTableView();
+        self.view?.updateTableView();
     }
     
     func update(total: Int) {
+        guard let view = self.view else {
+            return;
+        }
         let format = String(localizedString: "tasks_count");
         let string = String(format: format, total);
-        self.view.update(total: string);
+        view.update(total: string);
     }
     
     func didSaveWithError(_ error: Error?) {
@@ -52,7 +55,7 @@ extension TodoListPresenter: TodoListPresenterProtocol {
             return;
         }
         OperationQueue.main.addOperation {
-            self.view.showError(error);
+            self.view?.showError(error);
         }
     }
     

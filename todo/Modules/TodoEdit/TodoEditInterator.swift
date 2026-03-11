@@ -21,7 +21,7 @@ protocol TodoEditInteratorOutput: AnyObject {
 
 fileprivate class TodoEditInterator: AnyObject {
     
-    private weak var presenter: TodoEditPresenterProtocol!;
+    private weak var presenter: TodoEditPresenterProtocol?;
     
     init(presenter: TodoEditPresenterProtocol) {
         self.presenter = presenter;
@@ -33,11 +33,11 @@ fileprivate class TodoEditInterator: AnyObject {
 extension TodoEditInterator: TodoEditInteratorInput {
     
     func viewWillAppear(_ animated: Bool) {
-        self.presenter.updateTodo();
+        self.presenter?.updateTodo();
     }
     
     private func saveHandler(_ error: Error?) {
-        self.presenter.didSaveWithError(error);
+        self.presenter?.didSaveWithError(error);
     }
     
     func save(todo: Todo) {

@@ -19,7 +19,7 @@ protocol TodoListPopupPresenterProtocol: AnyObject {
 
 fileprivate class TodoListPopupPresenter: AnyObject {
     
-    private weak var view: TodoListPopupViewInput!;
+    private weak var view: TodoListPopupViewInput?;
     private var interator: TodoListPopupInteratorInput!;
     private var router: TodoListPopupRouterInput!;
     
@@ -75,23 +75,23 @@ extension TodoListPopupPresenter: TodoListPopupViewOutput {
 extension TodoListPopupPresenter: TodoListPopupPresenterProtocol {
     
     func updateTodo(_ todo: Todo?) {
-        self.view.updateTodo(todo);
+        self.view?.updateTodo(todo);
     }
     
     func updatePopupViewAlpha(_ alpha: CGFloat) {
-        self.view.updatePopupViewAlpha(alpha);
+        self.view?.updatePopupViewAlpha(alpha);
     }
     
     func updateTopLayoutConstraint(_ value: CGFloat) {
-        self.view.updateTopLayoutConstraint(value);
+        self.view?.updateTopLayoutConstraint(value);
     }
     
     func animatePopup() {
-        self.view.animatePopup();
+        self.view?.animatePopup();
     }
     
     func performSegue(withIdentifier: String, sender: Any?) {
-        self.view.performSegue(withIdentifier: withIdentifier, sender: sender);
+        self.view?.performSegue(withIdentifier: withIdentifier, sender: sender);
     }
     
 }

@@ -19,7 +19,7 @@ protocol TodoListPopupInteratorInput: AnyObject {
 
 fileprivate class TodoListPopupInterator: AnyObject {
     
-    private weak var presenter: TodoListPopupPresenterProtocol!;
+    private weak var presenter: TodoListPopupPresenterProtocol?;
     private var popup: TodoPopupInfo?;
     
     init(presenter: TodoListPopupPresenterProtocol) {
@@ -32,19 +32,21 @@ fileprivate class TodoListPopupInterator: AnyObject {
 extension TodoListPopupInterator: TodoListPopupInteratorInput {
     
     func viewDidLoad() {
-        self.presenter.updatePopupViewAlpha(0);
+        self.presenter?.updatePopupViewAlpha(0);
     }
     
     func viewWillAppear(_ animated: Bool) {
-        guard let popup = self.popup else {
+        guard let presenter = self.presenter,
+              let popup = self.popup
+        else {
             return;
         }
-        self.presenter.updateTodo(popup.todo);
-        self.presenter.updateTopLayoutConstraint(popup.offset);
+        presenter.updateTodo(popup.todo);
+        presenter.updateTopLayoutConstraint(popup.offset);
     }
     
     func viewDidAppear(_ animated: Bool) {
-        self.presenter.animatePopup();
+        self.presenter?.animatePopup();
     }
     
     func setValue(popupInfo: TodoPopupInfo) {

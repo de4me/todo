@@ -15,7 +15,7 @@ protocol TodoEditRouterInput {
 
 fileprivate class TodoEditRouter: TodoEditRouterInput {
     
-    private weak var presenter: TodoEditPresenterProtocol!;
+    private weak var presenter: TodoEditPresenterProtocol?;
     
     enum SegueName: String, CaseIterable {
         case close;
@@ -30,7 +30,7 @@ fileprivate class TodoEditRouter: TodoEditRouterInput {
     }
     
     func close() {
-        self.presenter.performSegue(withIdentifier: Name.close, sender: nil);
+        self.presenter?.performSegue(withIdentifier: Name.close, sender: nil);
     }
     
 }

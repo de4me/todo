@@ -17,7 +17,7 @@ protocol TodoEditPresenterProtocol: AnyObject {
 
 fileprivate class TodoEditPresenter: AnyObject {
     
-    private weak var view: TodoEditViewInput!;
+    private weak var view: TodoEditViewInput?;
     private var interactor: TodoEditInteratorInput!;
     private var router: TodoEditRouterInput!;
     
@@ -37,8 +37,11 @@ extension TodoEditPresenter: TodoEditViewOutput {
     }
     
     func save() {
-        var todo = self.view.getValueTodo() ?? Todo();
-        let result = self.view.getValueEditResult();
+        guard let view = self.view else {
+            return;
+        }
+        var todo = view.getValueTodo() ?? Todo();
+        let result = view.getValueEditResult();
         if todo.id == nil && result.isEmpty || todo.isEqual(to: result) {
             self.router.close();
             return;
@@ -54,18 +57,21 @@ extension TodoEditPresenter: TodoEditViewOutput {
 extension TodoEditPresenter: TodoEditPresenterProtocol {
     
     func performSegue(withIdentifier: String, sender: Any?) {
-        self.view.performSegue(withIdentifier: withIdentifier, sender: sender);
+        self.view?.performSegue(withIdentifier: withIdentifier, sender: sender);
     }
     
     func updateTodo() {
-        let todo = self.view.getValueTodo();
-        self.view.updateTodo(todo: todo);
+        guard let view = self.view else {
+            return;
+        }
+        let todo = view.getValueTodo();
+        view.updateTodo(todo: todo);
     }
     
     func didSaveWithError(_ error: Error?) {
         OperationQueue.main.addOperation {
             if let error = error {
-                self.view.showError(error);
+                self.view?.showError(error);
             } else {
                 self.router.close();
             }

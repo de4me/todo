@@ -22,9 +22,9 @@ protocol MainInteratorOutput: AnyObject {
 
 fileprivate class MainInterator: MainInteratorInput {
     
-    private weak var presenter: MainViewOutput!;
+    private weak var presenter: MainPresenterProtocol?;
     
-    init(presenter: MainViewOutput) {
+    init(presenter: MainPresenterProtocol) {
         self.presenter = presenter
     }
     
@@ -54,7 +54,7 @@ extension MainInterator: MainInteratorOutput {
 
 class MainInteratorConfigurator {
     
-    static func configure(presenter: MainViewOutput) -> MainInteratorInput & MainInteratorOutput {
+    static func configure(presenter: MainPresenterProtocol) -> MainInteratorInput & MainInteratorOutput {
         MainInterator(presenter: presenter);
     }
     

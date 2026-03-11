@@ -26,7 +26,7 @@ protocol TodoListInteratorOutput: AnyObject {
 
 fileprivate class TodoListInterator: TodoListInteratorInput {
     
-    private weak var presenter: TodoListPresenterProtocol!;
+    private weak var presenter: TodoListPresenterProtocol?;
     private var datasource: TodoDataSourceInput!;
     
     init(presenter: TodoListPresenterProtocol) {
@@ -51,7 +51,7 @@ fileprivate class TodoListInterator: TodoListInteratorInput {
     }
     
     private func databaseErrorHandler(_ error: Error?) {
-        self.presenter.didSaveWithError(error);
+        self.presenter?.didSaveWithError(error);
     }
     
     func delete(todo: Todo) {
@@ -76,9 +76,12 @@ extension TodoListInterator: TodoListInteratorOutput {
 extension TodoListInterator: TodoDataSourceOutput {
 
     func didChangeContent() {
+        guard let presenter = self.presenter else {
+            return;
+        }
         let count = self.dataSource(numberOfRowsInSection: 0);
-        self.presenter.update(total: count);
-        self.presenter.updateTableView();
+        presenter.update(total: count);
+        presenter.updateTableView();
     }
     
 }

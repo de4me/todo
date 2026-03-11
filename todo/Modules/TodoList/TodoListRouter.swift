@@ -16,7 +16,7 @@ protocol TodoListRouterInput: AnyObject {
 
 fileprivate class TodoListRouter: TodoListRouterInput {
     
-    private weak var presenter: TodoListPresenterProtocol!;
+    private weak var presenter: TodoListPresenterProtocol?;
     
     enum SegueName: String {
         case edit;
@@ -33,11 +33,11 @@ fileprivate class TodoListRouter: TodoListRouterInput {
     }
     
     func edit(todo: Todo) {
-        self.presenter.performSegue(withIdentifier: Name.edit, sender: todo);
+        self.presenter?.performSegue(withIdentifier: Name.edit, sender: todo);
     }
     
     func popup(info: TodoPopupInfo) {
-        self.presenter.performSegue(withIdentifier: Name.popup, sender: info);
+        self.presenter?.performSegue(withIdentifier: Name.popup, sender: info);
     }
     
 }
