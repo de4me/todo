@@ -10,7 +10,7 @@ import Foundation;
 
 protocol TodoEditPresenterProtocol: AnyObject {
     func update(todo: Todo?);
-    func editResult() -> TodoEditResult;
+    func getValueEditResult() -> TodoEditResult;
 }
 
 
@@ -29,8 +29,9 @@ fileprivate class TodoEditPresenter: AnyObject {
 
 extension TodoEditPresenter: TodoEditViewOutput {
     
-    func status(todo: Todo?) {
-        self.interactor.status(todo: todo);
+    func setValue(todo: Todo?) {
+        let todo = todo ?? Todo();
+        self.interactor.setValue(todo: todo);
     }
     
     func viewWillAppear(_ animated: Bool) {
@@ -50,8 +51,8 @@ extension TodoEditPresenter: TodoEditPresenterProtocol {
         self.view.updateTodo(todo: todo);
     }
     
-    func editResult() -> TodoEditResult {
-        self.view.editResult();
+    func getValueEditResult() -> TodoEditResult {
+        self.view.getValueEditResult();
     }
     
 }

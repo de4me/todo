@@ -11,7 +11,7 @@ import Foundation;
 protocol TodoEditInteratorInput: AnyObject {
     func viewWillAppear(_ animated: Bool);
     func viewWillDisappear(_ animated: Bool);
-    func status(todo: Todo?);
+    func setValue(todo: Todo);
 }
 
 
@@ -23,11 +23,10 @@ protocol TodoEditInteratorOutput: AnyObject {
 fileprivate class TodoEditInterator: AnyObject {
     
     private weak var presenter: TodoEditPresenterProtocol!;
-    private var status: TodoEditStatusInput!;
+    private var todo: Todo?;
     
     init(presenter: TodoEditPresenterProtocol) {
         self.presenter = presenter;
-        self.status = TodoEditStatus();
     }
     
 }
@@ -35,12 +34,12 @@ fileprivate class TodoEditInterator: AnyObject {
 
 extension TodoEditInterator: TodoEditInteratorInput {
     
-    func status(todo: Todo?) {
-        self.status.todo = todo ?? Todo();
+    func setValue(todo: Todo) {
+        self.todo = todo;
     }
     
     func viewWillAppear(_ animated: Bool) {
-        self.presenter.update(todo: self.status.todo);
+        self.presenter.update(todo: self.todo);
     }
     
     private func saveHandler(_ error: Error?) {
@@ -51,10 +50,10 @@ extension TodoEditInterator: TodoEditInteratorInput {
     }
     
     func viewWillDisappear(_ animated: Bool) {
-        guard var todo = status.todo else {
+        guard var todo = self.todo else {
             return;
         }
-        let result = self.presenter.editResult();
+        let result = self.presenter.getValueEditResult();
         if todo.id == nil && result.isEmpty || todo.isEqual(to: result) {
             return;
         }
