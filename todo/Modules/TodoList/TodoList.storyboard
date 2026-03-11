@@ -29,7 +29,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="ise-JU-pKd">
-                                <rect key="frame" x="20" y="118" width="353" height="56"/>
+                                <rect key="frame" x="20" y="172" width="353" height="56"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Задачи" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gKM-Q1-oPS">
                                         <rect key="frame" x="0.0" y="0.0" width="353" height="56"/>
@@ -43,7 +43,7 @@
                                 </constraints>
                             </stackView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelectionDuringEditing="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="cc6-zD-gut">
-                                <rect key="frame" x="0.0" y="174" width="393" height="561"/>
+                                <rect key="frame" x="0.0" y="228" width="393" height="507"/>
                                 <color key="backgroundColor" name="viewBackgroundColor"/>
                                 <color key="separatorColor" name="separatorGrayColor"/>
                                 <inset key="separatorInset" minX="20" minY="0.0" maxX="20" maxY="0.0"/>
@@ -244,6 +244,7 @@
                             <constraint firstItem="cc6-zD-gut" firstAttribute="top" secondItem="ise-JU-pKd" secondAttribute="bottom" id="lkw-3u-eVM"/>
                         </constraints>
                     </view>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="tableView" destination="cc6-zD-gut" id="hnN-pp-GVR"/>
                         <outlet property="totalLabel" destination="hvy-28-5wK" id="5O3-HI-eao"/>
@@ -276,9 +277,7 @@
                         <action selector="dictationClick:" destination="Y6W-OH-hqX" eventType="primaryActionTriggered" id="tB5-qc-5tB"/>
                     </connections>
                 </button>
-                <navigationItem id="CjC-3f-Y78">
-                    <barButtonItem key="backBarButtonItem" title="Назад" id="KFi-8O-FaU"/>
-                </navigationItem>
+                <navigationItem id="CjC-3f-Y78"/>
                 <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="ehs-J0-ttm">
                     <connections>
                         <action selector="longpressClick:" destination="Y6W-OH-hqX" id="oRS-BU-Pvk"/>

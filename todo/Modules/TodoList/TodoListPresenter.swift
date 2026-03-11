@@ -12,6 +12,7 @@ protocol TodoListPresenterProtocol: AnyObject {
     func performSegue(withIdentifier: String, sender: Any?);
     func updateTableView();
     func update(total: Int);
+    func didSaveWithError(_ error: Error?);
 }
 
 
@@ -44,6 +45,15 @@ extension TodoListPresenter: TodoListPresenterProtocol {
         let format = String(localizedString: "tasks_count");
         let string = String(format: format, total);
         self.view.update(total: string);
+    }
+    
+    func didSaveWithError(_ error: Error?) {
+        guard let error else {
+            return;
+        }
+        OperationQueue.main.addOperation {
+            self.view.showError(error);
+        }
     }
     
 }

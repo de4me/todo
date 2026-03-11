@@ -51,10 +51,7 @@ fileprivate class TodoListInterator: TodoListInteratorInput {
     }
     
     private func databaseErrorHandler(_ error: Error?) {
-        guard let error else {
-            return;
-        }
-        print(error);
+        self.presenter.didSaveWithError(error);
     }
     
     func delete(todo: Todo) {

@@ -12,6 +12,7 @@ protocol TodoListViewInput: AnyObject {
     func performSegue(withIdentifier: String, sender: Any?);
     func updateTableView();
     func update(total: String);
+    func showError(_ error: Error);
 }
 
 
@@ -107,10 +108,7 @@ class TodoListViewController: UIViewController {
     @IBAction func dictationClick(_ sender: Any?) {
         print(#function);
     }
-
-    @IBAction func searchValueChanged(_ sender: Any?) {
-        print(#function);
-    }
+    
 }
 
 
