@@ -13,6 +13,7 @@ protocol TodoListViewInput: AnyObject {
     func updateTableView();
     func update(total: String);
     func showError(_ error: Error);
+    func endEditing(_ force: Bool);
 }
 
 
@@ -120,6 +121,10 @@ extension TodoListViewController: TodoListViewInput {
     
     func update(total: String) {
         self.totalLabel.text = total;
+    }
+    
+    func endEditing(_ force: Bool) {
+        self.view.endEditing(force);
     }
 }
 

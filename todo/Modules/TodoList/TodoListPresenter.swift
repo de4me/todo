@@ -13,6 +13,7 @@ protocol TodoListPresenterProtocol: AnyObject {
     func updateTableView();
     func update(total: Int);
     func didSaveWithError(_ error: Error?);
+    func endEditing(_ force: Bool);
 }
 
 
@@ -57,6 +58,10 @@ extension TodoListPresenter: TodoListPresenterProtocol {
         OperationQueue.main.addOperation {
             self.view?.showError(error);
         }
+    }
+    
+    func endEditing(_ force: Bool) {
+        self.view?.endEditing(force);
     }
     
 }

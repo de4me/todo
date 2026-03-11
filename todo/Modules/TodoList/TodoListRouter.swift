@@ -33,11 +33,19 @@ fileprivate class TodoListRouter: TodoListRouterInput {
     }
     
     func edit(todo: Todo) {
-        self.presenter?.performSegue(withIdentifier: Name.edit, sender: todo);
+        guard let presenter = self.presenter else {
+            return;
+        }
+        presenter.endEditing(true);
+        presenter.performSegue(withIdentifier: Name.edit, sender: todo);
     }
     
     func popup(info: TodoPopupInfo) {
-        self.presenter?.performSegue(withIdentifier: Name.popup, sender: info);
+        guard let presenter = self.presenter else {
+            return;
+        }
+        presenter.endEditing(true);
+        presenter.performSegue(withIdentifier: Name.popup, sender: info);
     }
     
 }
