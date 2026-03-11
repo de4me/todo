@@ -9,9 +9,7 @@ import Foundation;
 
 
 protocol TodoEditRouterInput {
-    
     func close();
-    
 }
 
 
@@ -19,12 +17,20 @@ fileprivate class TodoEditRouter: TodoEditRouterInput {
     
     private weak var presenter: TodoEditPresenterProtocol!;
     
+    enum SegueName: String, CaseIterable {
+        case close;
+    }
+    
+    struct Name {
+        static let close = SegueName.close.rawValue;
+    }
+    
     init(presenter: TodoEditPresenterProtocol) {
         self.presenter = presenter;
     }
     
     func close() {
-        
+        self.presenter.performSegue(withIdentifier: Name.close, sender: nil);
     }
     
 }

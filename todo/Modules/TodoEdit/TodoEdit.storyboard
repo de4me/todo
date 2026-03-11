@@ -103,7 +103,7 @@
                     <navigationItem key="navigationItem" id="FXq-7g-QZD">
                         <barButtonItem key="leftBarButtonItem" id="ROm-4M-fdP">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="ABl-Vn-cez">
-                                <rect key="frame" x="19.999999999999996" y="11.333333333333336" width="81" height="21.333333333333336"/>
+                                <rect key="frame" x="20" y="11.333333333333336" width="83" height="21.333333333333336"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="SFPro-Regular" family="SF Pro" pointSize="17"/>
                                 <inset key="contentEdgeInsets" minX="16" minY="0.0" maxX="6" maxY="0.0"/>
@@ -123,9 +123,11 @@
                         <outlet property="keyboardLayoutConstraint" destination="7x8-AD-6aj" id="eds-uB-AIW"/>
                         <outlet property="subtitleTextView" destination="uDM-Rv-1nK" id="RAj-yV-GLa"/>
                         <outlet property="titleTextView" destination="aip-85-F7i" id="1TM-Iv-1rg"/>
+                        <segue destination="x9X-Le-fuB" kind="unwind" identifier="close" unwindAction="todoListUnwide:" id="3S2-lB-WIH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="x9X-Le-fuB" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="33" y="93"/>
         </scene>

@@ -9,15 +9,18 @@ import UIKit;
 
 
 protocol TodoEditViewInput: AnyObject {
+    func performSegue(withIdentifier: String, sender: Any?);
     func updateTodo(todo: Todo?);
     func getValueEditResult() -> TodoEditResult;
+    func getValueTodo() -> Todo?;
+    func showError(_ error: Error);
+    
 }
 
 
 protocol TodoEditViewOutput: AnyObject {
     func viewWillAppear(_ animated: Bool);
-    func viewWillDisappear(_ animated: Bool);
-    func setValue(todo: Todo?);
+    func save();
 }
 
 
@@ -38,13 +41,11 @@ class TodoEditViewController: KeyboardViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated);
-        self.presenter.setValue(todo: self.todo);
         self.presenter.viewWillAppear(animated);
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated);
-        self.presenter.viewWillDisappear(animated);
+    @IBAction func backClick(_ sender: Any?) {
+        self.presenter.save();
     }
     
 }
@@ -81,6 +82,10 @@ extension TodoEditViewController: TodoEditViewInput {
         let title = self.titleTextView.isPlaceholder ? nil : self.titleTextView.text?.trimmed();
         let subtitle = self.subtitleTextView.isPlaceholder ? nil : self.subtitleTextView.text?.trimmed();
         return TodoEditResult(title: title, subtitle: subtitle);
+    }
+    
+    func getValueTodo() -> Todo? {
+        self.todo;
     }
     
 }

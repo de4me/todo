@@ -9,8 +9,9 @@ import Foundation;
 
 
 protocol TodoEditPresenterProtocol: AnyObject {
-    func update(todo: Todo?);
-    func getValueEditResult() -> TodoEditResult;
+    func performSegue(withIdentifier: String, sender: Any?);
+    func updateTodo();
+    func didSaveWithError(_ error: Error?);
 }
 
 
@@ -18,10 +19,12 @@ fileprivate class TodoEditPresenter: AnyObject {
     
     private weak var view: TodoEditViewInput!;
     private var interactor: TodoEditInteratorInput!;
+    private var router: TodoEditRouterInput!;
     
     init(view: TodoEditViewInput) {
         self.view = view
         self.interactor = TodoEditInteratorConfigurator.configure(presenter: self);
+        self.router = TodoEditRouterConfigurator.configure(presenter: self);
     }
     
 }
@@ -29,17 +32,20 @@ fileprivate class TodoEditPresenter: AnyObject {
 
 extension TodoEditPresenter: TodoEditViewOutput {
     
-    func setValue(todo: Todo?) {
-        let todo = todo ?? Todo();
-        self.interactor.setValue(todo: todo);
-    }
-    
     func viewWillAppear(_ animated: Bool) {
         self.interactor.viewWillAppear(animated);
     }
     
-    func viewWillDisappear(_ animated: Bool) {
-        self.interactor.viewWillDisappear(animated);
+    func save() {
+        var todo = self.view.getValueTodo() ?? Todo();
+        let result = self.view.getValueEditResult();
+        if todo.id == nil && result.isEmpty || todo.isEqual(to: result) {
+            self.router.close();
+            return;
+        }
+        todo.title = result.title;
+        todo.subtitle = result.subtitle;
+        self.interactor.save(todo: todo);
     }
     
 }
@@ -47,12 +53,23 @@ extension TodoEditPresenter: TodoEditViewOutput {
 
 extension TodoEditPresenter: TodoEditPresenterProtocol {
     
-    func update(todo: Todo?) {
+    func performSegue(withIdentifier: String, sender: Any?) {
+        self.view.performSegue(withIdentifier: withIdentifier, sender: sender);
+    }
+    
+    func updateTodo() {
+        let todo = self.view.getValueTodo();
         self.view.updateTodo(todo: todo);
     }
     
-    func getValueEditResult() -> TodoEditResult {
-        self.view.getValueEditResult();
+    func didSaveWithError(_ error: Error?) {
+        OperationQueue.main.addOperation {
+            if let error = error {
+                self.view.showError(error);
+            } else {
+                self.router.close();
+            }
+        }
     }
     
 }
