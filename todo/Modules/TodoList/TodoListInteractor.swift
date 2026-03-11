@@ -1,5 +1,5 @@
 //
-//  TodoListInterator.swift
+//  TodoListInteractor.swift
 //  todo
 //
 //  Created by DE4ME on 09.03.2026.
@@ -8,7 +8,7 @@
 import Foundation;
 
 
-protocol TodoListInteratorInput: AnyObject {
+protocol TodoListInteractorInput: AnyObject {
     var presenter: TodoListPresenterProtocol? { get set }
     var datasource: TodoDataSourceInput? { get set }
     func dataSource(numberOfRowsInSection section: Int) -> Int;
@@ -21,12 +21,12 @@ protocol TodoListInteratorInput: AnyObject {
 }
 
 
-protocol TodoListInteratorOutput: AnyObject {
+protocol TodoListInteractorOutput: AnyObject {
     
 }
 
 
-class TodoListInterator: TodoListInteratorInput {
+class TodoListInteractor: TodoListInteractorInput {
     
     weak var presenter: TodoListPresenterProtocol?;
     var datasource: TodoDataSourceInput?;
@@ -70,12 +70,12 @@ class TodoListInterator: TodoListInteratorInput {
 }
 
 
-extension TodoListInterator: TodoListInteratorOutput {
+extension TodoListInteractor: TodoListInteractorOutput {
     
 }
 
 
-extension TodoListInterator: TodoDataSourceOutput {
+extension TodoListInteractor: TodoDataSourceOutput {
 
     func didChangeContent() {
         guard let presenter = self.presenter else {

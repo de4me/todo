@@ -1,5 +1,5 @@
 //
-//  MainInterator.swift
+//  MainInteractor.swift
 //  todo
 //
 //  Created by DE4ME on 08.03.2026.
@@ -8,7 +8,7 @@
 import UIKit;
 
 
-protocol MainInteratorInput: AnyObject {
+protocol MainInteractorInput: AnyObject {
     var presenter: MainPresenterProtocol? { get set }
     func viewWillAppear(_ animated: Bool);
     func viewWillDisappear(_ animated: Bool);
@@ -16,12 +16,12 @@ protocol MainInteratorInput: AnyObject {
 }
 
 
-protocol MainInteratorOutput: AnyObject {
+protocol MainInteractorOutput: AnyObject {
     
 }
 
 
-class MainInterator: MainInteratorInput {
+class MainInteractor: MainInteractorInput {
     
     weak var presenter: MainPresenterProtocol?;
     
@@ -48,6 +48,6 @@ class MainInterator: MainInteratorInput {
 }
 
 
-extension MainInterator: MainInteratorOutput {
+extension MainInteractor: MainInteractorOutput {
     
 }

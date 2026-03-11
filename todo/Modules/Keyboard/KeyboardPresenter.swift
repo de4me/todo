@@ -10,7 +10,7 @@ import CoreGraphics;
 
 protocol KeyboardPresenterProtocol: AnyObject {
     var view: KeyboardViewInput? { get set }
-    var interator: KeyboardInteratorInput? { get set }
+    var interactor: KeyboardInteractorInput? { get set }
     func updateKeyboardLayoutConstraint(value: CGFloat);
     func updateConstraints();
     func getValueBounds() -> CGRect;
@@ -21,11 +21,11 @@ protocol KeyboardPresenterProtocol: AnyObject {
 class KeyboardPresenter: KeyboardPresenterProtocol {
     
     weak var view: KeyboardViewInput?;
-    var interator: KeyboardInteratorInput?;
+    var interactor: KeyboardInteractorInput?;
     
-    init(view: KeyboardViewInput?, interator: KeyboardInteratorInput?) {
+    init(view: KeyboardViewInput?, interactor: KeyboardInteractorInput?) {
         self.view = view;
-        self.interator = interator;
+        self.interactor = interactor;
     }
     
     func updateKeyboardLayoutConstraint(value: CGFloat) {
@@ -54,10 +54,10 @@ class KeyboardPresenter: KeyboardPresenterProtocol {
 extension KeyboardPresenter: KeyboardViewOutput {
     
     func viewDidAppear(_ animated: Bool) {
-        self.interator?.viewDidAppear(animated);
+        self.interactor?.viewDidAppear(animated);
     }
     
     func viewWillDisappear(_ animated: Bool) {
-        self.interator?.viewDidAppear(animated);
+        self.interactor?.viewDidAppear(animated);
     }
 }

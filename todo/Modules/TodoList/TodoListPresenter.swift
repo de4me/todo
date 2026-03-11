@@ -11,7 +11,7 @@ import Foundation;
 protocol TodoListPresenterProtocol: AnyObject {
     var view: TodoListViewInput? { get set }
     var router: TodoListRouterInput? { get set }
-    var interator: TodoListInteratorInput? { get set }
+    var interactor: TodoListInteractorInput? { get set }
     func performSegue(withIdentifier: String, sender: Any?);
     func updateTableView();
     func update(total: Int);
@@ -24,11 +24,11 @@ class TodoListPresenter: TodoListPresenterProtocol {
     
     weak var view: TodoListViewInput?;
     var router: TodoListRouterInput?;
-    var interator: TodoListInteratorInput?;
+    var interactor: TodoListInteractorInput?;
     
-    init(view: TodoListViewInput?, interator: TodoListInteratorInput?, router: TodoListRouterInput?) {
+    init(view: TodoListViewInput?, interactor: TodoListInteractorInput?, router: TodoListRouterInput?) {
         self.view = view;
-        self.interator = interator;
+        self.interactor = interactor;
         self.router = router;
     }
     
@@ -76,7 +76,7 @@ extension TodoListPresenter: TodoListViewOutput {
         guard let todo else {
             return;
         }
-        self.interator?.delete(todo: todo);
+        self.interactor?.delete(todo: todo);
     }
     
     func complete(todo: Todo?, completed: Bool) {
@@ -84,7 +84,7 @@ extension TodoListPresenter: TodoListViewOutput {
             return;
         }
         todo.completedDate = completed ? Date() : nil;
-        self.interator?.save(todo: todo);
+        self.interactor?.save(todo: todo);
     }
     
     func popup(info: TodoPopupInfo?) {
@@ -95,23 +95,23 @@ extension TodoListPresenter: TodoListViewOutput {
     }
     
     func viewWillAppear(_ animated: Bool) {
-        self.interator?.viewWillAppear(animated);
+        self.interactor?.viewWillAppear(animated);
     }
     
     func viewWillDisappear(_ animated: Bool) {
-        self.interator?.viewWillDisappear(animated);
+        self.interactor?.viewWillDisappear(animated);
     }
     
     func dataSource(numberOfRowsInSection section: Int) -> Int {
-        self.interator?.dataSource(numberOfRowsInSection: section) ?? 0;
+        self.interactor?.dataSource(numberOfRowsInSection: section) ?? 0;
     }
     
     func dataSource(objectAt index: Int) -> Todo? {
-        self.interator?.dataSource(objectAt: index);
+        self.interactor?.dataSource(objectAt: index);
     }
     
     func search(text: String?) {
-        self.interator?.search(text: text);
+        self.interactor?.search(text: text);
     }
     
 }

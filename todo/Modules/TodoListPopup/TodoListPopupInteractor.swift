@@ -1,5 +1,5 @@
 //
-//  TodoListPopupInterator.swift
+//  TodoListPopupInteractor.swift
 //  todo
 //
 //  Created by DE4ME on 08.03.2026.
@@ -8,7 +8,7 @@
 import Foundation;
 
 
-protocol TodoListPopupInteratorInput: AnyObject {
+protocol TodoListPopupInteractorInput: AnyObject {
     var presenter: TodoListPopupPresenterProtocol? { get set }
     func viewDidLoad();
     func viewWillAppear(_ animated: Bool);
@@ -18,7 +18,7 @@ protocol TodoListPopupInteratorInput: AnyObject {
 }
 
 
-class TodoListPopupInterator: AnyObject {
+class TodoListPopupInteractor: AnyObject {
     
     weak var presenter: TodoListPopupPresenterProtocol?;
     private var popup: TodoPopupInfo?;
@@ -30,7 +30,7 @@ class TodoListPopupInterator: AnyObject {
 }
 
 
-extension TodoListPopupInterator: TodoListPopupInteratorInput {
+extension TodoListPopupInteractor: TodoListPopupInteractorInput {
     
     func viewDidLoad() {
         self.presenter?.updatePopupViewAlpha(0);

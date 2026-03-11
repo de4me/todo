@@ -10,7 +10,7 @@ import Foundation;
 
 protocol TodoEditPresenterProtocol: AnyObject {
     var view: TodoEditViewInput? { get set }
-    var interactor: TodoEditInteratorInput? { get set }
+    var interactor: TodoEditInteractorInput? { get set }
     var router: TodoEditRouterInput? { get set }
     func performSegue(withIdentifier: String, sender: Any?);
     func updateTodo();
@@ -21,10 +21,10 @@ protocol TodoEditPresenterProtocol: AnyObject {
 class TodoEditPresenter: AnyObject {
     
     weak var view: TodoEditViewInput?;
-    var interactor: TodoEditInteratorInput?;
+    var interactor: TodoEditInteractorInput?;
     var router: TodoEditRouterInput?;
     
-    init(view: TodoEditViewInput?, interactor: TodoEditInteratorInput?, router: TodoEditRouterInput?) {
+    init(view: TodoEditViewInput?, interactor: TodoEditInteractorInput?, router: TodoEditRouterInput?) {
         self.view = view
         self.interactor = interactor;
         self.router = router;

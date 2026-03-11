@@ -1,5 +1,5 @@
 //
-//  KeyboardInterator.swift
+//  KeyboardInteractor.swift
 //  todo
 //
 //  Created by DE4ME on 08.03.2026.
@@ -8,7 +8,7 @@
 import CoreGraphics;
 
 
-protocol KeyboardInteratorInput: AnyObject {
+protocol KeyboardInteractorInput: AnyObject {
     var presenter: KeyboardPresenterProtocol? { get set }
     var keyboardObserver: KeyboardObserverInput? { get set }
     func viewDidAppear(_ animated: Bool);
@@ -16,12 +16,12 @@ protocol KeyboardInteratorInput: AnyObject {
 }
 
 
-protocol KeyboardInteratorOutput: AnyObject {
+protocol KeyboardInteractorOutput: AnyObject {
     
 }
 
 
-class KeyboardInterator: KeyboardInteratorInput {
+class KeyboardInteractor: KeyboardInteractorInput {
     
     weak var presenter: KeyboardPresenterProtocol?;
     var keyboardObserver: KeyboardObserverInput?;
@@ -42,12 +42,12 @@ class KeyboardInterator: KeyboardInteratorInput {
 }
 
 
-extension KeyboardInterator: KeyboardInteratorOutput {
+extension KeyboardInteractor: KeyboardInteractorOutput {
     
 }
 
 
-extension KeyboardInterator: KeyboardObserverOutput {
+extension KeyboardInteractor: KeyboardObserverOutput {
     
     func keyboardFrameChanged(frame: CGRect) {
         guard let presenter = self.presenter else {

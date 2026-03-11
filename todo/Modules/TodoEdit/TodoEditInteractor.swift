@@ -1,5 +1,5 @@
 //
-//  TodoEditInterator.swift
+//  TodoEditInteractor.swift
 //  todo
 //
 //  Created by DE4ME on 09.03.2026.
@@ -8,19 +8,19 @@
 import Foundation;
 
 
-protocol TodoEditInteratorInput: AnyObject {
+protocol TodoEditInteractorInput: AnyObject {
     var presenter: TodoEditPresenterProtocol? { get set }
     func viewWillAppear(_ animated: Bool);
     func save(todo: Todo);
 }
 
 
-protocol TodoEditInteratorOutput: AnyObject {
+protocol TodoEditInteractorOutput: AnyObject {
     
 }
 
 
-class TodoEditInterator: TodoEditInteratorInput {
+class TodoEditInteractor: TodoEditInteractorInput {
     
     weak var presenter: TodoEditPresenterProtocol?;
     
@@ -43,6 +43,6 @@ class TodoEditInterator: TodoEditInteratorInput {
 }
 
 
-extension TodoEditInterator: TodoEditInteratorOutput {
+extension TodoEditInteractor: TodoEditInteractorOutput {
     
 }

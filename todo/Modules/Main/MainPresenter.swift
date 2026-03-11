@@ -10,18 +10,18 @@ import UIKit;
 
 protocol MainPresenterProtocol: AnyObject {
     var view: MainViewInput? { get set }
-    var interator: MainInteratorInput? { get set }
+    var interactor: MainInteractorInput? { get set }
 }
 
 
 class MainPresenter: MainPresenterProtocol {
     
     weak var view: MainViewInput?;
-    var interator: MainInteratorInput?;
+    var interactor: MainInteractorInput?;
     
-    init(view: MainViewInput?, interator: MainInteratorInput?) {
+    init(view: MainViewInput?, interactor: MainInteractorInput?) {
         self.view = view;
-        self.interator = interator;
+        self.interactor = interactor;
     }
     
 }
@@ -30,15 +30,15 @@ class MainPresenter: MainPresenterProtocol {
 extension MainPresenter: MainViewOutput {
     
     func viewWillAppear(_ animated: Bool) {
-        self.interator?.viewWillAppear(animated);
+        self.interactor?.viewWillAppear(animated);
     }
     
     func viewWillDisappear(_ animated: Bool) {
-        self.interator?.viewWillDisappear(animated);
+        self.interactor?.viewWillDisappear(animated);
     }
     
     func navigationController(_ navigationController: NavigationControllerProtocol, willShow viewController: NavigationProtocol?, animated: Bool) {
-        self.interator?.navigationController(navigationController, willShow: viewController, animated: animated);
+        self.interactor?.navigationController(navigationController, willShow: viewController, animated: animated);
     }
     
 }

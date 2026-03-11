@@ -16,9 +16,9 @@ protocol MainConfiguratorProtocol: AnyObject {
 class MainConfigurator: AnyObject {
     
     static func configure(view: MainConfiguratorProtocol & MainViewInput & UINavigationControllerDelegate) -> MainViewOutput & MainPresenterProtocol {
-        let presenter = MainPresenter(view: view, interator: nil);
-        let interator = MainInterator(presenter: presenter);
-        presenter.interator = interator;
+        let presenter = MainPresenter(view: view, interactor: nil);
+        let interactor = MainInteractor(presenter: presenter);
+        presenter.interactor = interactor;
         view.delegate = view;
         return presenter;
     }
