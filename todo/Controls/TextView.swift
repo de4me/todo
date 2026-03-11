@@ -13,6 +13,9 @@ class TextView: UITextView {
     @IBInspectable var placeHolderColor: UIColor = .placeholderText;
     @IBInspectable var placeHolderString: String?;
     
+    @IBInspectable var lineHeightMultiple: CGFloat = 1.2;
+    @IBInspectable var letterSpacing: CGFloat = 0;
+    
     override var text: String! {
         get {
             super.text;
@@ -29,6 +32,7 @@ class TextView: UITextView {
         super.awakeFromNib();
         self.textColorBackup = self.textColor;
         self.textContainer.lineFragmentPadding = 0;
+        self.updateTypingAttr();
         guard let placeHolderString else {
             return;
         }
@@ -67,6 +71,21 @@ class TextView: UITextView {
         self.isPlaceholder = false;
         super.text = string;
         self.textColor = self.textColorBackup;
+    }
+    
+    private func updateTypingAttr() {
+        let paragraph = NSMutableParagraphStyle();
+        paragraph.lineHeightMultiple = self.lineHeightMultiple;
+        paragraph.alignment = self.textAlignment;
+        let font = self.font ?? UIFont.systemFont(ofSize: UIFont.systemFontSize);
+        let textcolor = self.textColor ?? UIColor.label;
+        let attr: [NSAttributedString.Key:Any] = [
+            .font: font,
+            .foregroundColor: textcolor,
+            .paragraphStyle: paragraph,
+            .kern: self.letterSpacing
+        ]
+        self.typingAttributes = attr;
     }
 
 }
