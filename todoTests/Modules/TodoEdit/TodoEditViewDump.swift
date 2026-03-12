@@ -22,7 +22,7 @@ class TodoEditViewDump: TodoEditViewInput {
         self.route = indentifier;
     }
     
-    func updateTodo(todo: todo.Todo?) {
+    func update(todo: todo.Todo) {
         self.updateTodo = todo;
     }
     

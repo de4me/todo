@@ -24,6 +24,7 @@ final class testTodoListPopupModule: XCTestCase {
         self.todo = Todo();
         self.offset = .pi;
         self.popupInfo = TodoPopupInfo(todo: self.todo, offset: self.offset);
+        self.view.popupInfo = self.popupInfo;
     }
 
     override func tearDownWithError() throws {
@@ -44,32 +45,28 @@ final class testTodoListPopupModule: XCTestCase {
     }
     
     func testRouteEdit() throws {
-        self.presenter.setValue(popupInfo: self.popupInfo);
         self.presenter.edit();
         XCTAssertEqual(self.view.route, TodoListPopupRouter.Name.edit);
     }
     
     func testRouteShare() throws {
-        self.presenter.setValue(popupInfo: self.popupInfo);
         self.presenter.share();
         XCTAssertEqual(self.view.route, TodoListPopupRouter.Name.share);
     }
     
     func testRouteDelete() throws {
-        self.presenter.setValue(popupInfo: self.popupInfo);
         self.presenter.delete();
         XCTAssertEqual(self.view.route, TodoListPopupRouter.Name.delete);
     }
     
-    func testSetValuePopupInfo() throws {
-        self.presenter!.setValue(popupInfo: self.popupInfo);
-        XCTAssertNotNil(self.presenter.interactor?.todo());
+    func testGetValuePopupInfo() throws {
+        let popinfo = self.presenter.interactor?.presenter?.getValuePopupInfo();
+        XCTAssertNotNil(popinfo);
     }
     
     func testAppearance() throws {
         self.presenter.viewDidLoad();
         XCTAssertEqual(self.view.popupViewAlpha, 0);
-        self.presenter.setValue(popupInfo: self.popupInfo);
         self.presenter.viewWillAppear(true);
         XCTAssertNotNil(self.view.todo);
         XCTAssertEqual(self.view.topLayoutConstraint, self.offset);

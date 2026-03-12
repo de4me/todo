@@ -16,8 +16,9 @@ class TodoListPopupViewDump: TodoListPopupViewInput {
     var popupViewAlpha: CGFloat = .nan;
     var topLayoutConstraint: CGFloat = .nan;
     var popupAnimated: Bool = false;
+    var popupInfo: TodoPopupInfo?;
     
-    func update(_ todo: todo.Todo?) {
+    func update(todo: Todo) {
         self.todo = todo;
     }
     
@@ -33,6 +34,9 @@ class TodoListPopupViewDump: TodoListPopupViewInput {
         self.popupAnimated = true;
     }
     
+    func getValuePopupInfo() -> todo.TodoPopupInfo? {
+        self.popupInfo;
+    }
     
     func performSegue(withIdentifier identifier: String, sender: Any?) {
         self.route = identifier;
