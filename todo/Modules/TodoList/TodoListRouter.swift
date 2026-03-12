@@ -40,19 +40,11 @@ class TodoListRouter: TodoListRouterInput {
     }
     
     func edit(todo: Todo) {
-        guard let presenter = self.presenter else {
-            return;
-        }
-        presenter.endEditing(true);
-        presenter.performSegue(withIdentifier: Name.edit, sender: todo);
+        self.presenter?.performSegue(withIdentifier: Name.edit, sender: todo);
     }
     
     func popup(info: TodoPopupInfo) {
-        guard let presenter = self.presenter else {
-            return;
-        }
-        presenter.endEditing(true);
-        presenter.performSegue(withIdentifier: Name.popup, sender: info);
+        self.presenter?.performSegue(withIdentifier: Name.popup, sender: info);
     }
     
 }

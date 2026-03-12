@@ -25,6 +25,7 @@ protocol TodoListInteractorOutput: AnyObject {
     func updateTableView();
     func update(total: Int);
     func showError(_ error: Error);
+    func endEditing(_ force: Bool);
 }
 
 

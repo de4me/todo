@@ -33,6 +33,7 @@ class TodoListPresenter: TodoListPresenterProtocol {
 extension TodoListPresenter: TodoListViewOutput {
     
     func edit(todo: Todo?) {
+        self.endEditing(true);
         let todo = todo ?? Todo();
         self.router?.edit(todo: todo);
     }
@@ -56,6 +57,7 @@ extension TodoListPresenter: TodoListViewOutput {
         guard let info else {
             return;
         }
+        self.endEditing(true);
         self.router?.popup(info: info);
     }
     
@@ -101,6 +103,10 @@ extension TodoListPresenter: TodoListInteractorOutput {
         self.view?.showError(error);
     }
     
+    func endEditing(_ force: Bool) {
+        self.view?.endEditing(force);
+    }
+    
 }
 
 
@@ -108,10 +114,6 @@ extension TodoListPresenter: TodoListRouterOutput {
     
     func performSegue(withIdentifier: String, sender: Any?) {
         self.view?.performSegue(withIdentifier: withIdentifier, sender: sender);
-    }
-    
-    func endEditing(_ force: Bool) {
-        self.view?.endEditing(force);
     }
     
 }
