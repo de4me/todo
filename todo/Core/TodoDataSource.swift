@@ -9,6 +9,7 @@ import CoreData;
 
 
 protocol TodoDataSourceInput: AnyObject {
+    var output: TodoDataSourceOutput? { get set }
     func fetch() throws;
     func dataSource(numberOfRowsInSection section: Int) -> Int;
     func dataSource(objectAt index: Int) -> Todo?;

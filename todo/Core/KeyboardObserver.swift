@@ -9,6 +9,7 @@ import UIKit;
 
 
 protocol KeyboardObserverInput: AnyObject {
+    var output: KeyboardObserverOutput? { get set };
     func registerObserver();
     func unregisterObserver();
 }

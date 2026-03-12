@@ -11,6 +11,7 @@ import Network;
 
 
 protocol NetworkMonitorInput: AnyObject {
+    var output: NetworkMonitorOutput? { get set }
     var isConnected: Bool { get }
     var interface: NWInterface.InterfaceType? { get }
     func start();
@@ -31,7 +32,7 @@ class NetworkMonitor: NSObject, NetworkMonitorInput {
     private(set) var isConnected: Bool;
     private(set) var interface: NWInterface.InterfaceType?;
     private let workQueue: DispatchQueue;
-    weak let output: NetworkMonitorOutput?;
+    weak var output: NetworkMonitorOutput?;
     
     init(output: NetworkMonitorOutput?) {
         self.monitor = NWPathMonitor();
