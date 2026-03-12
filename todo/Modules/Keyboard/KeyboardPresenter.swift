@@ -58,6 +58,6 @@ extension KeyboardPresenter: KeyboardViewOutput {
     }
     
     func viewWillDisappear(_ animated: Bool) {
-        self.interactor?.viewDidAppear(animated);
+        self.interactor?.viewWillDisappear(animated);
     }
 }
