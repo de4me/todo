@@ -8,43 +8,11 @@
 import XCTest;
 @testable import todo;
 
-class TodoListViewDump: TodoListViewInput {
-    
-    var route: String?;
-    var total: String?;
-    var error: Error?;
-    var valueEndEditing = false;
-    var valueUpdateTableView = false;
-    var setErrorExpectation: XCTestExpectation = .init(description: "Set error");
-    
-    func performSegue(withIdentifier indentifier: String, sender: Any?) {
-        self.route = indentifier;
-    }
-    
-    func updateTableView() {
-        self.valueUpdateTableView = true;
-    }
-    
-    func update(total: String) {
-        self.total = total;
-    }
-    
-    func showError(_ error: any Error) {
-        self.error = error;
-        self.setErrorExpectation.fulfill();
-    }
-    
-    func endEditing(_ force: Bool) {
-        self.valueEndEditing = true;
-    }
-    
-}
-
 
 final class testTodoListModule: XCTestCase {
     
     var view: TodoListViewDump!;
-    var presenter: (TodoListPresenterProtocol & TodoListViewOutput)!;
+    var presenter: (TodoListPresenterProtocol & TodoListViewOutput & TodoListInteractorOutput)!;
     var todo: Todo!;
     var title: String!;
     var subtitile: String!;
@@ -106,13 +74,12 @@ final class testTodoListModule: XCTestCase {
     }
     
     func testPerformSegue() throws {
-        self.presenter.performSegue(withIdentifier: TodoListRouter.Name.edit, sender: nil);
+        self.presenter.router?.edit(todo: self.todo);
         XCTAssertEqual(self.view.route, TodoListRouter.Name.edit);
     }
     
     func testDidSaveWithError() throws {
-        self.presenter.didSaveWithError(self.error);
-        wait(for: [self.view.setErrorExpectation], timeout: 1.0);
+        self.presenter.showError(self.error);
         XCTAssertNotNil(self.view.error);
     }
 

@@ -8,10 +8,6 @@
 import XCTest;
 @testable import todo;
 
-class MainViewDump: NSObject, MainConfiguratorProtocol & MainViewInput & UINavigationControllerDelegate {
-    var delegate: UINavigationControllerDelegate?;
-}
-
 
 final class testMainModule: XCTestCase {
     
