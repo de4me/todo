@@ -10,9 +10,9 @@ import UIKit;
 
 
 protocol TodoListPopupViewInput: AnyObject {
-    func updateTodo(_ todo: Todo?);
-    func updatePopupViewAlpha(_ alpha: CGFloat);
-    func updateTopLayoutConstraint(_ value: CGFloat);
+    func update(todo: Todo);
+    func update(popupViewAlpha alpha: CGFloat);
+    func update(topLayoutConstraint value: CGFloat);
     func animatePopup();
     func performSegue(withIdentifier: String, sender: Any?);
     func getValuePopupInfo() -> TodoPopupInfo?;
@@ -86,14 +86,11 @@ class TodoListPopupViewController: UIViewController {
 
 extension TodoListPopupViewController: TodoListPopupViewInput {
     
-    func updatePopupViewAlpha(_ alpha: CGFloat) {
+    func update(popupViewAlpha alpha: CGFloat) {
         self.popupView.alpha = alpha;
     }
     
-    func updateTodo(_ todo: Todo?) {
-        guard let todo else {
-            return;
-        }
+    func update(todo: Todo) {
         self.titleLabel.isHighlighted = todo.isCompleted;
         self.titleLabel.text = todo.title;
         self.subtitleLabel.isHighlighted = todo.isCompleted;
@@ -102,7 +99,7 @@ extension TodoListPopupViewController: TodoListPopupViewInput {
         self.completedButton.isSelected = todo.isCompleted;
     }
     
-    func updateTopLayoutConstraint(_ value: CGFloat) {
+    func update(topLayoutConstraint value: CGFloat) {
         self.topLayoutConstraint.constant = value;
     }
     

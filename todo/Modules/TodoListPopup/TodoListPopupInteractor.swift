@@ -18,9 +18,9 @@ protocol TodoListPopupInteractorInput: AnyObject {
 
 protocol TodoListPopupInteractorOutput: AnyObject {
     func animatePopup();
-    func updateTodo(_ todo: Todo?);
-    func updatePopupViewAlpha(_ alpha: CGFloat);
-    func updateTopLayoutConstraint(_ value: CGFloat);
+    func update(todo: Todo?);
+    func update(popupViewAlpha alpha: CGFloat);
+    func update(topLayoutConstraint value: CGFloat);
     func getValuePopupInfo() -> TodoPopupInfo?;
 }
 
@@ -39,7 +39,7 @@ class TodoListPopupInteractor: AnyObject {
 extension TodoListPopupInteractor: TodoListPopupInteractorInput {
     
     func viewDidLoad() {
-        self.presenter?.updatePopupViewAlpha(0);
+        self.presenter?.update(popupViewAlpha: 0);
     }
     
     func viewWillAppear(_ animated: Bool) {
@@ -48,8 +48,8 @@ extension TodoListPopupInteractor: TodoListPopupInteractorInput {
         else {
             return;
         }
-        presenter.updateTodo(popup.todo);
-        presenter.updateTopLayoutConstraint(popup.offset);
+        presenter.update(todo: popup.todo);
+        presenter.update(topLayoutConstraint: popup.offset);
     }
     
     func viewDidAppear(_ animated: Bool) {

@@ -80,16 +80,19 @@ extension TodoListPopupPresenter: TodoListPopupViewOutput {
 
 extension TodoListPopupPresenter: TodoListPopupInteractorOutput {
     
-    func updateTodo(_ todo: Todo?) {
-        self.view?.updateTodo(todo);
+    func update(todo: Todo?) {
+        guard let todo else {
+            return;
+        }
+        self.view?.update(todo: todo);
     }
     
-    func updatePopupViewAlpha(_ alpha: CGFloat) {
-        self.view?.updatePopupViewAlpha(alpha);
+    func update(popupViewAlpha alpha: CGFloat) {
+        self.view?.update(popupViewAlpha: alpha);
     }
     
-    func updateTopLayoutConstraint(_ value: CGFloat) {
-        self.view?.updateTopLayoutConstraint(value);
+    func update(topLayoutConstraint value: CGFloat) {
+        self.view?.update(topLayoutConstraint: value);
     }
     
     func animatePopup() {

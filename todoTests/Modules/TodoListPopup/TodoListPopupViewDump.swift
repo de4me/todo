@@ -17,15 +17,15 @@ class TodoListPopupViewDump: TodoListPopupViewInput {
     var topLayoutConstraint: CGFloat = .nan;
     var popupAnimated: Bool = false;
     
-    func updateTodo(_ todo: todo.Todo?) {
+    func update(_ todo: todo.Todo?) {
         self.todo = todo;
     }
     
-    func updatePopupViewAlpha(_ alpha: CGFloat) {
+    func update(popupViewAlpha alpha: CGFloat) {
         self.popupViewAlpha = alpha;
     }
     
-    func updateTopLayoutConstraint(_ value: CGFloat) {
+    func update(topLayoutConstraint value: CGFloat) {
         self.topLayoutConstraint = value;
     }
     
