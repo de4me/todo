@@ -1,0 +1,24 @@
+{
+  "sourceLanguage" : "ru",
+  "strings" : {
+    "ABl-Vn-cez.normalTitle" : {
+      "comment" : "Class = \"UIButton\"; normalTitle = \"Назад\"; ObjectID = \"ABl-Vn-cez\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Back"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Назад"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.1"
+}

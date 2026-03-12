@@ -1,0 +1,42 @@
+{
+  "sourceLanguage" : "ru",
+  "strings" : {
+    "gKM-Q1-oPS.text" : {
+      "comment" : "Class = \"UILabel\"; text = \"Задачи\"; ObjectID = \"gKM-Q1-oPS\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Todos"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Задачи"
+          }
+        }
+      }
+    },
+    "iOu-NB-tsj.placeholder" : {
+      "comment" : "Class = \"UITextField\"; placeholder = \"Найти\"; ObjectID = \"iOu-NB-tsj\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Search"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Найти"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.1"
+}

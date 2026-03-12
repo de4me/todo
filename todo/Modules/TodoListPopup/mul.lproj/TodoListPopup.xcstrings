@@ -1,0 +1,60 @@
+{
+  "sourceLanguage" : "ru",
+  "strings" : {
+    "fBG-9o-Agp.text" : {
+      "comment" : "Class = \"UILabel\"; text = \"Поделиться\"; ObjectID = \"fBG-9o-Agp\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Share"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Поделиться"
+          }
+        }
+      }
+    },
+    "sOV-9H-ITi.text" : {
+      "comment" : "Class = \"UILabel\"; text = \"Удалить\"; ObjectID = \"sOV-9H-ITi\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delete"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Удалить"
+          }
+        }
+      }
+    },
+    "UxN-JA-9sL.text" : {
+      "comment" : "Class = \"UILabel\"; text = \"Редактировать\"; ObjectID = \"UxN-JA-9sL\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Edit"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Редактировать"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.1"
+}
