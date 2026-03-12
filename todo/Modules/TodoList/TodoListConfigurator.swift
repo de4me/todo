@@ -10,7 +10,7 @@ import Foundation;
 
 class TodoListConfigurator {
     
-    static func configure(view: TodoListViewInput) -> TodoListViewOutput & TodoListPresenterProtocol {
+    static func configure(view: TodoListViewInput) -> TodoListViewOutput & TodoListInteractorOutput & TodoListRouterOutput &  TodoListPresenterProtocol {
         let presenter = TodoListPresenter(view: view, interactor: nil, router: nil);
         let interactor = TodoListInteractor(presenter: presenter, datasource: nil);
         let router = TodoListRouter(presenter: presenter);

@@ -10,7 +10,7 @@ import Foundation;
 
 class TodoListPopupConfigurator: AnyObject {
  
-    static func configure(view: TodoListPopupViewInput) -> TodoListPopupViewOutput & TodoListPopupPresenterProtocol {
+    static func configure(view: TodoListPopupViewInput) -> TodoListPopupViewOutput & TodoListPopupInteractorOutput & TodoListPopupRouterOutput & TodoListPopupPresenterProtocol {
         let presenter = TodoListPopupPresenter(view: view, interactor: nil, router: nil);
         let interactor = TodoListPopupInteractor(presenter: presenter);
         let router = TodoListPopupRouter(presenter: presenter);
