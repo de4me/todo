@@ -11,7 +11,7 @@ import XCTest;
 
 class KeyboardViewDump: KeyboardViewInput {
     
-    func updateKeyboardLayoutConstraint(value: CGFloat) {
+    func update(keyboardLayoutConstraint: CGFloat) {
         
     }
     

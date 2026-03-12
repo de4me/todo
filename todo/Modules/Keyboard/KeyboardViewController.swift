@@ -9,7 +9,7 @@ import UIKit;
 
 
 protocol KeyboardViewInput: AnyObject {
-    func updateKeyboardLayoutConstraint(value: CGFloat);
+    func update(keyboardLayoutConstraint: CGFloat);
     func updateConstraints();
     func getValueBounds() -> CGRect;
     func getValueKeyboardSpace() -> CGFloat;
@@ -49,8 +49,8 @@ class KeyboardViewController: UIViewController {
 
 extension KeyboardViewController: KeyboardViewInput {
     
-    func updateKeyboardLayoutConstraint(value: CGFloat) {
-        self.keyboardLayoutConstraint?.constant = value;
+    func update(keyboardLayoutConstraint constant: CGFloat) {
+        self.keyboardLayoutConstraint?.constant = constant;
     }
     
     func updateConstraints() {

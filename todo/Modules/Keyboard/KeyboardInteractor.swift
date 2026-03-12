@@ -55,9 +55,9 @@ extension KeyboardInteractor: KeyboardObserverOutput {
         }
         let rect = presenter.getValueBounds();
         if frame.intersects(rect) {
-            presenter.updateKeyboardLayoutConstraint(value: frame.height);
+            presenter.update(keyboardLayoutConstraint: frame.height);
         } else {
-            presenter.updateKeyboardLayoutConstraint(value: 0);
+            presenter.update(keyboardLayoutConstraint: 0);
         }
         presenter.updateConstraints();
     }

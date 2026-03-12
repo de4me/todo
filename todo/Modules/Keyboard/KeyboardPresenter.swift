@@ -11,7 +11,7 @@ import CoreGraphics;
 protocol KeyboardPresenterProtocol: AnyObject {
     var view: KeyboardViewInput? { get set }
     var interactor: KeyboardInteractorInput? { get set }
-    func updateKeyboardLayoutConstraint(value: CGFloat);
+    func update(keyboardLayoutConstraint: CGFloat);
     func updateConstraints();
     func getValueBounds() -> CGRect;
     func getValueKeyboardSpace() -> CGFloat;
@@ -28,12 +28,12 @@ class KeyboardPresenter: KeyboardPresenterProtocol {
         self.interactor = interactor;
     }
     
-    func updateKeyboardLayoutConstraint(value: CGFloat) {
+    func update(keyboardLayoutConstraint constant: CGFloat) {
         guard let view = self.view else {
             return;
         }
-        let value = value > 0 ? value + view.getValueKeyboardSpace() : 0;
-        view.updateKeyboardLayoutConstraint(value: value);
+        let value = constant > 0 ? constant + view.getValueKeyboardSpace() : 0;
+        view.update(keyboardLayoutConstraint: value);
     }
     
     func updateConstraints() {
