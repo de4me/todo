@@ -9,22 +9,24 @@ import Foundation;
 
 
 protocol TodoEditInteractorInput: AnyObject {
-    var presenter: TodoEditPresenterProtocol? { get set }
+    var presenter: TodoEditInteractorOutput? { get set }
     func viewWillAppear(_ animated: Bool);
     func save(todo: Todo);
 }
 
 
 protocol TodoEditInteractorOutput: AnyObject {
-    
+    func didSave();
+    func updateTodo();
+    func showError(_ error: Error);
 }
 
 
 class TodoEditInteractor: TodoEditInteractorInput {
     
-    weak var presenter: TodoEditPresenterProtocol?;
+    weak var presenter: TodoEditInteractorOutput?;
     
-    init(presenter: TodoEditPresenterProtocol) {
+    init(presenter: TodoEditInteractorOutput) {
         self.presenter = presenter;
     }
     
@@ -33,16 +35,17 @@ class TodoEditInteractor: TodoEditInteractorInput {
     }
     
     private func saveHandler(_ error: Error?) {
-        self.presenter?.didSaveWithError(error);
+        OperationQueue.main.addOperation {
+            if let error {
+                self.presenter?.showError(error);
+            } else {
+                self.presenter?.didSave();
+            }
+        }
     }
     
     func save(todo: Todo) {
-        Database.shared.save(todos: [todo], completionHandler: saveHandler);
+        Database.shared.save(todos: [todo], completionHandler: self.saveHandler);
     }
-    
-}
-
-
-extension TodoEditInteractor: TodoEditInteractorOutput {
     
 }

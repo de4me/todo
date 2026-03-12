@@ -9,7 +9,7 @@ import Foundation;
 
 
 protocol TodoListPopupInteractorInput: AnyObject {
-    var presenter: TodoListPopupPresenterProtocol? { get set }
+    var presenter: TodoListPopupInteractorOutput? { get set }
     func viewDidLoad();
     func viewWillAppear(_ animated: Bool);
     func viewDidAppear(_ animated: Bool);
@@ -18,12 +18,20 @@ protocol TodoListPopupInteractorInput: AnyObject {
 }
 
 
+protocol TodoListPopupInteractorOutput: AnyObject {
+    func animatePopup();
+    func updateTodo(_ todo: Todo?);
+    func updatePopupViewAlpha(_ alpha: CGFloat);
+    func updateTopLayoutConstraint(_ value: CGFloat);
+}
+
+
 class TodoListPopupInteractor: AnyObject {
     
-    weak var presenter: TodoListPopupPresenterProtocol?;
+    weak var presenter: TodoListPopupInteractorOutput?;
     private var popup: TodoPopupInfo?;
     
-    init(presenter: TodoListPopupPresenterProtocol?) {
+    init(presenter: TodoListPopupInteractorOutput?) {
         self.presenter = presenter;
     }
     

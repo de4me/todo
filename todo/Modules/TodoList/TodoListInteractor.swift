@@ -9,7 +9,7 @@ import Foundation;
 
 
 protocol TodoListInteractorInput: AnyObject {
-    var presenter: TodoListPresenterProtocol? { get set }
+    var presenter: TodoListInteractorOutput? { get set }
     var datasource: TodoDataSourceInput? { get set }
     func dataSource(numberOfRowsInSection section: Int) -> Int;
     func dataSource(objectAt index: Int) -> Todo?;
@@ -22,16 +22,18 @@ protocol TodoListInteractorInput: AnyObject {
 
 
 protocol TodoListInteractorOutput: AnyObject {
-    
+    func updateTableView();
+    func update(total: Int);
+    func showError(_ error: Error);
 }
 
 
 class TodoListInteractor: TodoListInteractorInput {
     
-    weak var presenter: TodoListPresenterProtocol?;
+    weak var presenter: TodoListInteractorOutput?;
     var datasource: TodoDataSourceInput?;
     
-    init(presenter: TodoListPresenterProtocol?, datasource: TodoDataSourceInput?) {
+    init(presenter: TodoListInteractorOutput?, datasource: TodoDataSourceInput?) {
         self.presenter = presenter;
         self.datasource = datasource;
     }
@@ -53,7 +55,12 @@ class TodoListInteractor: TodoListInteractorInput {
     }
     
     private func databaseErrorHandler(_ error: Error?) {
-        self.presenter?.didSaveWithError(error);
+        guard let error else {
+            return;
+        }
+        OperationQueue.main.addOperation {
+            self.presenter?.showError(error);
+        }
     }
     
     func delete(todo: Todo) {
@@ -67,11 +74,6 @@ class TodoListInteractor: TodoListInteractorInput {
     func search(text: String?) {
         try? self.datasource?.search(text: text);
     }
-}
-
-
-extension TodoListInteractor: TodoListInteractorOutput {
-    
 }
 
 

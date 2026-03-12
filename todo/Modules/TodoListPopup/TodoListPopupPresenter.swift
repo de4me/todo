@@ -12,11 +12,6 @@ protocol TodoListPopupPresenterProtocol: AnyObject {
     var view: TodoListPopupViewInput? { get set }
     var interactor: TodoListPopupInteractorInput? { get set }
     var router: TodoListPopupRouterInput? { get set }
-    func updateTodo(_ todo: Todo?);
-    func updatePopupViewAlpha(_ alpha: CGFloat);
-    func updateTopLayoutConstraint(_ value: CGFloat);
-    func animatePopup();
-    func performSegue(withIdentifier: String, sender: Any?);
 }
 
 
@@ -30,26 +25,6 @@ class TodoListPopupPresenter: TodoListPopupPresenterProtocol {
         self.view = view;
         self.interactor = interactor;
         self.router = router;
-    }
-    
-    func updateTodo(_ todo: Todo?) {
-        self.view?.updateTodo(todo);
-    }
-    
-    func updatePopupViewAlpha(_ alpha: CGFloat) {
-        self.view?.updatePopupViewAlpha(alpha);
-    }
-    
-    func updateTopLayoutConstraint(_ value: CGFloat) {
-        self.view?.updateTopLayoutConstraint(value);
-    }
-    
-    func animatePopup() {
-        self.view?.animatePopup();
-    }
-    
-    func performSegue(withIdentifier: String, sender: Any?) {
-        self.view?.performSegue(withIdentifier: withIdentifier, sender: sender);
     }
     
 }
@@ -99,6 +74,36 @@ extension TodoListPopupPresenter: TodoListPopupViewOutput {
             return;
         }
         self.router?.share(todo: todo);
+    }
+    
+}
+
+
+extension TodoListPopupPresenter: TodoListPopupInteractorOutput {
+    
+    func updateTodo(_ todo: Todo?) {
+        self.view?.updateTodo(todo);
+    }
+    
+    func updatePopupViewAlpha(_ alpha: CGFloat) {
+        self.view?.updatePopupViewAlpha(alpha);
+    }
+    
+    func updateTopLayoutConstraint(_ value: CGFloat) {
+        self.view?.updateTopLayoutConstraint(value);
+    }
+    
+    func animatePopup() {
+        self.view?.animatePopup();
+    }
+    
+}
+
+
+extension TodoListPopupPresenter: TodoListPopupRouterOutput {
+    
+    func performSegue(withIdentifier: String, sender: Any?) {
+        self.view?.performSegue(withIdentifier: withIdentifier, sender: sender);
     }
     
 }

@@ -12,13 +12,10 @@ protocol TodoEditPresenterProtocol: AnyObject {
     var view: TodoEditViewInput? { get set }
     var interactor: TodoEditInteractorInput? { get set }
     var router: TodoEditRouterInput? { get set }
-    func performSegue(withIdentifier: String, sender: Any?);
-    func updateTodo();
-    func didSaveWithError(_ error: Error?);
 }
 
 
-class TodoEditPresenter: AnyObject {
+class TodoEditPresenter: TodoEditPresenterProtocol {
     
     weak var view: TodoEditViewInput?;
     var interactor: TodoEditInteractorInput?;
@@ -61,10 +58,10 @@ extension TodoEditPresenter: TodoEditViewOutput {
 }
 
 
-extension TodoEditPresenter: TodoEditPresenterProtocol {
+extension TodoEditPresenter: TodoEditInteractorOutput {
     
-    func performSegue(withIdentifier: String, sender: Any?) {
-        self.view?.performSegue(withIdentifier: withIdentifier, sender: sender);
+    func didSave() {
+        self.close();
     }
     
     func updateTodo() {
@@ -75,14 +72,17 @@ extension TodoEditPresenter: TodoEditPresenterProtocol {
         view.updateTodo(todo: todo);
     }
     
-    func didSaveWithError(_ error: Error?) {
-        OperationQueue.main.addOperation {
-            if let error = error {
-                self.view?.showError(error);
-            } else {
-                self.close();
-            }
-        }
+    func showError(_ error: Error) {
+        self.view?.showError(error);
+    }
+    
+}
+
+
+extension TodoEditPresenter: TodoEditRouterOutput {
+    
+    func performSegue(withIdentifier: String, sender: Any?) {
+        self.view?.performSegue(withIdentifier: withIdentifier, sender: sender);
     }
     
 }

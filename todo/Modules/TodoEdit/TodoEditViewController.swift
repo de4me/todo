@@ -66,7 +66,6 @@ extension TodoEditViewController: UITextViewDelegate {
 }
 
 
-
 extension TodoEditViewController: TodoEditViewInput {
     
     func updateTodo(todo: Todo?) {

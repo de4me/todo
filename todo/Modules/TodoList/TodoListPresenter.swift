@@ -12,11 +12,6 @@ protocol TodoListPresenterProtocol: AnyObject {
     var view: TodoListViewInput? { get set }
     var router: TodoListRouterInput? { get set }
     var interactor: TodoListInteractorInput? { get set }
-    func performSegue(withIdentifier: String, sender: Any?);
-    func updateTableView();
-    func update(total: Int);
-    func didSaveWithError(_ error: Error?);
-    func endEditing(_ force: Bool);
 }
 
 
@@ -30,36 +25,6 @@ class TodoListPresenter: TodoListPresenterProtocol {
         self.view = view;
         self.interactor = interactor;
         self.router = router;
-    }
-    
-    func performSegue(withIdentifier: String, sender: Any?) {
-        self.view?.performSegue(withIdentifier: withIdentifier, sender: sender);
-    }
-    
-    func updateTableView() {
-        self.view?.updateTableView();
-    }
-    
-    func update(total: Int) {
-        guard let view = self.view else {
-            return;
-        }
-        let format = String(localizedString: "tasks_count");
-        let string = String(format: format, total);
-        view.update(total: string);
-    }
-    
-    func didSaveWithError(_ error: Error?) {
-        guard let error else {
-            return;
-        }
-        OperationQueue.main.addOperation {
-            self.view?.showError(error);
-        }
-    }
-    
-    func endEditing(_ force: Bool) {
-        self.view?.endEditing(force);
     }
     
 }
@@ -112,6 +77,41 @@ extension TodoListPresenter: TodoListViewOutput {
     
     func search(text: String?) {
         self.interactor?.search(text: text);
+    }
+    
+}
+
+
+extension TodoListPresenter: TodoListInteractorOutput {
+    
+    func updateTableView() {
+        self.view?.updateTableView();
+    }
+    
+    func update(total: Int) {
+        guard let view = self.view else {
+            return;
+        }
+        let format = String(localizedString: "tasks_count");
+        let string = String(format: format, total);
+        view.update(total: string);
+    }
+    
+    func showError(_ error: Error) {
+        self.view?.showError(error);
+    }
+    
+}
+
+
+extension TodoListPresenter: TodoListRouterOutput {
+    
+    func performSegue(withIdentifier: String, sender: Any?) {
+        self.view?.performSegue(withIdentifier: withIdentifier, sender: sender);
+    }
+    
+    func endEditing(_ force: Bool) {
+        self.view?.endEditing(force);
     }
     
 }

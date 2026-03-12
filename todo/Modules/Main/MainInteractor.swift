@@ -9,7 +9,7 @@ import UIKit;
 
 
 protocol MainInteractorInput: AnyObject {
-    var presenter: MainPresenterProtocol? { get set }
+    var presenter: MainInteractorOutput? { get set }
     func viewWillAppear(_ animated: Bool);
     func viewWillDisappear(_ animated: Bool);
     func navigationController(_ navigationController: NavigationControllerProtocol, willShow viewController: NavigationProtocol?, animated: Bool);
@@ -23,9 +23,9 @@ protocol MainInteractorOutput: AnyObject {
 
 class MainInteractor: MainInteractorInput {
     
-    weak var presenter: MainPresenterProtocol?;
+    weak var presenter: MainInteractorOutput?;
     
-    init(presenter: MainPresenterProtocol?) {
+    init(presenter: MainInteractorOutput?) {
         self.presenter = presenter
     }
     
@@ -44,10 +44,5 @@ class MainInteractor: MainInteractorInput {
     func viewWillDisappear(_ animated: Bool) {
         UpdateManager.shared.stop();
     }
-    
-}
-
-
-extension MainInteractor: MainInteractorOutput {
     
 }

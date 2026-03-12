@@ -9,7 +9,7 @@ import CoreGraphics;
 
 
 protocol KeyboardInteractorInput: AnyObject {
-    var presenter: KeyboardPresenterProtocol? { get set }
+    var presenter: KeyboardInteractorOutput? { get set }
     var keyboardObserver: KeyboardObserverInput? { get set }
     func viewDidAppear(_ animated: Bool);
     func viewWillDisappear(_ animated: Bool);
@@ -17,16 +17,19 @@ protocol KeyboardInteractorInput: AnyObject {
 
 
 protocol KeyboardInteractorOutput: AnyObject {
-    
+    func update(keyboardLayoutConstraint: CGFloat);
+    func updateConstraints();
+    func getValueBounds() -> CGRect;
+    func getValueKeyboardSpace() -> CGFloat;
 }
 
 
 class KeyboardInteractor: KeyboardInteractorInput {
     
-    weak var presenter: KeyboardPresenterProtocol?;
+    weak var presenter: KeyboardInteractorOutput?;
     var keyboardObserver: KeyboardObserverInput?;
     
-    init(presenter: KeyboardPresenterProtocol?, keyboardObserver: KeyboardObserverInput?) {
+    init(presenter: KeyboardInteractorOutput?, keyboardObserver: KeyboardObserverInput?) {
         self.presenter = presenter;
         self.keyboardObserver = keyboardObserver;
     }
@@ -38,11 +41,6 @@ class KeyboardInteractor: KeyboardInteractorInput {
     func viewWillDisappear(_ animated: Bool) {
         self.keyboardObserver?.unregisterObserver();
     }
-    
-}
-
-
-extension KeyboardInteractor: KeyboardInteractorOutput {
     
 }
 

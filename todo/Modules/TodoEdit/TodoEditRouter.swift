@@ -9,14 +9,19 @@ import Foundation;
 
 
 protocol TodoEditRouterInput {
-    var presenter: TodoEditPresenterProtocol? { get set }
+    var presenter: TodoEditRouterOutput? { get set }
     func close();
+}
+
+
+protocol TodoEditRouterOutput: AnyObject {
+    func performSegue(withIdentifier: String, sender: Any?);
 }
 
 
 class TodoEditRouter: TodoEditRouterInput {
     
-    weak var presenter: TodoEditPresenterProtocol?;
+    weak var presenter: TodoEditRouterOutput?;
     
     enum SegueName: String, CaseIterable {
         case close;
@@ -26,21 +31,12 @@ class TodoEditRouter: TodoEditRouterInput {
         static let close = SegueName.close.rawValue;
     }
     
-    init(presenter: TodoEditPresenterProtocol) {
+    init(presenter: TodoEditRouterOutput) {
         self.presenter = presenter;
     }
     
     func close() {
         self.presenter?.performSegue(withIdentifier: Name.close, sender: nil);
-    }
-    
-}
-
-
-class TodoEditRouterConfigurator {
-    
-    static func configure(presenter: TodoEditPresenterProtocol) -> TodoEditRouterInput {
-        TodoEditRouter(presenter: presenter);
     }
     
 }

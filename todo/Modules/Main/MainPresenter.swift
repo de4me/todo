@@ -42,3 +42,8 @@ extension MainPresenter: MainViewOutput {
     }
     
 }
+
+
+extension MainPresenter: MainInteractorOutput {
+    
+}
