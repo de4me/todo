@@ -14,13 +14,13 @@ protocol TodoEditViewInput: AnyObject {
     func getValueEditResult() -> TodoEditResult;
     func getValueTodo() -> Todo?;
     func showError(_ error: Error);
-    
 }
 
 
 protocol TodoEditViewOutput: AnyObject {
     func viewWillAppear(_ animated: Bool);
     func save();
+    func close();
 }
 
 

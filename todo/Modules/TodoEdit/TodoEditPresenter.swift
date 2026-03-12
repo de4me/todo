@@ -39,6 +39,10 @@ extension TodoEditPresenter: TodoEditViewOutput {
         self.interactor?.viewWillAppear(animated);
     }
     
+    func close() {
+        self.router?.close();
+    }
+    
     func save() {
         guard let view = self.view else {
             return;
@@ -46,7 +50,7 @@ extension TodoEditPresenter: TodoEditViewOutput {
         var todo = view.getValueTodo() ?? Todo();
         let result = view.getValueEditResult();
         if todo.id == nil && result.isEmpty || todo.isEqual(to: result) {
-            self.router?.close();
+            self.close();
             return;
         }
         todo.title = result.title;
@@ -76,7 +80,7 @@ extension TodoEditPresenter: TodoEditPresenterProtocol {
             if let error = error {
                 self.view?.showError(error);
             } else {
-                self.router?.close();
+                self.close();
             }
         }
     }
