@@ -44,33 +44,32 @@ extension TodoListPopupPresenter: TodoListPopupViewOutput {
         self.interactor?.viewDidAppear(animated);
     }
     
-    func setValue(popupInfo: TodoPopupInfo?) {
-        guard let popupInfo else {
-            return;
-        }
-        self.interactor?.setValue(popupInfo: popupInfo);
-    }
-    
     func close() {
         self.router?.close();
     }
     
     func edit() {
-        guard let todo = self.interactor?.todo() else {
+        guard let info = self.getValuePopupInfo(),
+              let todo = info.todo
+        else {
             return;
         }
         self.router?.edit(todo: todo);
     }
     
     func delete() {
-        guard let todo = self.interactor?.todo() else {
+        guard let info = self.getValuePopupInfo(),
+              let todo = info.todo
+        else {
             return;
         }
         self.router?.delete(todo: todo);
     }
     
     func share() {
-        guard let todo = self.interactor?.todo() else {
+        guard let info = self.getValuePopupInfo(),
+              let todo = info.todo
+        else {
             return;
         }
         self.router?.share(todo: todo);
@@ -95,6 +94,10 @@ extension TodoListPopupPresenter: TodoListPopupInteractorOutput {
     
     func animatePopup() {
         self.view?.animatePopup();
+    }
+    
+    func getValuePopupInfo() -> TodoPopupInfo? {
+        self.view?.getValuePopupInfo()
     }
     
 }

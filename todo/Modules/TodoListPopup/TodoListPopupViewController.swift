@@ -15,6 +15,7 @@ protocol TodoListPopupViewInput: AnyObject {
     func updateTopLayoutConstraint(_ value: CGFloat);
     func animatePopup();
     func performSegue(withIdentifier: String, sender: Any?);
+    func getValuePopupInfo() -> TodoPopupInfo?;
 }
 
 
@@ -22,7 +23,6 @@ protocol TodoListPopupViewOutput: AnyObject {
     func viewDidLoad();
     func viewWillAppear(_ animated: Bool);
     func viewDidAppear(_ animated: Bool);
-    func setValue(popupInfo: TodoPopupInfo?);
     func animatePopup();
     func close();
     func edit();
@@ -57,7 +57,6 @@ class TodoListPopupViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated);
-        self.presenter.setValue(popupInfo: self.popupInfo);
         self.presenter.viewWillAppear(animated);
     }
     
@@ -114,6 +113,10 @@ extension TodoListPopupViewController: TodoListPopupViewInput {
             self.popupView.alpha = 1;
             self.view.layoutIfNeeded();
         }
+    }
+    
+    func getValuePopupInfo() -> TodoPopupInfo? {
+        self.popupInfo;
     }
 
 }

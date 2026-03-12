@@ -13,8 +13,6 @@ protocol TodoListPopupInteractorInput: AnyObject {
     func viewDidLoad();
     func viewWillAppear(_ animated: Bool);
     func viewDidAppear(_ animated: Bool);
-    func setValue(popupInfo: TodoPopupInfo);
-    func todo() -> Todo?;
 }
 
 
@@ -23,13 +21,13 @@ protocol TodoListPopupInteractorOutput: AnyObject {
     func updateTodo(_ todo: Todo?);
     func updatePopupViewAlpha(_ alpha: CGFloat);
     func updateTopLayoutConstraint(_ value: CGFloat);
+    func getValuePopupInfo() -> TodoPopupInfo?;
 }
 
 
 class TodoListPopupInteractor: AnyObject {
     
     weak var presenter: TodoListPopupInteractorOutput?;
-    private var popup: TodoPopupInfo?;
     
     init(presenter: TodoListPopupInteractorOutput?) {
         self.presenter = presenter;
@@ -46,7 +44,7 @@ extension TodoListPopupInteractor: TodoListPopupInteractorInput {
     
     func viewWillAppear(_ animated: Bool) {
         guard let presenter = self.presenter,
-              let popup = self.popup
+              let popup = self.presenter?.getValuePopupInfo()
         else {
             return;
         }
@@ -56,14 +54,6 @@ extension TodoListPopupInteractor: TodoListPopupInteractorInput {
     
     func viewDidAppear(_ animated: Bool) {
         self.presenter?.animatePopup();
-    }
-    
-    func setValue(popupInfo: TodoPopupInfo) {
-        self.popup = popupInfo;
-    }
-    
-    func todo() -> Todo? {
-        self.popup?.todo;
     }
 
 }
