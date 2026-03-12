@@ -41,18 +41,7 @@ extension TodoEditPresenter: TodoEditViewOutput {
     }
     
     func save() {
-        guard let view = self.view else {
-            return;
-        }
-        var todo = view.getValueTodo() ?? Todo();
-        let result = view.getValueEditResult();
-        if todo.id == nil && result.isEmpty || todo.isEqual(to: result) {
-            self.close();
-            return;
-        }
-        todo.title = result.title;
-        todo.subtitle = result.subtitle;
-        self.interactor?.save(todo: todo);
+        self.interactor?.save();
     }
     
 }
@@ -64,16 +53,25 @@ extension TodoEditPresenter: TodoEditInteractorOutput {
         self.close();
     }
     
-    func updateTodo() {
-        guard let view = self.view else {
+    func update(todo: Todo?) {
+        guard let todo,
+              let view = self.view
+        else {
             return;
         }
-        let todo = view.getValueTodo();
-        view.updateTodo(todo: todo);
+        view.update(todo: todo);
     }
     
     func showError(_ error: Error) {
         self.view?.showError(error);
+    }
+    
+    func getValueTodo() -> Todo? {
+        self.view?.getValueTodo();
+    }
+    
+    func getValueEditResult() -> TodoEditResult? {
+        self.view?.getValueEditResult();
     }
     
 }

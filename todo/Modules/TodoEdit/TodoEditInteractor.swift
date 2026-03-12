@@ -11,14 +11,16 @@ import Foundation;
 protocol TodoEditInteractorInput: AnyObject {
     var presenter: TodoEditInteractorOutput? { get set }
     func viewWillAppear(_ animated: Bool);
-    func save(todo: Todo);
+    func save();
 }
 
 
 protocol TodoEditInteractorOutput: AnyObject {
     func didSave();
-    func updateTodo();
+    func update(todo: Todo?);
     func showError(_ error: Error);
+    func getValueTodo() -> Todo?;
+    func getValueEditResult() -> TodoEditResult?;
 }
 
 
@@ -31,7 +33,8 @@ class TodoEditInteractor: TodoEditInteractorInput {
     }
     
     func viewWillAppear(_ animated: Bool) {
-        self.presenter?.updateTodo();
+        let todo = self.presenter?.getValueTodo();
+        self.presenter?.update(todo: todo);
     }
     
     private func saveHandler(_ error: Error?) {
@@ -44,7 +47,19 @@ class TodoEditInteractor: TodoEditInteractorInput {
         }
     }
     
-    func save(todo: Todo) {
+    func save() {
+        guard let presenter = self.presenter,
+              let result = presenter.getValueEditResult()
+        else {
+            return;
+        }
+        var todo = presenter.getValueTodo() ?? Todo();
+        if todo.id == nil && result.isEmpty || todo.isEqual(to: result) {
+            presenter.didSave();
+            return;
+        }
+        todo.title = result.title;
+        todo.subtitle = result.subtitle;
         Database.shared.save(todos: [todo], completionHandler: self.saveHandler);
     }
     

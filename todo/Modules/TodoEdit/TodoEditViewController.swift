@@ -10,7 +10,7 @@ import UIKit;
 
 protocol TodoEditViewInput: AnyObject {
     func performSegue(withIdentifier: String, sender: Any?);
-    func updateTodo(todo: Todo?);
+    func update(todo: Todo);
     func getValueEditResult() -> TodoEditResult;
     func getValueTodo() -> Todo?;
     func showError(_ error: Error);
@@ -68,10 +68,7 @@ extension TodoEditViewController: UITextViewDelegate {
 
 extension TodoEditViewController: TodoEditViewInput {
     
-    func updateTodo(todo: Todo?) {
-        guard let todo else {
-            return;
-        }
+    func update(todo: Todo) {
         self.titleTextView.text = todo.title.nilIfEmpty();
         self.subtitleTextView.text = todo.subtitle.nilIfEmpty();
         self.createdDateLabel.text = todo.localizedCreatedDate;
