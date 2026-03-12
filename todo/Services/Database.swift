@@ -126,11 +126,9 @@ final class Database: DatabaseProtocol {
                     let object: DBTodo = todo.id != nil ? try self.privateContext.existingObject(with: todo.id!) as! DBTodo : DBTodo(entity: DBTodo.entity(), insertInto: self.privateContext);
                     object.assign(todo: todo);
                 }
-                guard self.privateContext.hasChanges else {
-                    completionHandler(nil);
-                    return;
+                if self.privateContext.hasChanges {
+                    try self.privateContext.save();
                 }
-                try self.privateContext.save();
                 completionHandler(nil);
             }
             catch {
@@ -150,11 +148,9 @@ final class Database: DatabaseProtocol {
                     let session = self.privateContext.object(with: objectid);
                     self.privateContext.delete(session);
                 }
-                guard self.privateContext.hasChanges else {
-                    completionHandler(nil);
-                    return;
+                if self.privateContext.hasChanges {
+                    try self.privateContext.save();
                 }
-                try self.privateContext.save();
                 completionHandler(nil);
             }
             catch {
