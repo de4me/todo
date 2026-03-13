@@ -38,6 +38,7 @@ class TodoListViewController: UIViewController {
     
     @IBOutlet var tableView: UITableView!;
     @IBOutlet var totalLabel: UILabel!;
+    @IBOutlet var longpressGestureRecognizer: UIGestureRecognizer!;
     
     private var presenter: TodoListViewOutput!;
 
@@ -57,6 +58,9 @@ class TodoListViewController: UIViewController {
     }
     
     @IBAction func longpressClick(_ sender: UILongPressGestureRecognizer) {
+//        guard !self.tableView.isEditing else {
+//            return;
+//        }
         let pt = sender.location(in: self.tableView);
         guard self.presentedViewController == nil,
               let index = self.tableView.indexPathForRow(at: pt),
@@ -92,18 +96,29 @@ class TodoListViewController: UIViewController {
     
     @IBAction func editUnwide(_ segue: UIStoryboardSegue, sender: Any?) {
         OperationQueue.main.addOperation {
+            if let index = self.tableView.indexPathForSelectedRow {
+                self.tableView.deselectRow(at: index, animated: true);
+            }
             self.presenter.edit(todo: sender as? Todo);
         }
     }
     
     @IBAction func deleteUnwide(_ segue: UIStoryboardSegue, sender: Any?) {
         OperationQueue.main.addOperation {
+            if let index = self.tableView.indexPathForSelectedRow {
+                self.tableView.deselectRow(at: index, animated: true);
+            }
             self.presenter.delete(todo: sender as? Todo, force: false);
         }
     }
     
     @IBAction func shareUnwide(_ segue: UIStoryboardSegue, sender: Any?) {
-        print(#function);
+        OperationQueue.main.addOperation {
+            if let index = self.tableView.indexPathForSelectedRow {
+                self.tableView.deselectRow(at: index, animated: true);
+            }
+            print(#function);
+        }
     }
     
     @IBAction func searchClick(_ sender: Any?) {
@@ -192,6 +207,14 @@ extension TodoListViewController: UITableViewDelegate {
         return UISwipeActionsConfiguration(actions: [delete]);
     }
     
+    func tableView(_ tableView: UITableView, willBeginEditingRowAt indexPath: IndexPath) {
+        self.longpressGestureRecognizer.isEnabled = false;
+    }
+    
+    func tableView(_ tableView: UITableView, didEndEditingRowAt indexPath: IndexPath?) {
+        self.longpressGestureRecognizer.isEnabled = true;
+    }
+    
 }
 
 
@@ -219,6 +242,19 @@ extension TodoListViewController: TodoTableViewCellDelegate {
             return;
         }
         self.presenter.complete(todo: todo, completed: completed);
+    }
+    
+}
+
+
+extension TodoListViewController: UIGestureRecognizerDelegate {
+    
+//    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRequireFailureOf otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+//        return true;
+//    }
+    
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        false;
     }
     
 }
