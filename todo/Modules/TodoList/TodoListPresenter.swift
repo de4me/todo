@@ -38,8 +38,12 @@ extension TodoListPresenter: TodoListViewOutput {
         self.router?.edit(todo: todo);
     }
     
-    func delete(todo: Todo?) {
+    func delete(todo: Todo?, force: Bool) {
         guard let todo else {
+            return;
+        }
+        guard !force else {
+            self.interactor?.delete(todo: todo);
             return;
         }
         let block: (Any) -> Void = { _ in

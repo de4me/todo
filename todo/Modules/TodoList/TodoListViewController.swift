@@ -27,7 +27,7 @@ protocol TodoListViewOutput: AnyObject {
     func dataSource(numberOfRowsInSection section: Int) -> Int;
     func dataSource(objectAt index: Int) -> Todo?;
     func edit(todo: Todo?);
-    func delete(todo: Todo?);
+    func delete(todo: Todo?, force: Bool);
     func popup(info: TodoPopupInfo?);
     func search(text: String?);
     func complete(todo: Todo?, completed: Bool);
@@ -98,7 +98,7 @@ class TodoListViewController: UIViewController {
     
     @IBAction func deleteUnwide(_ segue: UIStoryboardSegue, sender: Any?) {
         OperationQueue.main.addOperation {
-            self.presenter.delete(todo: sender as? Todo);
+            self.presenter.delete(todo: sender as? Todo, force: false);
         }
     }
     
@@ -179,6 +179,17 @@ extension TodoListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let todo = self.presenter.dataSource(objectAt: indexPath.row);
         self.presenter.edit(todo: todo);
+    }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let block: (UIContextualAction, UIView, @escaping (Bool) -> Void) -> Void = { action, view, completed in
+            let todo = self.presenter.dataSource(objectAt: indexPath.row);
+            self.presenter.delete(todo: todo, force: true);
+            completed(true);
+        }
+        let delete = UIContextualAction(style: .destructive, title: String(localizedString: "delete"), handler: block);
+        delete.image = UIImage(systemName: "trash");
+        return UISwipeActionsConfiguration(actions: [delete]);
     }
     
 }
