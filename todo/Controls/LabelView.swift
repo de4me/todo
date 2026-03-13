@@ -29,6 +29,7 @@ class LabelView: UILabel {
         let paragraph = NSMutableParagraphStyle();
         paragraph.lineHeightMultiple = self.lineHeightMultiple;
         paragraph.alignment = self.textAlignment;
+        paragraph.lineBreakMode = self.lineBreakMode;
         let font = self.font ?? UIFont.systemFont(ofSize: UIFont.systemFontSize);
         let textcolor = self.textColor ?? UIColor.label;
         let attr: [NSAttributedString.Key:Any] = [
