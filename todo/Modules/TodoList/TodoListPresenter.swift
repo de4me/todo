@@ -83,6 +83,7 @@ extension TodoListPresenter: TodoListViewOutput {
     }
     
     func search(text: String?) {
+        let text = text?.trimmed().nilIfEmpty();
         self.interactor?.search(text: text);
     }
     
