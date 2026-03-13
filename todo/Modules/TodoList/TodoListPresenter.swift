@@ -66,8 +66,8 @@ extension TodoListPresenter: TodoListViewOutput {
         self.router?.popup(info: info);
     }
     
-    func viewWillAppear(_ animated: Bool) {
-        self.interactor?.viewWillAppear(animated);
+    func viewDidAppear(_ animated: Bool) {
+        self.interactor?.viewDidAppear(animated);
     }
     
     func viewWillDisappear(_ animated: Bool) {
@@ -110,6 +110,18 @@ extension TodoListPresenter: TodoListInteractorOutput {
     
     func endEditing(_ force: Bool) {
         self.view?.endEditing(force);
+    }
+    
+    func insert(tableView rows: [IndexPath]) {
+        self.view?.insert(tableView: rows);
+    }
+    
+    func delete(tableView rows: [IndexPath]) {
+        self.view?.delete(tableView: rows);
+    }
+    
+    func update(tableView rows: [IndexPath]) {
+        self.view?.update(tableView: rows);
     }
     
 }

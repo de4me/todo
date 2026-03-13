@@ -15,11 +15,14 @@ protocol TodoListViewInput: AnyObject {
     func showError(_ error: Error);
     func endEditing(_ force: Bool);
     func showAlert(message: String, button title: String, destructive: Bool, actionSheeet: Bool, handler: @escaping (Any) -> Void);
+    func insert(tableView rows: [IndexPath]);
+    func delete(tableView rows: [IndexPath]);
+    func update(tableView rows: [IndexPath]);
 }
 
 
 protocol TodoListViewOutput: AnyObject {
-    func viewWillAppear(_ animated: Bool);
+    func viewDidAppear(_ animated: Bool);
     func viewWillDisappear(_ animated: Bool);
     func dataSource(numberOfRowsInSection section: Int) -> Int;
     func dataSource(objectAt index: Int) -> Todo?;
@@ -43,9 +46,9 @@ class TodoListViewController: UIViewController {
         self.presenter = TodoListConfigurator.configure(view: self);
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated);
-        self.presenter.viewWillAppear(animated);
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated);
+        self.presenter.viewDidAppear(animated);
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -126,6 +129,22 @@ extension TodoListViewController: TodoListViewInput {
     
     func endEditing(_ force: Bool) {
         self.view.endEditing(force);
+    }
+    
+    func insert(tableView rows: [IndexPath]) {
+        self.tableView.insertRows(at: rows, with: .automatic);
+        guard let first = rows.min() else {
+            return;
+        }
+        self.tableView.scrollToRow(at: first, at: .middle, animated: true);
+    }
+    
+    func delete(tableView rows: [IndexPath]) {
+        self.tableView.deleteRows(at: rows, with: .automatic);
+    }
+    
+    func update(tableView rows: [IndexPath]) {
+        self.tableView.reloadRows(at: rows, with: .automatic);
     }
     
 }
