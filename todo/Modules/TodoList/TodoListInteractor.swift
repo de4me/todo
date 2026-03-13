@@ -81,7 +81,12 @@ class TodoListInteractor: TodoListInteractorInput {
     }
     
     func search(text: String?) {
-        try? self.datasource?.search(text: text);
+        do {
+            try self.datasource?.search(text: text);
+        }
+        catch {
+            self.presenter?.showError(error);
+        }
     }
     
     private func reloadData() {
