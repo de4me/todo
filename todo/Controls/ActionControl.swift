@@ -29,8 +29,28 @@ class ActionControl: UIControl {
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesEnded(touches, with: event);
+        guard self.isSelected else {
+            return;
+        }
         self.isSelected = false;
         self.sendActions(for: .primaryActionTriggered);
+    }
+    
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesMoved(touches, with: event);
+        guard let touch = touches.first else {
+            return;
+        }
+        let pt = touch.location(in: self);
+        guard !self.bounds.contains(pt) else {
+            return;
+        }
+        self.isSelected = false;
+    }
+    
+    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesCancelled(touches, with: event);
+        self.isSelected = false;
     }
     
     private func updateSelected() {
