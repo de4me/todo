@@ -95,12 +95,12 @@
                                                     <color key="backgroundColor" name="popupBackgroundColor"/>
                                                 </view>
                                                 <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="ugM-mz-nPb">
-                                                    <rect key="frame" x="20" y="0.0" width="353" height="87"/>
+                                                    <rect key="frame" x="10" y="0.0" width="363" height="87"/>
                                                     <subviews>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QaL-ni-RZY">
-                                                            <rect key="frame" x="0.0" y="0.0" width="24" height="48"/>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QaL-ni-RZY">
+                                                            <rect key="frame" x="0.0" y="0.0" width="34" height="48"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="24" id="Scj-nP-WiY"/>
+                                                                <constraint firstAttribute="width" constant="34" id="Scj-nP-WiY"/>
                                                                 <constraint firstAttribute="height" constant="48" id="zJ0-ci-tnc"/>
                                                             </constraints>
                                                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -111,7 +111,7 @@
                                                             </connections>
                                                         </button>
                                                         <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IeR-tC-Yh3">
-                                                            <rect key="frame" x="32" y="0.0" width="321" height="81"/>
+                                                            <rect key="frame" x="42" y="0.0" width="321" height="81"/>
                                                             <subviews>
                                                                 <stackView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="bJ4-dq-4WU">
                                                                     <rect key="frame" x="0.0" y="12" width="321" height="57"/>
@@ -172,7 +172,7 @@
                                                 <constraint firstItem="NI5-RX-1r3" firstAttribute="leading" secondItem="UWl-IZ-78j" secondAttribute="leading" constant="20" id="NXE-V3-1oq"/>
                                                 <constraint firstItem="ugM-mz-nPb" firstAttribute="top" secondItem="UWl-IZ-78j" secondAttribute="top" id="QuP-A9-l09"/>
                                                 <constraint firstAttribute="bottom" secondItem="NI5-RX-1r3" secondAttribute="bottom" id="bis-1z-Itk"/>
-                                                <constraint firstItem="ugM-mz-nPb" firstAttribute="leading" secondItem="UWl-IZ-78j" secondAttribute="leading" constant="20" id="eMx-oZ-IrF"/>
+                                                <constraint firstItem="ugM-mz-nPb" firstAttribute="leading" secondItem="UWl-IZ-78j" secondAttribute="leading" constant="10" id="eMx-oZ-IrF"/>
                                                 <constraint firstItem="NI5-RX-1r3" firstAttribute="top" secondItem="UWl-IZ-78j" secondAttribute="top" id="nql-4l-adI"/>
                                             </constraints>
                                         </tableViewCellContentView>
