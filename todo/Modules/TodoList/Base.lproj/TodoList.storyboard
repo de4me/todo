@@ -111,10 +111,10 @@
                                                             </connections>
                                                         </button>
                                                         <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IeR-tC-Yh3">
-                                                            <rect key="frame" x="32" y="0.0" width="321" height="87"/>
+                                                            <rect key="frame" x="32" y="0.0" width="321" height="85"/>
                                                             <subviews>
                                                                 <stackView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="bJ4-dq-4WU">
-                                                                    <rect key="frame" x="0.0" y="12" width="321" height="63"/>
+                                                                    <rect key="frame" x="0.0" y="12" width="321" height="61"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IXA-Ea-9ZI" customClass="CompletedLabel" customModule="todo" customModuleProvider="target">
                                                                             <rect key="frame" x="0.0" y="0.0" width="321" height="19"/>
@@ -126,26 +126,31 @@
                                                                             <color key="textColor" name="labelWhiteColor"/>
                                                                             <color key="highlightedColor" name="labelGrayColor"/>
                                                                         </label>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AuN-3g-2Yw">
-                                                                            <rect key="frame" x="0.0" y="27" width="321" height="14"/>
-                                                                            <constraints>
-                                                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="14" id="9oX-Di-nRj"/>
-                                                                                <constraint firstAttribute="height" constant="14" placeholder="YES" id="B93-Ef-Wc1"/>
-                                                                            </constraints>
-                                                                            <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="12"/>
-                                                                            <color key="textColor" name="labelWhiteColor"/>
-                                                                            <color key="highlightedColor" name="labelGrayColor"/>
-                                                                        </label>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Asf-Fn-Tk8">
-                                                                            <rect key="frame" x="0.0" y="49" width="321" height="14"/>
-                                                                            <constraints>
-                                                                                <constraint firstAttribute="height" constant="14" placeholder="YES" id="Tcj-Hp-IyT"/>
-                                                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="14" id="xp3-mD-gup"/>
-                                                                            </constraints>
-                                                                            <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="12"/>
-                                                                            <color key="textColor" name="labelGrayColor"/>
-                                                                            <nil key="highlightedColor"/>
-                                                                        </label>
+                                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="9j8-EC-LZM">
+                                                                            <rect key="frame" x="0.0" y="27" width="321" height="34"/>
+                                                                            <subviews>
+                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AuN-3g-2Yw">
+                                                                                    <rect key="frame" x="0.0" y="0.0" width="321" height="14"/>
+                                                                                    <constraints>
+                                                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="14" id="9oX-Di-nRj"/>
+                                                                                        <constraint firstAttribute="height" constant="14" placeholder="YES" id="B93-Ef-Wc1"/>
+                                                                                    </constraints>
+                                                                                    <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="12"/>
+                                                                                    <color key="textColor" name="labelWhiteColor"/>
+                                                                                    <color key="highlightedColor" name="labelGrayColor"/>
+                                                                                </label>
+                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Asf-Fn-Tk8">
+                                                                                    <rect key="frame" x="0.0" y="20" width="321" height="14"/>
+                                                                                    <constraints>
+                                                                                        <constraint firstAttribute="height" constant="14" placeholder="YES" id="Tcj-Hp-IyT"/>
+                                                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="14" id="xp3-mD-gup"/>
+                                                                                    </constraints>
+                                                                                    <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="12"/>
+                                                                                    <color key="textColor" name="labelGrayColor"/>
+                                                                                    <nil key="highlightedColor"/>
+                                                                                </label>
+                                                                            </subviews>
+                                                                        </stackView>
                                                                     </subviews>
                                                                 </stackView>
                                                             </subviews>
@@ -254,10 +259,10 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="QUX-t4-42D" userLabel="Search Action">
-                    <rect key="frame" x="0.0" y="0.0" width="35" height="22"/>
+                    <rect key="frame" x="0.0" y="0.0" width="35" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="tintColor" name="placeholderGrayColor"/>
-                    <inset key="contentEdgeInsets" minX="8" minY="0.0" maxX="8" maxY="0.0"/>
+                    <inset key="contentEdgeInsets" minX="8" minY="8" maxX="8" maxY="8"/>
                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                     <state key="normal">
                         <imageReference key="image" image="search" renderingMode="template"/>
@@ -267,10 +272,10 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Hd6-cR-NSf" userLabel="Dictation Action">
-                    <rect key="frame" x="0.0" y="0.0" width="35" height="22"/>
+                    <rect key="frame" x="0.0" y="0.0" width="35" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="tintColor" name="placeholderGrayColor"/>
-                    <inset key="contentEdgeInsets" minX="12" minY="0.0" maxX="12" maxY="0.0"/>
+                    <inset key="contentEdgeInsets" minX="10" minY="8" maxX="10" maxY="8"/>
                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                     <state key="normal" image="record"/>
                     <connections>
