@@ -30,7 +30,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="my3-hd-DoD">
-                                        <rect key="frame" x="20" y="0.0" width="353" height="111"/>
+                                        <rect key="frame" x="20" y="4" width="353" height="111"/>
                                         <subviews>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="aip-85-F7i" customClass="TextView" customModule="todo" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="353" height="56"/>
@@ -44,6 +44,9 @@
                                                     <userDefinedRuntimeAttribute type="string" keyPath="placeHolderString" value="task_name_placeholder"/>
                                                     <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
                                                         <color key="value" name="placeholderGrayColor"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="lineHeightMultiple">
+                                                        <real key="value" value="0.90000000000000002"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
@@ -90,7 +93,7 @@
                                     <constraint firstItem="my3-hd-DoD" firstAttribute="bottom" secondItem="IoF-mR-5SB" secondAttribute="bottom" id="UjA-Pq-qCQ"/>
                                     <constraint firstItem="IoF-mR-5SB" firstAttribute="trailing" secondItem="my3-hd-DoD" secondAttribute="trailing" constant="20" id="YbE-k7-Fcd"/>
                                     <constraint firstItem="my3-hd-DoD" firstAttribute="leading" secondItem="IoF-mR-5SB" secondAttribute="leading" constant="20" id="aYW-h7-9OH"/>
-                                    <constraint firstItem="IoF-mR-5SB" firstAttribute="top" secondItem="my3-hd-DoD" secondAttribute="top" id="bE3-Lf-Z73"/>
+                                    <constraint firstItem="my3-hd-DoD" firstAttribute="top" secondItem="IoF-mR-5SB" secondAttribute="top" constant="4" id="bE3-Lf-Z73"/>
                                 </constraints>
                                 <viewLayoutGuide key="contentLayoutGuide" id="IoF-mR-5SB"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="T4x-4D-mJr"/>
@@ -107,8 +110,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="FXq-7g-QZD">
                         <barButtonItem key="leftBarButtonItem" id="ROm-4M-fdP">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="ABl-Vn-cez">
-                                <rect key="frame" x="20" y="11.333333333333336" width="83" height="21.333333333333336"/>
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="ABl-Vn-cez">
+                                <rect key="frame" x="20" y="12" width="83" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="SFPro-Regular" family="SF Pro" pointSize="17"/>
                                 <inset key="contentEdgeInsets" minX="16" minY="0.0" maxX="6" maxY="0.0"/>
