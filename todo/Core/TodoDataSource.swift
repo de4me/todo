@@ -8,14 +8,6 @@
 import CoreData;
 
 
-struct DataSourceUpdates {
-    let inserted: [IndexPath];
-    let deleted: [IndexPath];
-    let updated: [IndexPath];
-    let moved: [(from: IndexPath, to: IndexPath)];
-}
-
-
 protocol TodoDataSourceInput: AnyObject {
     var output: TodoDataSourceOutput? { get set }
     var isFetched: Bool { get }
