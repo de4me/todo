@@ -10,7 +10,7 @@ import UIKit;
 
 class CornerView: UIView {
 
-    @IBInspectable var cornerRadius: CGFloat = 8;
+    @IBInspectable var cornerRadius: CGFloat = 0;
     @IBInspectable var shadowOffset: CGSize = .zero;
     @IBInspectable var shadowColor: UIColor = .black;
     @IBInspectable var shadowOpacity: CGFloat = 0.1;

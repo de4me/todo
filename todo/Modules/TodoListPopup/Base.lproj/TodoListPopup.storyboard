@@ -110,11 +110,6 @@
                                                 <constraint firstItem="FKD-FN-15o" firstAttribute="top" secondItem="Xv5-f0-Oh4" secondAttribute="top" id="bTe-Qj-mDg"/>
                                                 <constraint firstAttribute="trailing" secondItem="FKD-FN-15o" secondAttribute="trailing" constant="16" id="kjZ-ZE-Lpc"/>
                                             </constraints>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                    <real key="value" value="12"/>
-                                                </userDefinedRuntimeAttribute>
-                                            </userDefinedRuntimeAttributes>
                                             <variation key="default">
                                                 <mask key="constraints">
                                                     <exclude reference="kjZ-ZE-Lpc"/>
@@ -326,6 +321,7 @@
                         <outlet property="rootView" destination="BgT-Ew-Y6j" id="AjK-K6-h0l"/>
                         <outlet property="subtitleLabel" destination="zHK-TJ-zJf" id="6Rt-Hw-h02"/>
                         <outlet property="titleLabel" destination="DQb-fj-qld" id="XdY-4h-RvX"/>
+                        <outlet property="todoView" destination="Xv5-f0-Oh4" id="Enh-i9-Ty8"/>
                         <outlet property="topLayoutConstraint" destination="C6Q-L1-nSx" id="rPd-G6-WKo"/>
                         <outletCollection property="unactiveLayoutConstarint" destination="12J-pt-Zda" collectionClass="NSMutableArray" id="W0o-Xr-b2Q"/>
                         <outletCollection property="unactiveLayoutConstarint" destination="kjZ-ZE-Lpc" collectionClass="NSMutableArray" id="7bj-Ki-8Ek"/>

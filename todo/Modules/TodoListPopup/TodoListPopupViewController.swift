@@ -38,6 +38,7 @@ class TodoListPopupViewController: UIViewController {
     @IBOutlet var dateLabel: UILabel!;
     @IBOutlet var completedButton: UIButton!;
     @IBOutlet var rootView: UIView!;
+    @IBOutlet var todoView: CornerView!;
     
     @IBOutlet var popupView: UIView!;
     
@@ -108,6 +109,7 @@ extension TodoListPopupViewController: TodoListPopupViewInput {
             self.unactiveLayoutConstarint.forEach { $0.isActive = true; }
             self.completedButton.isHidden = true;
             self.popupView.alpha = 1;
+            self.todoView.cornerRadius = 12;
             self.view.layoutIfNeeded();
         }
     }
