@@ -14,6 +14,7 @@ protocol TodoListViewInput: AnyObject {
     func update(total: String);
     func showError(_ error: Error);
     func endEditing(_ force: Bool);
+    func showAlert(message: String, button title: String, destructive: Bool, actionSheeet: Bool, handler: @escaping (Any) -> Void);
 }
 
 
@@ -126,6 +127,7 @@ extension TodoListViewController: TodoListViewInput {
     func endEditing(_ force: Bool) {
         self.view.endEditing(force);
     }
+    
 }
 
 

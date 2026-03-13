@@ -42,7 +42,12 @@ extension TodoListPresenter: TodoListViewOutput {
         guard let todo else {
             return;
         }
-        self.interactor?.delete(todo: todo);
+        let block: (Any) -> Void = { _ in
+            self.interactor?.delete(todo: todo);
+        }
+        let message = String(localizedString: "message_delete_todo");
+        let button = String(localizedString: "delete");
+        self.view?.showAlert(message: message, button: button, destructive: true, actionSheeet: false, handler: block);
     }
     
     func complete(todo: Todo?, completed: Bool) {

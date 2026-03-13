@@ -17,4 +17,13 @@ extension UIViewController {
         self.present(alert, animated: true);
     }
     
+    func showAlert(message: String, button title: String, destructive: Bool = false, actionSheeet: Bool = false, handler: @escaping (Any) -> Void) {
+        let controller = UIAlertController(title: nil, message: message, preferredStyle: actionSheeet ? .actionSheet : .alert);
+        let close = UIAlertAction(title: String(localizedString: "close"), style: .cancel);
+        let action = UIAlertAction(title: title, style: destructive ? .destructive : .default, handler: handler);
+        controller.addAction(close);
+        controller.addAction(action);
+        self.present(controller, animated: true);
+    }
+    
 }
