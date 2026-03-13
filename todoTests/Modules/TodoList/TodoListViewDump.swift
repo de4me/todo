@@ -17,6 +17,8 @@ class TodoListViewDump: TodoListViewInput {
     var valueEndEditing = false;
     var valueUpdateTableView = false;
     var setErrorExpectation: XCTestExpectation = .init(description: "Set error");
+    var alertMessage: String?;
+    var alertButton: String?;
     
     func performSegue(withIdentifier indentifier: String, sender: Any?) {
         self.route = indentifier;
@@ -37,6 +39,11 @@ class TodoListViewDump: TodoListViewInput {
     
     func endEditing(_ force: Bool) {
         self.valueEndEditing = true;
+    }
+    
+    func showAlert(message: String, button title: String, destructive: Bool, actionSheeet: Bool, handler: @escaping (Any) -> Void) {
+        self.alertMessage = message;
+        self.alertButton = title;
     }
     
 }
