@@ -33,10 +33,10 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xv5-f0-Oh4" userLabel="Todo View" customClass="CornerView" customModule="todo" customModuleProvider="target">
-                                            <rect key="frame" x="20" y="118" width="353" height="85"/>
+                                            <rect key="frame" x="20" y="118" width="353" height="81"/>
                                             <subviews>
                                                 <stackView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="FKD-FN-15o">
-                                                    <rect key="frame" x="0.0" y="0.0" width="353" height="85"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="353" height="81"/>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9HL-xp-guv">
                                                             <rect key="frame" x="0.0" y="0.0" width="24" height="48"/>
@@ -49,10 +49,10 @@
                                                             <state key="selected" image="checkbox_on"/>
                                                         </button>
                                                         <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p5W-Fh-CWt">
-                                                            <rect key="frame" x="32" y="0.0" width="321" height="85"/>
+                                                            <rect key="frame" x="32" y="0.0" width="321" height="81"/>
                                                             <subviews>
-                                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="iNx-E8-BXx">
-                                                                    <rect key="frame" x="0.0" y="12" width="321" height="61"/>
+                                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="iNx-E8-BXx">
+                                                                    <rect key="frame" x="0.0" y="12" width="321" height="57"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DQb-fj-qld" customClass="CompletedLabel" customModule="todo" customModuleProvider="target">
                                                                             <rect key="frame" x="0.0" y="0.0" width="321" height="19"/>
@@ -65,9 +65,9 @@
                                                                             <color key="highlightedColor" name="labelGrayColor"/>
                                                                         </label>
                                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="lls-gd-Rql">
-                                                                            <rect key="frame" x="0.0" y="27" width="321" height="34"/>
+                                                                            <rect key="frame" x="0.0" y="23" width="321" height="34"/>
                                                                             <subviews>
-                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zHK-TJ-zJf">
+                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zHK-TJ-zJf" customClass="LabelView" customModule="todo" customModuleProvider="target">
                                                                                     <rect key="frame" x="0.0" y="0.0" width="321" height="14"/>
                                                                                     <constraints>
                                                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="14" id="hXj-Nc-aon"/>
@@ -123,7 +123,7 @@
                                             </variation>
                                         </view>
                                         <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mc0-rB-f9w" userLabel="Popup View" customClass="CornerView" customModule="todo" customModuleProvider="target">
-                                            <rect key="frame" x="69.666666666666686" y="219" width="254" height="134"/>
+                                            <rect key="frame" x="69.666666666666686" y="215" width="254" height="134"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="0HY-vz-uUJ">
                                                     <rect key="frame" x="0.0" y="0.0" width="254" height="134"/>
