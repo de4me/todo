@@ -60,9 +60,6 @@ class TodoListViewController: UIViewController {
     }
     
     @IBAction func longpressClick(_ sender: UILongPressGestureRecognizer) {
-//        guard !self.tableView.isEditing else {
-//            return;
-//        }
         let pt = sender.location(in: self.tableView);
         guard self.presentedViewController == nil,
               let index = self.tableView.indexPathForRow(at: pt),
@@ -247,13 +244,5 @@ extension TodoListViewController: TodoTableViewCellDelegate {
 
 
 extension TodoListViewController: UIGestureRecognizerDelegate {
-    
-//    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRequireFailureOf otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-//        return true;
-//    }
-    
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-        false;
-    }
     
 }
