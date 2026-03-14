@@ -26,4 +26,9 @@ extension UIViewController {
         self.present(controller, animated: true);
     }
     
+    func showShare(text: String) {
+        let controller = UIActivityViewController(activityItems: [text], applicationActivities: nil);
+        self.present(controller, animated: true, completion: nil);
+    }
+    
 }

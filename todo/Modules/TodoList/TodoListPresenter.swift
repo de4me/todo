@@ -91,6 +91,13 @@ extension TodoListPresenter: TodoListViewOutput {
         self.interactor?.search(text: text);
     }
     
+    func share(todo: Todo?) {
+        guard let todo else {
+            return;
+        }
+        self.interactor?.share(todo: todo);
+    }
+    
 }
 
 
@@ -127,6 +134,10 @@ extension TodoListPresenter: TodoListInteractorOutput {
     
     func update(tableView rows: [IndexPath]) {
         self.view?.update(tableView: rows);
+    }
+    
+    func showShare(text: String) {
+        self.view?.showShare(text: text);
     }
     
 }

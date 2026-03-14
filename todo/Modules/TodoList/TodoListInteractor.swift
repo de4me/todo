@@ -18,6 +18,7 @@ protocol TodoListInteractorInput: AnyObject {
     func search(text: String?);
     func delete(todo: Todo);
     func save(todo: Todo);
+    func share(todo: Todo);
 }
 
 
@@ -29,6 +30,7 @@ protocol TodoListInteractorOutput: AnyObject {
     func insert(tableView rows: [IndexPath]);
     func delete(tableView rows: [IndexPath]);
     func update(tableView rows: [IndexPath]);
+    func showShare(text: String);
 }
 
 
@@ -135,6 +137,20 @@ class TodoListInteractor: TodoListInteractorInput {
     private func updateTotal() {
         let count = self.dataSource(numberOfRowsInSection: 0);
         self.presenter?.update(total: count);
+    }
+    
+    func share(todo: Todo) {
+        let created = String(localizedString:"created");
+        let completed = String(localizedString:"completed");
+        let created_date = todo.localizedCreatedDate;
+        let completed_date = todo.localizedCompletedDate ?? String(localizedString:"nope");
+        let string = """
+            \(todo.title)
+            \(todo.subtitle)
+            \(created): \(created_date)
+            \(completed): \(completed_date)
+            """
+        self.presenter?.showShare(text: string);
     }
     
 }

@@ -18,6 +18,7 @@ protocol TodoListViewInput: AnyObject {
     func insert(tableView rows: [IndexPath]);
     func delete(tableView rows: [IndexPath]);
     func update(tableView rows: [IndexPath]);
+    func showShare(text: String);
 }
 
 
@@ -31,6 +32,7 @@ protocol TodoListViewOutput: AnyObject {
     func popup(info: TodoPopupInfo?);
     func search(text: String?);
     func complete(todo: Todo?, completed: Bool);
+    func share(todo: Todo?);
 }
 
 
@@ -114,10 +116,7 @@ class TodoListViewController: UIViewController {
     
     @IBAction func shareUnwide(_ segue: UIStoryboardSegue, sender: Any?) {
         OperationQueue.main.addOperation {
-            if let index = self.tableView.indexPathForSelectedRow {
-                self.tableView.deselectRow(at: index, animated: true);
-            }
-            print(#function);
+            self.presenter.share(todo: sender as? Todo);
         }
     }
     
