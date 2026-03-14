@@ -74,6 +74,14 @@ class TodoListViewController: UIViewController {
     @IBAction func newClick(_ sender: Any) {
         self.presenter.edit(todo: nil);
     }
+    
+    @IBAction func searchClick(_ sender: Any?) {
+        print(#function);
+    }
+    
+    @IBAction func dictationClick(_ sender: Any?) {
+        print(#function);
+    }
 
     // MARK: - Navigation
 
@@ -115,14 +123,6 @@ class TodoListViewController: UIViewController {
         OperationQueue.main.addOperation {
             self.presenter.share(todo: sender as? Todo);
         }
-    }
-    
-    @IBAction func searchClick(_ sender: Any?) {
-        print(#function);
-    }
-    
-    @IBAction func dictationClick(_ sender: Any?) {
-        print(#function);
     }
     
 }
