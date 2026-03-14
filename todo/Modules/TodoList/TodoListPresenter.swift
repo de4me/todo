@@ -49,8 +49,8 @@ extension TodoListPresenter: TodoListViewOutput {
         let block: (Any) -> Void = { _ in
             self.interactor?.delete(todo: todo);
         }
-        let message = String(localizedString: "message_delete_todo");
-        let button = String(localizedString: "delete");
+        let message = String(localized: "message_delete_todo");
+        let button = String(localized: "delete");
         self.view?.showAlert(message: message, button: button, destructive: true, actionSheeet: false, handler: block);
     }
     
@@ -111,7 +111,7 @@ extension TodoListPresenter: TodoListInteractorOutput {
         guard let view = self.view else {
             return;
         }
-        let format = String(localizedString: "tasks_count");
+        let format = String(localized: "tasks_count");
         let string = String(format: format, total);
         view.update(total: string);
     }

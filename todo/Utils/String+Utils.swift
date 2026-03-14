@@ -14,8 +14,8 @@ extension String {
         return string?.trimmed().isEmpty ?? true;
     }
     
-    init(localizedString: String) {
-        self = NSLocalizedString(localizedString, comment: localizedString);
+    init(localized: String) {
+        self = NSLocalizedString(localized, comment: localized);
     }
     
     func trimmed() -> String {

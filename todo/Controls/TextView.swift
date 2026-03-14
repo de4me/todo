@@ -36,7 +36,7 @@ class TextView: UITextView {
         guard let placeHolderString else {
             return;
         }
-        self.placeHolderString = String(localizedString: placeHolderString);
+        self.placeHolderString = String(localized: placeHolderString);
         self.showPlaceholder();
     }
     

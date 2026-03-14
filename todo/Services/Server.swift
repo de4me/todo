@@ -41,7 +41,7 @@ extension ServerError: CustomStringConvertible {
 
 extension ServerError: LocalizedError {
     var errorDescription: String? {
-        String(localizedString: self.description);
+        String(localized: self.description);
     }
 }
 

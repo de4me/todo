@@ -198,7 +198,7 @@ extension TodoListViewController: UITableViewDelegate {
             self.presenter.delete(todo: todo, force: true);
             completed(true);
         }
-        let delete = UIContextualAction(style: .destructive, title: String(localizedString: "delete"), handler: block);
+        let delete = UIContextualAction(style: .destructive, title: String(localized: "delete"), handler: block);
         delete.image = UIImage(systemName: "trash");
         return UISwipeActionsConfiguration(actions: [delete]);
     }
@@ -209,7 +209,7 @@ extension TodoListViewController: UITableViewDelegate {
             self.presenter.share(todo: todo);
             completed(true);
         }
-        let share = UIContextualAction(style: .normal, title: String(localizedString: "share"), handler: block);
+        let share = UIContextualAction(style: .normal, title: String(localized: "share"), handler: block);
         share.image = UIImage(systemName: "square.and.arrow.up");
         share.backgroundColor = UIColor.shareBackground;
         return UISwipeActionsConfiguration(actions: [share]);

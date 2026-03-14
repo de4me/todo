@@ -140,10 +140,10 @@ class TodoListInteractor: TodoListInteractorInput {
     }
     
     func share(todo: Todo) {
-        let created = String(localizedString:"created");
-        let completed = String(localizedString:"completed");
+        let created = String(localized: "created");
+        let completed = String(localized: "completed");
         let created_date = todo.localizedCreatedDate;
-        let completed_date = todo.localizedCompletedDate ?? String(localizedString:"nope");
+        let completed_date = todo.localizedCompletedDate ?? String(localized: "nope");
         let string = """
             \(todo.title)
             \(todo.subtitle)

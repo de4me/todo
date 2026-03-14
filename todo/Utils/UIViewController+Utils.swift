@@ -12,14 +12,14 @@ extension UIViewController {
     
     func showError(_ error: any Error) {
         let alert = UIAlertController(title: nil, message: error.localizedDescription, preferredStyle: .alert);
-        let close = UIAlertAction(title: String(localizedString: "close"), style: .default);
+        let close = UIAlertAction(title: String(localized: "close"), style: .default);
         alert.addAction(close);
         self.present(alert, animated: true);
     }
     
     func showAlert(message: String, button title: String, destructive: Bool = false, actionSheeet: Bool = false, handler: @escaping (Any) -> Void) {
         let controller = UIAlertController(title: nil, message: message, preferredStyle: actionSheeet ? .actionSheet : .alert);
-        let close = UIAlertAction(title: String(localizedString: "close"), style: .cancel);
+        let close = UIAlertAction(title: String(localized: "close"), style: .cancel);
         let action = UIAlertAction(title: title, style: destructive ? .destructive : .default, handler: handler);
         controller.addAction(close);
         controller.addAction(action);
