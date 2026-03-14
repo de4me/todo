@@ -22,7 +22,7 @@ class LabelView: UILabel {
     }
     
     private func update(string: String?) {
-        guard let string = string else {
+        guard let string = string, !string.isEmpty else {
             self.attributedText = nil;
             return;
         }
