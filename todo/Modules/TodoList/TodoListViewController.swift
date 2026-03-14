@@ -203,6 +203,18 @@ extension TodoListViewController: UITableViewDelegate {
         return UISwipeActionsConfiguration(actions: [delete]);
     }
     
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let block: (UIContextualAction, UIView, @escaping (Bool) -> Void) -> Void = { action, view, completed in
+            let todo = self.presenter.dataSource(objectAt: indexPath.row);
+            self.presenter.share(todo: todo);
+            completed(true);
+        }
+        let share = UIContextualAction(style: .normal, title: String(localizedString: "share"), handler: block);
+        share.image = UIImage(systemName: "square.and.arrow.up");
+        share.backgroundColor = UIColor.shareBackground;
+        return UISwipeActionsConfiguration(actions: [share]);
+    }
+    
     func tableView(_ tableView: UITableView, willBeginEditingRowAt indexPath: IndexPath) {
         self.longpressGestureRecognizer.isEnabled = false;
     }

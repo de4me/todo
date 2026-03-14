@@ -98,6 +98,23 @@
       },
       "shouldTranslate" : false
     },
+    "share" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Share"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Поделиться"
+          }
+        }
+      }
+    },
     "task_description_placeholder" : {
       "extractionState" : "manual",
       "localizations" : {
