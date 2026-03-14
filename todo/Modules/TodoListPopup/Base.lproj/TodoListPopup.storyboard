@@ -128,7 +128,7 @@
                                                             <subviews>
                                                                 <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kwb-SN-eWG">
                                                                     <rect key="frame" x="0.0" y="0.0" width="254" height="44"/>
-                                                                    <color key="backgroundColor" name="popupMenuSeparatorColor"/>
+                                                                    <color key="backgroundColor" name="popupSelectionBackgroundColor"/>
                                                                 </view>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XHp-hT-aA5">
                                                                     <rect key="frame" x="16" y="11" width="222" height="22"/>
@@ -177,7 +177,7 @@
                                                             <subviews>
                                                                 <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wzO-DO-nZg">
                                                                     <rect key="frame" x="0.0" y="0.0" width="254" height="44"/>
-                                                                    <color key="backgroundColor" name="popupMenuSeparatorColor"/>
+                                                                    <color key="backgroundColor" name="popupSelectionBackgroundColor"/>
                                                                 </view>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F2u-iV-2bc">
                                                                     <rect key="frame" x="16" y="11" width="222" height="22"/>
@@ -226,7 +226,7 @@
                                                             <subviews>
                                                                 <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pWM-jh-va1">
                                                                     <rect key="frame" x="0.0" y="0.0" width="254" height="44"/>
-                                                                    <color key="backgroundColor" name="popupMenuSeparatorColor"/>
+                                                                    <color key="backgroundColor" name="popupSelectionBackgroundColor"/>
                                                                 </view>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UN5-SA-wKM">
                                                                     <rect key="frame" x="16" y="11" width="222" height="22"/>
@@ -370,6 +370,9 @@
         </namedColor>
         <namedColor name="popupMenuSeparatorColor">
             <color red="0.30196078431372547" green="0.33333333333333331" blue="0.36862745098039218" alpha="0.5" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="popupSelectionBackgroundColor">
+            <color red="0.15294117647058825" green="0.15294117647058825" blue="0.16078431372549021" alpha="0.40000000596046448" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <systemColor name="tintColor">
             <color red="0.0" green="0.53333333333333333" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
