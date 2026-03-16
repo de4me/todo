@@ -19,6 +19,9 @@ class TodoListViewDump: TodoListViewInput {
     var setErrorExpectation: XCTestExpectation = .init(description: "Set error");
     var alertMessage: String?;
     var alertButton: String?;
+    var insertIndexPaths: [IndexPath]?;
+    var deleteinsertIndexPaths: [IndexPath]?;
+    var updateIndexPaths: [IndexPath]?;
     
     func performSegue(withIdentifier indentifier: String, sender: Any?) {
         self.route = indentifier;
@@ -46,4 +49,19 @@ class TodoListViewDump: TodoListViewInput {
         self.alertButton = title;
     }
     
+    func insert(tableView rows: [IndexPath]) {
+        self.insertIndexPaths = rows;
+    }
+    
+    func delete(tableView rows: [IndexPath]) {
+        self.deleteinsertIndexPaths = rows;
+    }
+    
+    func update(tableView rows: [IndexPath]) {
+        self.updateIndexPaths = rows;
+    }
+    
+    func showShare(text: String) {
+        
+    }
 }
