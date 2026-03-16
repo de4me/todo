@@ -11,7 +11,7 @@ import Foundation;
 extension String {
     
     static func isEmpty(string: String?) -> Bool {
-        return string?.trimmed().isEmpty ?? true;
+        string?.trimmed().isEmpty ?? true;
     }
     
     init(localized: String) {
@@ -19,7 +19,7 @@ extension String {
     }
     
     func trimmed() -> String {
-        return self.trimmingCharacters(in: .whitespacesAndNewlines);
+        self.isEmpty ? self : self.trimmingCharacters(in: .whitespacesAndNewlines);
     }
     
     func nilIfEmpty() -> String? {
